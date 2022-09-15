@@ -1,0 +1,15 @@
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/bin/Debug/net6.0/FandomStarWars.Infra.Data.deps.json
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/bin/Debug/net6.0/FandomStarWars.Infra.Data.dll
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/bin/Debug/net6.0/FandomStarWars.Infra.Data.pdb
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/bin/Debug/net6.0/FandomStarWars.Domain.dll
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/bin/Debug/net6.0/FandomStarWars.Domain.pdb
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/obj/Debug/net6.0/FandomStarWars.Infra.Data.csproj.AssemblyReference.cache
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/obj/Debug/net6.0/FandomStarWars.Infra.Data.GeneratedMSBuildEditorConfig.editorconfig
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/obj/Debug/net6.0/FandomStarWars.Infra.Data.AssemblyInfoInputs.cache
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/obj/Debug/net6.0/FandomStarWars.Infra.Data.AssemblyInfo.cs
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/obj/Debug/net6.0/FandomStarWars.Infra.Data.csproj.CoreCompileInputs.cache
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/obj/Debug/net6.0/FandomStarWars.Infra.Data.csproj.CopyComplete
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/obj/Debug/net6.0/FandomStarWars.Infra.Data.dll
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/obj/Debug/net6.0/refint/FandomStarWars.Infra.Data.dll
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/obj/Debug/net6.0/FandomStarWars.Infra.Data.pdb
+/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/obj/Debug/net6.0/ref/FandomStarWars.Infra.Data.dll

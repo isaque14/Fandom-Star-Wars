@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "FandomStarWars.Infra.Data/1.0.0": {
+        "dependencies": {
+          "FandomStarWars.Domain": "1.0.0"
+        },
+        "runtime": {
+          "FandomStarWars.Infra.Data.dll": {}
+        }
+      },
+      "FandomStarWars.Domain/1.0.0": {
+        "runtime": {
+          "FandomStarWars.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FandomStarWars.Infra.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FandomStarWars.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

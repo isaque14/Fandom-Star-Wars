@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "alyg1omo8siEaYGHfr+Vme76/DXqCNLOxX07rWZ/q0OiaUfA5NtzJviDayd48ltVNgvQqn1JVEwa5otfHBfUhQ==",
+  "dgSpecHash": "F/ZxiNcaG63muqOiBN5EdVveDn5SJLlQMe1RSFwMPl62Gmh2BwqkWn3zv037RRumQjmG2/erpZK58IPVLpZMew==",
   "success": true,
-  "projectFilePath": "/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Domain/FandomStarWars.Domain.csproj",
+  "projectFilePath": "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Domain\\FandomStarWars.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

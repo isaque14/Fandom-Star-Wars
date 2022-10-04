@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Domain/FandomStarWars.Domain.csproj": {}
+    "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Domain\\FandomStarWars.Domain.csproj": {}
   },
   "projects": {
-    "/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Domain/FandomStarWars.Domain.csproj": {
+    "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Domain\\FandomStarWars.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Domain/FandomStarWars.Domain.csproj",
+        "projectUniqueName": "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Domain\\FandomStarWars.Domain.csproj",
         "projectName": "FandomStarWars.Domain",
-        "projectPath": "/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Domain/FandomStarWars.Domain.csproj",
-        "packagesPath": "/home/isaque/.nuget/packages/",
-        "outputPath": "/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Domain/obj/",
+        "projectPath": "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Domain\\FandomStarWars.Domain.csproj",
+        "packagesPath": "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\",
+        "outputPath": "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/isaque/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\IsaqueDinizdaSilva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -52,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.302/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

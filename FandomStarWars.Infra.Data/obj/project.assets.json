@@ -27,32 +27,34 @@
     ]
   },
   "packageFolders": {
-    "/home/isaque/.nuget/packages/": {}
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/FandomStarWars.Infra.Data.csproj",
+      "projectUniqueName": "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Infra.Data\\FandomStarWars.Infra.Data.csproj",
       "projectName": "FandomStarWars.Infra.Data",
-      "projectPath": "/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/FandomStarWars.Infra.Data.csproj",
-      "packagesPath": "/home/isaque/.nuget/packages/",
-      "outputPath": "/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/obj/",
+      "projectPath": "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Infra.Data\\FandomStarWars.Infra.Data.csproj",
+      "packagesPath": "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\",
+      "outputPath": "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Infra.Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/isaque/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\IsaqueDinizdaSilva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Domain/FandomStarWars.Domain.csproj": {
-              "projectPath": "/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Domain/FandomStarWars.Domain.csproj"
+            "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Domain\\FandomStarWars.Domain.csproj": {
+              "projectPath": "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Domain\\FandomStarWars.Domain.csproj"
             }
           }
         }
@@ -81,7 +83,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.302/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

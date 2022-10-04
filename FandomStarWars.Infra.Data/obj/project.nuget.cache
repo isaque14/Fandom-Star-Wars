@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8lfaCPDxNHlcorRnVqqsgmwxNZ4ALZSfqilUNKhjkyeB0RMRAUqT7kZhApFNJNPovMSFvb/KzF/sVsAzTyDUTQ==",
+  "dgSpecHash": "m/ugJfv704lJn8LFiRAi4PmlgkGvzYobvSv7CBsZxQ3SkXMVZSa8D0ERRLf/CLgTUD/C5SlaRxJH68xoHUA7sA==",
   "success": true,
-  "projectFilePath": "/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Infra.Data/FandomStarWars.Infra.Data.csproj",
+  "projectFilePath": "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Infra.Data\\FandomStarWars.Infra.Data.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,8 +1,23 @@
 {
   "version": 2,
-  "dgSpecHash": "kKZOI2aRItGsL+UW4XhJ8N/HWkvzLRxygybEz+L9Xn4eJMykYoVZRAw/Ol1uUJOhqlzVs/HFp1+hVmCh3wVUrw==",
+  "dgSpecHash": "+f9Ui4RWgjQo3onq6z/dOLvBuHqk0s2J8v5H0LvAzRhv0I+BA9fv7Z2lwRzNy9WK5+r6VlnH7THXl/UwVMFV7A==",
   "success": true,
-  "projectFilePath": "/home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Application/FandomStarWars.Application.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Application\\FandomStarWars.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\microsoft.extensions.http\\6.0.0\\microsoft.extensions.http.6.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\microsoft.extensions.logging\\6.0.0\\microsoft.extensions.logging.6.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\refit\\6.3.2\\refit.6.3.2.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\refit.httpclientfactory\\6.3.2\\refit.httpclientfactory.6.3.2.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\system.net.http.json\\6.0.0\\system.net.http.json.6.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

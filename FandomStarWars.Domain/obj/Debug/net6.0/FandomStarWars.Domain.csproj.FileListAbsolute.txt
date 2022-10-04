@@ -10,3 +10,15 @@
 /home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Domain/obj/Debug/net6.0/refint/FandomStarWars.Domain.dll
 /home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Domain/obj/Debug/net6.0/FandomStarWars.Domain.pdb
 /home/isaque/ws-vscode/FandomStarWars/FandomStarWars.Domain/obj/Debug/net6.0/ref/FandomStarWars.Domain.dll
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Domain\bin\Debug\net6.0\FandomStarWars.Domain.deps.json
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Domain\bin\Debug\net6.0\FandomStarWars.Domain.dll
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Domain\bin\Debug\net6.0\FandomStarWars.Domain.pdb
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Domain\obj\Debug\net6.0\FandomStarWars.Domain.csproj.AssemblyReference.cache
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Domain\obj\Debug\net6.0\FandomStarWars.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Domain\obj\Debug\net6.0\FandomStarWars.Domain.AssemblyInfoInputs.cache
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Domain\obj\Debug\net6.0\FandomStarWars.Domain.AssemblyInfo.cs
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Domain\obj\Debug\net6.0\FandomStarWars.Domain.csproj.CoreCompileInputs.cache
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Domain\obj\Debug\net6.0\FandomStarWars.Domain.dll
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Domain\obj\Debug\net6.0\refint\FandomStarWars.Domain.dll
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Domain\obj\Debug\net6.0\FandomStarWars.Domain.pdb
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Domain\obj\Debug\net6.0\ref\FandomStarWars.Domain.dll

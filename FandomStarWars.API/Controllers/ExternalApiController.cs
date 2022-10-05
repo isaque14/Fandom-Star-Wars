@@ -26,7 +26,7 @@ namespace FandomStarWars.API.Controllers
 
             Console.WriteLine(result.Next);
 
-            var characters = new List<Character>();
+            var characters = new List<ApiDataModel>();
 
             //foreach (var character in result.Results)
             //{

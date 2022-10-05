@@ -3,6 +3,7 @@ using FandomStarWars.Infra.IoC;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructureExternalApiClients(builder.Configuration);
+builder.Services.AddInfrastructureAPI(builder.Configuration);
 
 // Add services to the container.
 

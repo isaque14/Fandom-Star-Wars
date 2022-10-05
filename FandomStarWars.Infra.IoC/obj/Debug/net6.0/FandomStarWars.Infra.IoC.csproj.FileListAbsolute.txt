@@ -36,3 +36,5 @@ D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Infra.IoC\obj\Debug\net6.0\FandomSt
 D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Infra.IoC\obj\Debug\net6.0\refint\FandomStarWars.Infra.IoC.dll
 D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Infra.IoC\obj\Debug\net6.0\FandomStarWars.Infra.IoC.pdb
 D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Infra.IoC\obj\Debug\net6.0\ref\FandomStarWars.Infra.IoC.dll
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Infra.IoC\bin\Debug\net6.0\FandomStarWars.Infra.IoC.runtimeconfig.json
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Infra.IoC\obj\Debug\net6.0\FandomStarWars.Infra.IoC.genruntimeconfig.cache

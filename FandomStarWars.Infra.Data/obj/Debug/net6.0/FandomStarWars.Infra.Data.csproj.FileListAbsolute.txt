@@ -28,3 +28,5 @@ D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Infra.Data\obj\Debug\net6.0\FandomS
 D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Infra.Data\obj\Debug\net6.0\refint\FandomStarWars.Infra.Data.dll
 D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Infra.Data\obj\Debug\net6.0\FandomStarWars.Infra.Data.pdb
 D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Infra.Data\obj\Debug\net6.0\ref\FandomStarWars.Infra.Data.dll
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Infra.Data\bin\Debug\net6.0\FandomStarWars.Infra.Data.runtimeconfig.json
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.Infra.Data\obj\Debug\net6.0\FandomStarWars.Infra.Data.genruntimeconfig.cache

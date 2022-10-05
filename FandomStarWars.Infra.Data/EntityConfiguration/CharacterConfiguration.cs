@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FandomStarWars.Infra.Data.EntityConfiguration
 {
-    internal class CharacterConfiguration : IEntityTypeConfiguration<Character>
+    internal class CharacterConfiguration : IEntityTypeConfiguration<Personage>
     {
-        public void Configure(EntityTypeBuilder<Character> builder)
+        public void Configure(EntityTypeBuilder<Personage> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasMaxLength(100).IsRequired();

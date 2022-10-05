@@ -1,6 +1,6 @@
 ﻿namespace FandomStarWars.Application.DTO_s
 {
-    public class CharacterDTO
+    public class ApiDataModelDTO
     {
         public string Name { get; set; }
         public string Height { get; set; }
@@ -24,7 +24,7 @@
             public int Count { get; set; }
             public string Next { get; set; }
             public string Previous { get; set; }
-            public List<CharacterDTO> Results { get; set; }
+            public List<ApiDataModelDTO> Results { get; set; }
         }
     }
 }

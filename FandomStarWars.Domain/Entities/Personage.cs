@@ -3,7 +3,7 @@ using FandomStarWars.Domain.Validation;
 
 namespace FandomStarWars.Domain.Entities
 {
-    public sealed class Character : Entity
+    public sealed class Personage : Entity
     {
         public string Name { get; private set; }
         public string Height { get; private set; }
@@ -14,36 +14,29 @@ namespace FandomStarWars.Domain.Entities
         public string BirthYear { get; private set; }
         public string Gender { get; private set; }
         public string Homeworld { get; private set; }
-        public List<string> Films { get; private set; }
-        public List<string> Species { get; private set; }
-        public List<string> Vehicles { get; private set; }
-        public List<string> Starships { get; private set; }
         public DateTime Created { get; private set; }
         public DateTime Edited { get; private set; }
 
-        public Character(int id, string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear, string gender,
-            string homeworld, List<string> films, List<string> species, List<string> vehicles, List<string> starships, DateTime created, DateTime edited)
+        public Personage(int id, string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear, string gender,
+            string homeworld)
         {
             DomainExceptionValidation.When(id >= 0, "Invalid Id");
             ValidationDomain(name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld);
-            Films = films;
-            Species = species;
-            Vehicles = vehicles;
-            Starships = starships;
-            Created = created;
-            Edited = edited;
+            Created = DateTime.Now;
+        }
+
+        public Personage(string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear, string gender,
+            string homeworld)
+        {
+            ValidationDomain(name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld);
+            Created = DateTime.Now;
         }
 
         public void Update(string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear, string gender,
-            string homeworld, List<string> films, List<string> species, List<string> vehicles, List<string> starships, DateTime created, DateTime edited)
+            string homeworld)
         {
             ValidationDomain(name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld);
-            Films = films;
-            Species = species;
-            Vehicles = vehicles;
-            Starships = starships;
-            Created = created;
-            Edited = edited;
+            Edited = DateTime.Now;
         }
 
         public void ValidationDomain(string name, string height, string mass, string hairColor, string skinColor,

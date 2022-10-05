@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FandomStarWars.Infra.Data.Repositories
 {
-    public class CharacterRepository : ICharacterRepository
+    public class CharacterRepository : IPersonageRepository
     {
         private readonly DataContext _context;
 
@@ -14,40 +14,40 @@ namespace FandomStarWars.Infra.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Character>> GetAllAsync()
+        public async Task<IEnumerable<Personage>> GetAllAsync()
         {
             return await _context.Characters.ToListAsync();
         }
 
-        public async Task<Character> GetByIdAsync(int id)
+        public async Task<Personage> GetByIdAsync(int id)
         {
             return await _context.Characters.FindAsync(id);
         }
 
-        public async Task<Character> GetByNameAsync(string name)
+        public async Task<Personage> GetByNameAsync(string name)
         {
             return await _context.Characters.FindAsync(name);
         }
 
-        public async Task<Character> CreateAsync(Character character)
+        public async Task<Personage> CreateAsync(Personage personage)
         {
-            _context.Characters.Add(character);
+            _context.Characters.Add(personage);
             await _context.SaveChangesAsync();
-            return character;
+            return personage;
         }
 
-        public async Task<Character> UpdateAsync(Character character)
+        public async Task<Personage> UpdateAsync(Personage personage)
         {
-            _context.Characters.Update(character);
+            _context.Characters.Update(personage);
             await _context.SaveChangesAsync();
-            return character;
+            return personage;
         }
 
-        public async Task<Character> DeleteAsync(Character character)
+        public async Task<Personage> DeleteAsync(Personage personage)
         {
-            _context.Characters.Remove(character);
+            _context.Characters.Remove(personage);
             await _context.SaveChangesAsync();
-            return character;
+            return personage;
         }
     }
 }

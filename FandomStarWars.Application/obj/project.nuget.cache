@@ -1,9 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "PXg6exejtX0yfQLHnrVR+4zzdLbjpO2pUUxRSPZXt6kGpR030kHYHSSbxC7nVLqDfkoWeTBIaWrldIk+5Sq37Q==",
+  "dgSpecHash": "h14Wv+VxXZsi3COP7JcYUuSw/fHAHibABCR+BAksbbt74GgU9/H5i8OWGVjIHSe+QKx7TEHHg2I2svkpYXrshw==",
   "success": true,
   "projectFilePath": "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Application\\FandomStarWars.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\microsoft.extensions.http\\6.0.0\\microsoft.extensions.http.6.0.0.nupkg.sha512",

@@ -44,3 +44,8 @@ D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.API\bin\Debug\net6.0\Npgsql.EntityF
 D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.API\bin\Debug\net6.0\System.Security.Permissions.dll
 D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.API\bin\Debug\net6.0\Humanizer.dll
 D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.API\bin\Debug\net6.0\AutoMapper.dll
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.API\bin\Debug\net6.0\MediatR.dll
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.API\bin\Debug\net6.0\MediatR.Contracts.dll
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Dev\ws-vs22\FandomStarWars\FandomStarWars.API\bin\Debug\net6.0\MediatR.Extensions.Microsoft.DependencyInjection.dll

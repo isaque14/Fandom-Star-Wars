@@ -1,6 +1,6 @@
 ﻿using FandomStarWars.Application.DTO_s;
 using Refit;
-using static FandomStarWars.Application.DTO_s.CharacterDTO;
+using static FandomStarWars.Application.DTO_s.ApiDataModelDTO;
 
 namespace FandomStarWars.Application.Interfaces.APIClient
 {
@@ -10,7 +10,7 @@ namespace FandomStarWars.Application.Interfaces.APIClient
         Task<Root> GetAllPersonsAsync();
 
         [Get("/people/{id}")]
-        Task<CharacterDTO> GetById(int id);
+        Task<ApiDataModelDTO> GetById(int id);
 
     }
 }

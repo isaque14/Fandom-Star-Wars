@@ -10,7 +10,7 @@ namespace FandomStarWars.Infra.Data.Context
 
         }
 
-        public DbSet<Character> Characters { get; set; }
+        public DbSet<Personage> Characters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

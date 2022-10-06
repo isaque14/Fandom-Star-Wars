@@ -1,9 +1,13 @@
 ﻿using FandomStarWars.Application.Interfaces;
 using FandomStarWars.Application.Mappings;
+using FandomStarWars.Application.Services;
+using FandomStarWars.Domain.Account;
 using FandomStarWars.Domain.Interfaces;
 using FandomStarWars.Infra.Data.Context;
+using FandomStarWars.Infra.Data.Identity;
 using FandomStarWars.Infra.Data.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,9 +24,17 @@ namespace FandomStarWars.Infra.IoC
                     b => b.MigrationsAssembly(typeof(DataContext).Assembly.FullName))
                 );
 
-            services.AddScoped<IPersonageRepository, CharacterRepository>();
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<DataContext>()
+                .AddDefaultTokenProviders();
 
-            services.AddScoped<IPersonageService, IPersonageService>();
+            services.AddScoped<IPersonageRepository, PersonageRepository>();
+
+            services.AddScoped<IPersonageService, PersonageService>();
+
+            services.AddScoped<IAuthenticate, AuthenticateService>();
+            services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
+
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
             var myHandlers = AppDomain.CurrentDomain.Load("FandomStarWars.Application");

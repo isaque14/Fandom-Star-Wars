@@ -9,7 +9,7 @@ using MediatR;
 
 namespace FandomStarWars.Application.Services
 {
-    internal class PersonageService : IPersonageService
+    public class PersonageService : IPersonageService
     {
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;

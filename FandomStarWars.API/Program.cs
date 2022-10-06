@@ -1,4 +1,5 @@
 using FandomStarWars.Infra.IoC;
+using FandomStarWars.Domain.Account;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,18 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
+using (var serviceScope = app.Services.CreateScope())
+{
+    var services = serviceScope.ServiceProvider;
+    var seedUserRoleInitial = services.GetRequiredService<ISeedUserRoleInitial>();
+
+    seedUserRoleInitial.SeedRoles();
+    seedUserRoleInitial.SeedUsers();
+}
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

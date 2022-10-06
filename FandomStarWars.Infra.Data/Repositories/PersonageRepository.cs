@@ -5,47 +5,47 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FandomStarWars.Infra.Data.Repositories
 {
-    public class CharacterRepository : IPersonageRepository
+    public class PersonageRepository : IPersonageRepository
     {
         private readonly DataContext _context;
 
-        public CharacterRepository(DataContext context)
+        public PersonageRepository(DataContext context)
         {
             _context = context;
         }
 
         public async Task<IEnumerable<Personage>> GetAllAsync()
         {
-            return await _context.Characters.ToListAsync();
+            return await _context.Personages.ToListAsync();
         }
 
         public async Task<Personage> GetByIdAsync(int id)
         {
-            return await _context.Characters.FindAsync(id);
+            return await _context.Personages.FindAsync(id);
         }
 
         public async Task<Personage> GetByNameAsync(string name)
         {
-            return await _context.Characters.FindAsync(name);
+            return await _context.Personages.FindAsync(name);
         }
 
         public async Task<Personage> CreateAsync(Personage personage)
         {
-            _context.Characters.Add(personage);
+            _context.Personages.Add(personage);
             await _context.SaveChangesAsync();
             return personage;
         }
 
         public async Task<Personage> UpdateAsync(Personage personage)
         {
-            _context.Characters.Update(personage);
+            _context.Personages.Update(personage);
             await _context.SaveChangesAsync();
             return personage;
         }
 
         public async Task<Personage> DeleteAsync(Personage personage)
         {
-            _context.Characters.Remove(personage);
+            _context.Personages.Remove(personage);
             await _context.SaveChangesAsync();
             return personage;
         }

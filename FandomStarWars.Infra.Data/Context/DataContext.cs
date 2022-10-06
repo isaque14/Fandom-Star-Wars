@@ -1,16 +1,18 @@
 ﻿using FandomStarWars.Domain.Entities;
+using FandomStarWars.Infra.Data.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FandomStarWars.Infra.Data.Context
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<ApplicationUser>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
         }
 
-        public DbSet<Personage> Characters { get; set; }
+        public DbSet<Personage> Personages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

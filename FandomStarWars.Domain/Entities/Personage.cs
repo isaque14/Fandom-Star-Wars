@@ -14,29 +14,29 @@ namespace FandomStarWars.Domain.Entities
         public string BirthYear { get; private set; }
         public string Gender { get; private set; }
         public string Homeworld { get; private set; }
-        public DateTime Created { get; private set; }
-        public DateTime Edited { get; private set; }
+        public string Created { get; private set; }
+        public string? Edited { get; private set; }
 
         public Personage(int id, string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear, string gender,
             string homeworld)
         {
             DomainExceptionValidation.When(id >= 0, "Invalid Id");
             ValidationDomain(name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld);
-            Created = DateTime.Now;
+            Created = DateTime.Now.ToString();
         }
 
         public Personage(string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear, string gender,
             string homeworld)
         {
             ValidationDomain(name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld);
-            Created = DateTime.Now;
+            Created = DateTime.Now.ToString();
         }
 
         public void Update(string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear, string gender,
             string homeworld)
         {
             ValidationDomain(name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld);
-            Edited = DateTime.Now;
+            Edited = DateTime.Now.ToString();
         }
 
         public void ValidationDomain(string name, string height, string mass, string hairColor, string skinColor,

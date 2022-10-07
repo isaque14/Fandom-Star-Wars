@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FandomStarWars.Infra.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221006131857_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20221006202039_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,37 +33,30 @@ namespace FandomStarWars.Infra.Data.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BirthYear")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<string>("Created")
+                        .HasColumnType("text");
 
-                    b.Property<DateTime>("Edited")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<string>("Edited")
+                        .HasColumnType("text");
 
                     b.Property<string>("EyeColor")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Gender")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("HairColor")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Height")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Homeworld")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Mass")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
@@ -72,7 +65,6 @@ namespace FandomStarWars.Infra.Data.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("SkinColor")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FandomStarWars.Infra.Data.EntityConfiguration
 {
-    internal class CharacterConfiguration : IEntityTypeConfiguration<Personage>
+    internal class PersonageConfiguration : IEntityTypeConfiguration<Personage>
     {
         public void Configure(EntityTypeBuilder<Personage> builder)
         {

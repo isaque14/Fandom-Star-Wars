@@ -9,7 +9,7 @@ namespace FandomStarWars.Application.Mappings
         public DomainToDTOMappingProfile()
         {
             CreateMap<Personage, PersonageDTO>().ReverseMap();
-            CreateMap<ApiDataModel, ApiDataModelDTO>().ReverseMap();
+            CreateMap<Personage, PersonageDataExternalApiDTO>().ReverseMap();
         }
     }
 }

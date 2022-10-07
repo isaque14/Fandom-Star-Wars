@@ -9,43 +9,43 @@ namespace FandomStarWars.API.Controllers
     [ApiController]
     public class ExternalApiController : ControllerBase
     {
-        private readonly IApiClientRepository _apiClientRepository;
+        private readonly IExternalApiService _apiClientRepository;
 
-        public ExternalApiController(IApiClientRepository apiClientRepository)
+        public ExternalApiController(IExternalApiService apiClientRepository)
         {
             _apiClientRepository = apiClientRepository;
         }
 
-        [HttpGet]
-        public async Task<ActionResult> GetAll()
-        {
-            var result = await _apiClientRepository.GetAllPersonsAsync().ConfigureAwait(false);
+        //[HttpGet]
+        //public async Task<ActionResult> InsertDataIntoDataBase()
+        //{
+        //    var result = await _apiClientRepository.GetAllPersonsAsync().ConfigureAwait(false);
 
-            if (result is null)
-                return NotFound("Data not foud");
+        //    if (result is null)
+        //        return NotFound("Data not foud");
 
-            Console.WriteLine(result.Next);
+        //    Console.WriteLine(result.Next);
 
-            var characters = new List<ApiDataModel>();
+        //    var characters = new List<PersonageDataExternalApi>();
 
-            //foreach (var character in result.Results)
-            //{
-            //    var actual = new Character(character.Name, character.Height)
-            //}
+        //    //foreach (var character in result.Results)
+        //    //{
+        //    //    var actual = new Character(character.Name, character.Height)
+        //    //}
 
-            return Ok(result.Results);
-        }
+        //    return Ok(result.Results);
+        //}
 
-        [HttpGet]
-        [Route("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var person = await _apiClientRepository.GetById(id);
+        //[HttpGet]
+        //[Route("{id}")]
+        //public async Task<IActionResult> GetById(int id)
+        //{
+        //    var person = await _apiClientRepository.GetById(id);
 
-            if (person == null)
-                return BadRequest();
+        //    if (person == null)
+        //        return BadRequest();
 
-            return Ok(person);
-        }
+        //    return Ok(person);
+        //}
     }
 }

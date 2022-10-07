@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FandomStarWars.Application.DTO_s;
+using FandomStarWars.Application.ExternalApi.Querys;
 using FandomStarWars.Application.Interfaces;
 using FandomStarWars.Application.Personages.Commands;
 using FandomStarWars.Application.Personages.Commands.Base;
@@ -18,6 +19,64 @@ namespace FandomStarWars.Application.Services
         {
             _mapper = mapper;
             _mediator = mediator;
+        }
+
+        public async Task<IEnumerable<PersonageDTO>> GetAllPersonagesInExternalApiAsync()
+        {
+            int numberPage = 1;
+            var getPersonageExternalApi = new GetPersonagesExternalApiByPageQuery(numberPage);
+
+            if (getPersonageExternalApi == null)
+                throw new Exception($"API could not be loaded.");
+
+            var personagesAPi = await _mediator.Send(getPersonageExternalApi);
+            
+            var personagesDTO = new List<PersonageDTO>();
+
+            
+            while (personagesAPi.Next != null)
+            {
+                foreach (var p in personagesAPi.Results)
+                {
+                    personagesDTO.Add(new PersonageDTO(
+                        p.Name,
+                        p.Height,
+                        p.Mass,
+                        p.Hair_Color,
+                        p.Skin_Color,
+                        p.Eye_Color,
+                        p.Birth_Year,
+                        p.Gender,
+                        p.Homeworld,
+                        //Convert.ToDateTime(p.Created),
+                        //Convert.ToDateTime(p.Edited)
+                        p.Created,
+                        p.Edited
+                        ));
+                }
+
+                numberPage++;
+
+                var nextPage = new GetPersonagesExternalApiByPageQuery(numberPage);
+
+                if (nextPage == null)
+                    throw new Exception($"API could not be loaded.");
+
+                personagesAPi = await _mediator.Send(nextPage);
+            }
+            
+
+            return personagesDTO as IEnumerable<PersonageDTO>;
+        }
+
+        public async Task InsertPersonagesExternalApiIntoDataBase()
+        {
+            var personagesDTO = await GetAllPersonagesInExternalApiAsync();
+
+            foreach (var personage in personagesDTO)
+            {
+                await CreateAsync(personage);
+            }
         }
 
         public async Task<IEnumerable<PersonageDTO>> GetAllAsync()

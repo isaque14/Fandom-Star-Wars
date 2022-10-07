@@ -10,5 +10,9 @@ namespace FandomStarWars.Application.Interfaces
         Task CreateAsync(PersonageDTO personageDTO);
         Task UpdateAsync(PersonageDTO personageDTO);
         Task DeleteAsync(int id);
+
+        Task<IEnumerable<PersonageDTO>> GetAllPersonagesInExternalApiAsync();
+
+        Task InsertPersonagesExternalApiIntoDataBase();
     }
 }

@@ -9,7 +9,6 @@ namespace FandomStarWars.Application.DTO_s
         [DisplayName("Name")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Height is Required")]
         [DisplayName("Heigth")]
         public string Height { get; set; }
 
@@ -35,9 +34,25 @@ namespace FandomStarWars.Application.DTO_s
         public string Homeworld { get; set; }
         
         [DisplayName("Created")]
-        public DateTime Created { get; set; }
+        public string Created { get; set; }
 
         [DisplayName("Edited")]
-        public DateTime Edited { get; set; }
+        public string Edited { get; set; }
+
+        public PersonageDTO(string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear,
+         string gender, string homeworld, string created, string edited)
+        {
+            Name = name;
+            Height = height;
+            Mass = mass;
+            HairColor = hairColor;
+            SkinColor = skinColor;
+            EyeColor = eyeColor;
+            BirthYear = birthYear;
+            Gender = gender;
+            Homeworld = homeworld;
+            Created = created;
+            Edited = edited;
+        }
     }
 }

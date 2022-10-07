@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace FandomStarWars.Infra.Data.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,16 +56,16 @@ namespace FandomStarWars.Infra.Data.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    Height = table.Column<string>(type: "text", nullable: false),
-                    Mass = table.Column<string>(type: "text", nullable: false),
-                    HairColor = table.Column<string>(type: "text", nullable: false),
-                    SkinColor = table.Column<string>(type: "text", nullable: false),
-                    EyeColor = table.Column<string>(type: "text", nullable: false),
-                    BirthYear = table.Column<string>(type: "text", nullable: false),
-                    Gender = table.Column<string>(type: "text", nullable: false),
-                    Homeworld = table.Column<string>(type: "text", nullable: false),
-                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Edited = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    Height = table.Column<string>(type: "text", nullable: true),
+                    Mass = table.Column<string>(type: "text", nullable: true),
+                    HairColor = table.Column<string>(type: "text", nullable: true),
+                    SkinColor = table.Column<string>(type: "text", nullable: true),
+                    EyeColor = table.Column<string>(type: "text", nullable: true),
+                    BirthYear = table.Column<string>(type: "text", nullable: true),
+                    Gender = table.Column<string>(type: "text", nullable: true),
+                    Homeworld = table.Column<string>(type: "text", nullable: true),
+                    Created = table.Column<string>(type: "text", nullable: true),
+                    Edited = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {

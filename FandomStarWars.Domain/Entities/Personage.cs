@@ -16,6 +16,7 @@ namespace FandomStarWars.Domain.Entities
         public string Homeworld { get; private set; }
         public string Created { get; private set; }
         public string? Edited { get; private set; }
+        public ICollection<Film> Films { get; set; }
 
         public Personage(int id, string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear, string gender,
             string homeworld)

@@ -22,6 +22,50 @@ namespace FandomStarWars.Infra.Data.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("FandomStarWars.Domain.Entities.Film", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Created")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Director")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Edited")
+                        .HasColumnType("text");
+
+                    b.Property<int>("EpisodeId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("OpeningCrawl")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Producer")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ReleaseDate")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Films");
+                });
+
             modelBuilder.Entity("FandomStarWars.Domain.Entities.Personage", b =>
                 {
                     b.Property<int>("Id")
@@ -141,6 +185,21 @@ namespace FandomStarWars.Infra.Data.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("FilmPersonage", b =>
+                {
+                    b.Property<int>("FilmsId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PersonagesId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("FilmsId", "PersonagesId");
+
+                    b.HasIndex("PersonagesId");
+
+                    b.ToTable("FilmPersonage");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -273,6 +332,21 @@ namespace FandomStarWars.Infra.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("FilmPersonage", b =>
+                {
+                    b.HasOne("FandomStarWars.Domain.Entities.Film", null)
+                        .WithMany()
+                        .HasForeignKey("FilmsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FandomStarWars.Domain.Entities.Personage", null)
+                        .WithMany()
+                        .HasForeignKey("PersonagesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

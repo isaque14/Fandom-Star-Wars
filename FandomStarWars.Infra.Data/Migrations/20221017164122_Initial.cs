@@ -50,21 +50,41 @@ namespace FandomStarWars.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Films",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
+                    EpisodeId = table.Column<int>(type: "integer", nullable: false),
+                    OpeningCrawl = table.Column<string>(type: "text", nullable: false),
+                    Director = table.Column<string>(type: "text", nullable: false),
+                    Producer = table.Column<string>(type: "text", nullable: false),
+                    ReleaseDate = table.Column<string>(type: "text", nullable: false),
+                    Created = table.Column<string>(type: "text", nullable: false),
+                    Edited = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Films", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Personages",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    Height = table.Column<string>(type: "text", nullable: true),
-                    Mass = table.Column<string>(type: "text", nullable: true),
-                    HairColor = table.Column<string>(type: "text", nullable: true),
-                    SkinColor = table.Column<string>(type: "text", nullable: true),
-                    EyeColor = table.Column<string>(type: "text", nullable: true),
-                    BirthYear = table.Column<string>(type: "text", nullable: true),
-                    Gender = table.Column<string>(type: "text", nullable: true),
-                    Homeworld = table.Column<string>(type: "text", nullable: true),
-                    Created = table.Column<string>(type: "text", nullable: true),
+                    Height = table.Column<string>(type: "text", nullable: false),
+                    Mass = table.Column<string>(type: "text", nullable: false),
+                    HairColor = table.Column<string>(type: "text", nullable: false),
+                    SkinColor = table.Column<string>(type: "text", nullable: false),
+                    EyeColor = table.Column<string>(type: "text", nullable: false),
+                    BirthYear = table.Column<string>(type: "text", nullable: false),
+                    Gender = table.Column<string>(type: "text", nullable: false),
+                    Homeworld = table.Column<string>(type: "text", nullable: false),
+                    Created = table.Column<string>(type: "text", nullable: false),
                     Edited = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
@@ -178,6 +198,30 @@ namespace FandomStarWars.Infra.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "FilmPersonage",
+                columns: table => new
+                {
+                    FilmsId = table.Column<int>(type: "integer", nullable: false),
+                    PersonagesId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FilmPersonage", x => new { x.FilmsId, x.PersonagesId });
+                    table.ForeignKey(
+                        name: "FK_FilmPersonage_Films_FilmsId",
+                        column: x => x.FilmsId,
+                        principalTable: "Films",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FilmPersonage_Personages_PersonagesId",
+                        column: x => x.PersonagesId,
+                        principalTable: "Personages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -214,6 +258,11 @@ namespace FandomStarWars.Infra.Data.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FilmPersonage_PersonagesId",
+                table: "FilmPersonage",
+                column: "PersonagesId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -234,13 +283,19 @@ namespace FandomStarWars.Infra.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Personages");
+                name: "FilmPersonage");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Films");
+
+            migrationBuilder.DropTable(
+                name: "Personages");
         }
     }
 }

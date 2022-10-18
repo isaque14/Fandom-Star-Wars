@@ -31,6 +31,7 @@ namespace FandomStarWars.Infra.IoC
             services.AddScoped<IPersonageRepository, PersonageRepository>();
 
             services.AddScoped<IPersonageService, PersonageService>();
+            services.AddScoped<IFilmService, FilmService>();
 
             services.AddScoped<IAuthenticate, AuthenticateService>();
             services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();

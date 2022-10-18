@@ -3,9 +3,9 @@ using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.ExternalApi.Querys;
 using FandomStarWars.Application.Interfaces;
 using FandomStarWars.Application.Personages.Commands;
-using FandomStarWars.Application.Personages.Commands.Base;
 using FandomStarWars.Application.Personages.Handlers;
 using FandomStarWars.Application.Personages.Querys;
+using FandomStarWars.Domain.Entities;
 using MediatR;
 
 namespace FandomStarWars.Application.Services
@@ -19,6 +19,31 @@ namespace FandomStarWars.Application.Services
         {
             _mapper = mapper;
             _mediator = mediator;
+        }
+
+
+        public async Task<PersonageDTO> GetPersonageInExternalApiByIdAsync(int id)
+        {
+            var getPersonage = new GetPersonageExternalApiByIdQuery(id);
+
+            if (getPersonage == null)
+                throw new Exception($"API could not be loaded.");
+
+            var personageApi = await _mediator.Send(getPersonage);
+
+            return new PersonageDTO(
+                personageApi.Name, 
+                personageApi.Height, 
+                personageApi.Mass, 
+                personageApi.Hair_Color, 
+                personageApi.Skin_Color, 
+                personageApi.Eye_Color, 
+                personageApi.Birth_Year, 
+                personageApi.Gender, 
+                personageApi.Homeworld, 
+                personageApi.Created, 
+                personageApi.Edited
+                );
         }
 
         public async Task<IEnumerable<PersonageDTO>> GetAllPersonagesInExternalApiAsync()
@@ -38,6 +63,14 @@ namespace FandomStarWars.Application.Services
             {
                 foreach (var p in personagesAPi.Results)
                 {
+                    int idPlanet = 0;
+                    var lastSegment = new Uri(p.Homeworld).Segments.Last();
+
+                    int.TryParse(lastSegment.Remove(lastSegment.Length - 1), out idPlanet);
+                    
+                    var getPlanetExternalApiByIdQuery = new GetPlanetExternalApiByIdQuery(idPlanet);
+                    var planet = await _mediator.Send(getPlanetExternalApiByIdQuery);                  
+
                     personagesDTO.Add(new PersonageDTO(
                         p.Name,
                         p.Height,
@@ -47,7 +80,7 @@ namespace FandomStarWars.Application.Services
                         p.Eye_Color,
                         p.Birth_Year,
                         p.Gender,
-                        p.Homeworld,
+                        planet.Name,
                         //Convert.ToDateTime(p.Created),
                         //Convert.ToDateTime(p.Edited)
                         p.Created,

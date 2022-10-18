@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FandomStarWars.Application.DTO_s;
+using FandomStarWars.Application.Films.Commands;
 using FandomStarWars.Application.Personages.Commands;
 
 namespace FandomStarWars.Application.Mappings
@@ -10,6 +11,8 @@ namespace FandomStarWars.Application.Mappings
         {
             CreateMap<PersonageDTO, CreatePersonageCommand>();
             CreateMap<PersonageDTO, UpdatePersonageCommand>();
+
+            CreateMap<FilmDTO, CreateFilmCommand>();
         }
     }
 }

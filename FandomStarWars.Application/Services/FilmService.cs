@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.ExternalApi.Querys;
+using FandomStarWars.Application.Films.Commands;
 using FandomStarWars.Application.Interfaces;
 using MediatR;
 using static FandomStarWars.Application.DTO_s.FilmsDataExternalApiDTO;
@@ -82,9 +83,10 @@ namespace FandomStarWars.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task CreateAsync(FilmDTO filmDTO)
+        public async Task CreateAsync(FilmDTO filmDTO)
         {
-            var Create
+            var CreateFilmCommand = _mapper.Map<CreateFilmCommand>(filmDTO);
+            await _mediator.Send(CreateFilmCommand);
         }
 
         public Task UpdateAsync(FilmDTO filmDTO)

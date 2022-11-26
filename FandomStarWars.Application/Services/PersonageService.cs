@@ -126,7 +126,7 @@ namespace FandomStarWars.Application.Services
 
         public async Task<PersonageDTO> GetByIdAsync(int id)
         {
-            var personageQuery = new GetPersonageByIdQuery();
+            var personageQuery = new GetPersonageByIdQuery(id);
 
             if (personageQuery == null)
                 throw new Exception($"Entity could not be loaded.");

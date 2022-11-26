@@ -31,8 +31,16 @@ namespace FandomStarWars.Infra.Data.Repositories
 
         public async Task<Film> CreateAsync(Film film)
         {
-            _context.Films.Add(film);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Films.Add(film);
+                await _context.SaveChangesAsync();
+                return film;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             return film;
         }
 

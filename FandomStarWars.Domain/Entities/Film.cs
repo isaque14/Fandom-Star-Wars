@@ -15,10 +15,17 @@ namespace FandomStarWars.Domain.Entities
         public string? Edited { get; private set; }
         public ICollection<Personage> Personages { get; set; }
 
-        public Film(int id, string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate, string created)
+        public Film(int id, string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)
         {
             DomainExceptionValidation.When(id >= 0, "Invalid Id");
             ValidationDomain(title, episodeId, openingCrawl, director, producer, releaseDate);
+            Created = DateTime.Now.ToString();
+        }
+
+        public Film(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate, ICollection<Personage> personages)
+        {
+            ValidationDomain(title, episodeId, openingCrawl, director, producer, releaseDate);
+            Personages = personages;
             Created = DateTime.Now.ToString();
         }
 

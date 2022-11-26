@@ -13,8 +13,7 @@ namespace FandomStarWars.Application.DTO_s
         public string Created { get; set; }
         public ICollection<PersonageDTO> PersonagesDTO { get; set; }
 
-        public FilmDTO(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate,
-            string created)
+        public FilmDTO(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)
         {
             Title = title;
             EpisodeId = episodeId;
@@ -22,7 +21,20 @@ namespace FandomStarWars.Application.DTO_s
             Director = director;
             Producer = producer;
             ReleaseDate = releaseDate;
-            Created = created;
+            Created = DateTime.Now.ToString();
+        }
+
+        public FilmDTO(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate, 
+            ICollection<PersonageDTO> personagesDTO)
+        {
+            Title = title;
+            EpisodeId = episodeId;
+            OpeningCrawl = openingCrawl;
+            Director = director;
+            Producer = producer;
+            ReleaseDate = releaseDate;
+            Created = DateTime.Now.ToString();
+            PersonagesDTO = personagesDTO;
         }
     }
 }

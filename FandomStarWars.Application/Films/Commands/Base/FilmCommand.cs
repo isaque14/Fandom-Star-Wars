@@ -1,4 +1,5 @@
-﻿using FandomStarWars.Domain.Entities;
+﻿using FandomStarWars.Application.DTO_s;
+using FandomStarWars.Domain.Entities;
 using MediatR;
 
 namespace FandomStarWars.Application.Films.Commands.Base
@@ -12,5 +13,6 @@ namespace FandomStarWars.Application.Films.Commands.Base
         public string Producer { get; set; }
         public string ReleaseDate { get; set; }
         public string Created { get; set; }
+        public ICollection<PersonageDTO> Personages { get; set; }
     }
 }

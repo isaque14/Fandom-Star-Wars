@@ -25,14 +25,14 @@ namespace FandomStarWars.API.Controllers
             return Ok("insert into database finish");
         }
 
-        [HttpGet]
+        /*[HttpGet]
         [Route("testeFilmes")]
         public async Task<ActionResult> testeFilmes()
         {
             var filmsDTO = await _filmService.GetAllFilmsInExternalApiAsync();
             return Ok(filmsDTO);
-            
-        }
+
+        }*/
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PersonageDTO>>> Get()

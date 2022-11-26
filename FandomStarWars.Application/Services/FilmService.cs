@@ -12,11 +12,13 @@ namespace FandomStarWars.Application.Services
     {
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
+        private readonly IPersonageService _personageService;
 
-        public FilmService(IMapper mapper, IMediator mediator)
+        public FilmService(IMapper mapper, IMediator mediator, IPersonageService personageService)
         {
             _mapper = mapper;
             _mediator = mediator;
+            _personageService = personageService;
         }
 
         public async Task<IEnumerable<FilmDTO>> GetAllFilmsInExternalApiAsync()
@@ -24,7 +26,7 @@ namespace FandomStarWars.Application.Services
             var numberPage = 1;
             var filmsDTO = new List<FilmDTO>();
             RootFilms filmsApi;
-
+            
             do
             {
                 var getFilms = new GetFilmsExternalApiByPageQuery(numberPage);
@@ -36,6 +38,19 @@ namespace FandomStarWars.Application.Services
             
                 foreach (var film in filmsApi.Results)
                 {
+                    var personagesDTO = new List<PersonageDTO>();
+                   
+                    foreach (var personage in film.Characters)
+                    {
+                        int idPersonage = 0;
+                        var lastSegment = new Uri(personage).Segments.Last();
+
+                        int.TryParse(lastSegment.Remove(lastSegment.Length - 1), out idPersonage);
+
+                        personagesDTO.Add(_personageService.GetByIdAsync(idPersonage).Result);
+                        Console.WriteLine(personagesDTO);
+                    }
+
                     filmsDTO.Add(new FilmDTO(
                           film.Title,
                           film.Episode_Id,
@@ -43,7 +58,7 @@ namespace FandomStarWars.Application.Services
                           film.Director,
                           film.Producer,
                           film.Release_Date,
-                          DateTime.Now.ToString()
+                          personagesDTO
                           ));
                 }
 
@@ -85,8 +100,9 @@ namespace FandomStarWars.Application.Services
 
         public async Task CreateAsync(FilmDTO filmDTO)
         {
-            var CreateFilmCommand = _mapper.Map<CreateFilmCommand>(filmDTO);
-            await _mediator.Send(CreateFilmCommand);
+            var createFilmCommand = _mapper.Map<CreateFilmCommand>(filmDTO);
+            createFilmCommand.Personages = filmDTO.PersonagesDTO;
+            await _mediator.Send(createFilmCommand);
         }
 
         public Task UpdateAsync(FilmDTO filmDTO)

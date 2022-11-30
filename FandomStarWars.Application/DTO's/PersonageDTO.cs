@@ -5,6 +5,9 @@ namespace FandomStarWars.Application.DTO_s
 {
     public class PersonageDTO
     {
+        [DisplayName("Id")]
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Name is Required")]
         [DisplayName("Name")]
         public string Name { get; set; }
@@ -44,6 +47,23 @@ namespace FandomStarWars.Application.DTO_s
         public PersonageDTO(string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear,
          string gender, string homeworld, string created, string edited)
         {
+            Name = name;
+            Height = height;
+            Mass = mass;
+            HairColor = hairColor;
+            SkinColor = skinColor;
+            EyeColor = eyeColor;
+            BirthYear = birthYear;
+            Gender = gender;
+            Homeworld = homeworld;
+            Created = created;
+            Edited = edited;
+        }
+
+        public PersonageDTO(int id, string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear,
+         string gender, string homeworld, string created, string edited)
+        {
+            Id = id;            
             Name = name;
             Height = height;
             Mass = mass;

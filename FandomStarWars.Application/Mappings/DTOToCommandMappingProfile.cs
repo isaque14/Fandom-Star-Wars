@@ -10,10 +10,10 @@ namespace FandomStarWars.Application.Mappings
     {
         public DTOToCommandMappingProfile()
         {
-            CreateMap<PersonageDTO, CreatePersonageCommand>();
-            CreateMap<PersonageDTO, UpdatePersonageCommand>();
+            CreateMap<PersonageDTO, CreatePersonageCommandRequest>();
+            CreateMap<PersonageDTO, UpdatePersonageCommandRequest>();
 
-            CreateMap<FilmDTO, CreateFilmCommand>();
+            CreateMap<FilmDTO, CreateFilmCommandRequest>();
         }
     }
 }

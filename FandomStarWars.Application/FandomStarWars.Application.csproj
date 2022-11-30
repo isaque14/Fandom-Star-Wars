@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Films\Querys\" />
+    <Folder Include="Films\Requests\Querys\" />
   </ItemGroup>
 
   <PropertyGroup>

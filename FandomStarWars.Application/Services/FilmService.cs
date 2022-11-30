@@ -100,8 +100,8 @@ namespace FandomStarWars.Application.Services
 
         public async Task CreateAsync(FilmDTO filmDTO)
         {
-            var createFilmCommand = _mapper.Map<CreateFilmCommand>(filmDTO);
-            createFilmCommand.Personages = filmDTO.PersonagesDTO;
+            var createFilmCommand = _mapper.Map<CreateFilmCommandRequest>(filmDTO);
+            createFilmCommand.FilmDTO.PersonagesDTO = filmDTO.PersonagesDTO;
             await _mediator.Send(createFilmCommand);
         }
 

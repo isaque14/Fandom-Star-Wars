@@ -114,7 +114,7 @@ namespace FandomStarWars.Application.Services
 
         public async Task<IEnumerable<PersonageDTO>> GetAllAsync()
         {
-            var personageQuery = new GetPersonagesQuery();
+            var personageQuery = new GetPersonagesQueryRequest();
 
             if (personageQuery == null)
                 throw new Exception($"Entity could not be loaded.");
@@ -126,7 +126,7 @@ namespace FandomStarWars.Application.Services
 
         public async Task<PersonageDTO> GetByIdAsync(int id)
         {
-            var personageQuery = new GetPersonageByIdQuery(id);
+            var personageQuery = new GetPersonageByIdQueryRequest(id);
 
             if (personageQuery == null)
                 throw new Exception($"Entity could not be loaded.");
@@ -137,9 +137,9 @@ namespace FandomStarWars.Application.Services
 
         public async Task<PersonageDTO> GetByNameAsync(string name)
         {
-            var personageQuery = new GetPersonageByNameQuery();
+            var personageQuery = new GetPersonageByNameQueryRequest(name);
 
-            if (personageQuery == null)
+            if (personageQuery is null)
                 throw new Exception($"Entity could not be loaded.");
 
             var personageEntity = await _mediator.Send(personageQuery);
@@ -148,19 +148,19 @@ namespace FandomStarWars.Application.Services
 
         public async Task CreateAsync(PersonageDTO personageDTO)
         {
-            var CreatePersonageCommand = _mapper.Map<CreatePersonageCommand>(personageDTO); 
+            var CreatePersonageCommand = _mapper.Map<CreatePersonageCommandRequest>(personageDTO); 
             await _mediator.Send(CreatePersonageCommand);
         }
 
         public async Task UpdateAsync(PersonageDTO personageDTO)
         {
-            var UpdatePersonageCommand = _mapper.Map<UpdatePersonageCommand>(personageDTO);
+            var UpdatePersonageCommand = _mapper.Map<UpdatePersonageCommandRequest>(personageDTO);
             await _mediator.Send(UpdatePersonageCommand);
         }
 
         public async Task DeleteAsync(int id)
         {
-            var deletePersonageCommand = new DeletePersonageCommand(id);
+            var deletePersonageCommand = new DeletePersonageCommandRequest(id);
 
             if (deletePersonageCommand == null)
                 throw new Exception($"Entity could not be loaded.");

@@ -39,6 +39,8 @@ namespace FandomStarWars.API.Controllers
         {
             var personages = await _personageService.GetAllAsync();
 
+
+
             if (personages == null)
                 return NotFound("Personages not found");
 

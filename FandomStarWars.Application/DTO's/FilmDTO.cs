@@ -1,4 +1,5 @@
 ﻿using FandomStarWars.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace FandomStarWars.Application.DTO_s
 {
@@ -11,6 +12,8 @@ namespace FandomStarWars.Application.DTO_s
         public string Producer { get; set; }
         public string ReleaseDate { get; set; }
         public string Created { get; set; }
+
+        [Required(ErrorMessage = "Personages is Requireds")]
         public ICollection<PersonageDTO> PersonagesDTO { get; set; }
 
         public FilmDTO(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)

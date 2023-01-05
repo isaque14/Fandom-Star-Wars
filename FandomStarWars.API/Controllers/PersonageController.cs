@@ -38,25 +38,51 @@ namespace FandomStarWars.API.Controllers
         public async Task<ActionResult<IEnumerable<PersonageDTO>>> Get()
         {
             var personages = await _personageService.GetAllAsync();
-
-
-
-            if (personages == null)
+            if (personages is null)
                 return NotFound("Personages not found");
 
             return Ok(personages);
         }
 
         [HttpGet]
-        [Route("{name}")]
+        [Route("getname{name}")]
         public async Task<ActionResult<PersonageDTO>> GetPersonageByName(string name)
         {
-            var personages = await _personageService.GetByNameAsync(name);
+            var personage = await _personageService.GetByNameAsync(name);
 
-            if (personages == null)
-                return NotFound("Personages not found");
+            if (personage is null)
+                return NotFound("Personage not found");
 
-            return Ok(personages);
+            return Ok(personage);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<PersonageDTO>> GetPersonageById(int id)
+        {
+            var personage = await _personageService.GetByIdAsync(id);
+
+            if (personage is null)
+                return NotFound("Personage not found");
+
+            return Ok(personage);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<PersonageDTO>> CreatePersonage(PersonageDTO personageDTO)
+        {
+            await _personageService.CreateAsync(personageDTO);
+            return Ok(personageDTO);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<PersonageDTO>> UpdatePersonage(int id, [FromBody] PersonageDTO personageDTO)
+        {
+            if (id != personageDTO.Id || personageDTO is null)
+                return BadRequest("Data Invalid");
+
+            await _personageService.UpdateAsync(personageDTO);
+            return Ok(personageDTO);
         }
     }
 }

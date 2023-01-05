@@ -2,7 +2,6 @@
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Films.Commands;
 using FandomStarWars.Application.Personages.Commands;
-using FandomStarWars.Application.Personages.Querys;
 
 namespace FandomStarWars.Application.Mappings
 {
@@ -10,8 +9,8 @@ namespace FandomStarWars.Application.Mappings
     {
         public DTOToCommandMappingProfile()
         {
-            CreateMap<PersonageDTO, CreatePersonageCommandRequest>();
-            CreateMap<PersonageDTO, UpdatePersonageCommandRequest>();
+            CreateMap<PersonageDTO, CreatePersonageCommandRequest>().ReverseMap();
+            CreateMap<PersonageDTO, UpdatePersonageCommandRequest>().ReverseMap();
 
             CreateMap<FilmDTO, CreateFilmCommandRequest>();
         }

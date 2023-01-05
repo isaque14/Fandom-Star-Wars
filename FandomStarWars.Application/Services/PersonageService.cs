@@ -31,19 +31,19 @@ namespace FandomStarWars.Application.Services
 
             var personageApi = await _mediator.Send(getPersonage);
 
-            return new PersonageDTO(
-                personageApi.Name, 
-                personageApi.Height, 
-                personageApi.Mass, 
-                personageApi.Hair_Color, 
-                personageApi.Skin_Color, 
-                personageApi.Eye_Color, 
-                personageApi.Birth_Year, 
-                personageApi.Gender, 
-                personageApi.Homeworld, 
-                personageApi.Created, 
-                personageApi.Edited
-                );
+            return new PersonageDTO{ 
+                Name = personageApi.Name, 
+                Height = personageApi.Height, 
+                Mass = personageApi.Mass, 
+                HairColor = personageApi.Hair_Color, 
+                SkinColor = personageApi.Skin_Color, 
+                EyeColor = personageApi.Eye_Color, 
+                BirthYear = personageApi.Birth_Year, 
+                Gender = personageApi.Gender, 
+                Homeworld = personageApi.Homeworld, 
+                Created = personageApi.Created, 
+                Edited = personageApi.Edited
+                };
         }
 
         public async Task<IEnumerable<PersonageDTO>> GetAllPersonagesInExternalApiAsync()
@@ -67,25 +67,25 @@ namespace FandomStarWars.Application.Services
                     var lastSegment = new Uri(p.Homeworld).Segments.Last();
 
                     int.TryParse(lastSegment.Remove(lastSegment.Length - 1), out idPlanet);
-                    
-                    var getPlanetExternalApiByIdQuery = new GetPlanetExternalApiByIdQuery(idPlanet);
-                    var planet = await _mediator.Send(getPlanetExternalApiByIdQuery);                  
 
-                    personagesDTO.Add(new PersonageDTO(
-                        p.Name,
-                        p.Height,
-                        p.Mass,
-                        p.Hair_Color,
-                        p.Skin_Color,
-                        p.Eye_Color,
-                        p.Birth_Year,
-                        p.Gender,
-                        planet.Name,
+                    var getPlanetExternalApiByIdQuery = new GetPlanetExternalApiByIdQuery(idPlanet);
+                    var planet = await _mediator.Send(getPlanetExternalApiByIdQuery);
+
+                    personagesDTO.Add(new PersonageDTO{ 
+                        Name = p.Name,
+                        Height = p.Height,
+                        Mass = p.Mass,
+                        HairColor = p.Hair_Color,
+                        SkinColor = p.Skin_Color,
+                        EyeColor = p.Eye_Color,
+                        BirthYear = p.Birth_Year,
+                        Gender = p.Gender,
+                        Homeworld = planet.Name,
                         //Convert.ToDateTime(p.Created),
                         //Convert.ToDateTime(p.Edited)
-                        p.Created,
-                        p.Edited
-                        ));
+                        Created = p.Created,
+                        Edited = p.Edited
+                    });
                 }
 
                 numberPage++;
@@ -116,23 +116,22 @@ namespace FandomStarWars.Application.Services
         {
             var personageQuery = new GetPersonagesQueryRequest();
 
-            if (personageQuery == null)
+            if (personageQuery is null)
                 throw new Exception($"Entity could not be loaded.");
 
-            var personagesEntity = await _mediator.Send(personageQuery);
-
-            return _mapper.Map<IEnumerable<PersonageDTO>>(personagesEntity);
+            var response = await _mediator.Send(personageQuery);
+            return response.PersonagesDTO;
         }
 
         public async Task<PersonageDTO> GetByIdAsync(int id)
         {
             var personageQuery = new GetPersonageByIdQueryRequest(id);
 
-            if (personageQuery == null)
+            if (personageQuery is null)
                 throw new Exception($"Entity could not be loaded.");
 
-            var personageEntity = await _mediator.Send(personageQuery);
-            return _mapper.Map<PersonageDTO>(personageEntity);
+            var response = await _mediator.Send(personageQuery);
+            return response.PersonageDTO;
         }
 
         public async Task<PersonageDTO> GetByNameAsync(string name)
@@ -142,20 +141,22 @@ namespace FandomStarWars.Application.Services
             if (personageQuery is null)
                 throw new Exception($"Entity could not be loaded.");
 
-            var personageEntity = await _mediator.Send(personageQuery);
-            return _mapper.Map<PersonageDTO>(personageEntity);
+            var response = await _mediator.Send(personageQuery);
+            return response.PersonageDTO;
         }
 
         public async Task CreateAsync(PersonageDTO personageDTO)
         {
             var CreatePersonageCommand = _mapper.Map<CreatePersonageCommandRequest>(personageDTO); 
+            
             await _mediator.Send(CreatePersonageCommand);
         }
 
         public async Task UpdateAsync(PersonageDTO personageDTO)
         {
             var UpdatePersonageCommand = _mapper.Map<UpdatePersonageCommandRequest>(personageDTO);
-            await _mediator.Send(UpdatePersonageCommand);
+            var response = await _mediator.Send(UpdatePersonageCommand);
+            if (response is null) Console.WriteLine("null");
         }
 
         public async Task DeleteAsync(int id)

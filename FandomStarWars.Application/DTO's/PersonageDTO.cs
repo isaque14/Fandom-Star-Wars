@@ -35,18 +35,23 @@ namespace FandomStarWars.Application.DTO_s
        
         [DisplayName("Homeworld")]
         public string Homeworld { get; set; }
-        
+
         [DisplayName("Created")]
         public string Created { get; set; }
 
         [DisplayName("Edited")]
         public string Edited { get; set; }
 
-        
 
-        public PersonageDTO(string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear,
-         string gender, string homeworld, string created, string edited)
+        public PersonageDTO()
         {
+
+        }
+
+        public PersonageDTO(int id, string name, string height, string mass, string hairColor, string skinColor, 
+            string eyeColor, string birthYear, string gender, string homeworld, string created, string edited)
+        {
+            Id = id;
             Name = name;
             Height = height;
             Mass = mass;
@@ -60,10 +65,9 @@ namespace FandomStarWars.Application.DTO_s
             Edited = edited;
         }
 
-        public PersonageDTO(int id, string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear,
-         string gender, string homeworld, string created, string edited)
+        public PersonageDTO(string name, string height, string mass, string hairColor, string skinColor,
+           string eyeColor, string birthYear, string gender, string homeworld, string created, string edited)
         {
-            Id = id;            
             Name = name;
             Height = height;
             Mass = mass;

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Personages.Commands;
 using FandomStarWars.Application.Personages.Responses.Commands;
 using FandomStarWars.Domain.Entities;
@@ -22,13 +23,25 @@ namespace FandomStarWars.Application.Personages.Handlers.Commands
         {
             try
             {
-                Personage personage = _mapper.Map<Personage>(request.PersonageDTO);
+                var personage = new Personage(
+                    name: request.Name,
+                    height:  request.Height,
+                    mass: request.Mass,
+                    hairColor:  request.HairColor,
+                    skinColor: request.SkinColor,
+                    eyeColor: request.EyeColor,
+                    birthYear: request.BirthYear,
+                    gender: request.Gender,
+                    homeworld: request.Homeworld
+                );
                 
                 if (personage is null)
                     throw new ApplicationException($"Error creating Personage");
 
                 await _repository.CreateAsync(personage);
-                var response = new CreatePersonageCommandResponse(request.PersonageDTO);
+
+                var personageDTO = _mapper.Map<PersonageDTO>(personage);
+                var response = new CreatePersonageCommandResponse(personageDTO);
 
                 response.IsSuccessful = true;
                 response.Message = "successfully created personage";

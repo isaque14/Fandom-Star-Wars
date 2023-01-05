@@ -1,16 +1,11 @@
-﻿using FandomStarWars.Application.DTO_s;
+﻿using FandomStarWars.Application.Personages.Commands.Base;
 using FandomStarWars.Application.Personages.Responses.Commands;
 using MediatR;
 
 namespace FandomStarWars.Application.Personages.Commands
 {
-    public class UpdatePersonageCommandRequest : IRequest<UpdatePersonageCommandResponse>
+    public class UpdatePersonageCommandRequest : PersonageCommand, IRequest<UpdatePersonageCommandResponse>
     {
-        public PersonageDTO PersonageDTO { get; private set; }
-
-        public UpdatePersonageCommandRequest(PersonageDTO personageDTO)
-        {
-            PersonageDTO = personageDTO;
-        }
+        public int Id { get; private set; }
     }
 }

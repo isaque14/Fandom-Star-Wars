@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using FandomStarWars.Application.CQRS.Films.Requests.Commands;
+using FandomStarWars.Application.CQRS.Personages.Requests.Commands;
 using FandomStarWars.Application.DTO_s;
-using FandomStarWars.Application.Films.Commands;
-using FandomStarWars.Application.Personages.Commands;
 
 namespace FandomStarWars.Application.Mappings
 {

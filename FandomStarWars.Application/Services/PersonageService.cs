@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
+using FandomStarWars.Application.CQRS.BaseResponses;
+using FandomStarWars.Application.CQRS.Personages.Requests.Commands;
+using FandomStarWars.Application.CQRS.Personages.Requests.Querys;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.ExternalApi.Querys;
 using FandomStarWars.Application.Interfaces;
-using FandomStarWars.Application.Personages.Commands;
-using FandomStarWars.Application.Personages.Handlers;
-using FandomStarWars.Application.Personages.Querys;
-using FandomStarWars.Application.Personages.Responses.Base;
-using FandomStarWars.Domain.Entities;
 using MediatR;
 
 namespace FandomStarWars.Application.Services
@@ -113,7 +111,7 @@ namespace FandomStarWars.Application.Services
             }
         }
 
-        public async Task<IEnumerable<PersonageDTO>> GetAllAsync()
+        public async Task<GenericResponse> GetAllAsync()
         {
             var personageQuery = new GetPersonagesQueryRequest();
 
@@ -121,10 +119,10 @@ namespace FandomStarWars.Application.Services
                 throw new Exception($"Entity could not be loaded.");
 
             var response = await _mediator.Send(personageQuery);
-            return response.PersonagesDTO;
+            return response;
         }
 
-        public async Task<PersonageDTO> GetByIdAsync(int id)
+        public async Task<GenericResponse> GetByIdAsync(int id)
         {
             var personageQuery = new GetPersonageByIdQueryRequest(id);
 
@@ -132,10 +130,10 @@ namespace FandomStarWars.Application.Services
                 throw new Exception($"Entity could not be loaded.");
 
             var response = await _mediator.Send(personageQuery);
-            return response.PersonageDTO;
+            return response;
         }
 
-        public async Task<PersonageDTO> GetByNameAsync(string name)
+        public async Task<GenericResponse> GetByNameAsync(string name)
         {
             var personageQuery = new GetPersonageByNameQueryRequest(name);
 
@@ -143,14 +141,15 @@ namespace FandomStarWars.Application.Services
                 throw new Exception($"Entity could not be loaded.");
 
             var response = await _mediator.Send(personageQuery);
-            return response.PersonageDTO;
+            return response;
         }
 
-        public async Task CreateAsync(PersonageDTO personageDTO)
+        public async Task<GenericResponse> CreateAsync(PersonageDTO personageDTO)
         {
             var CreatePersonageCommand = _mapper.Map<CreatePersonageCommandRequest>(personageDTO); 
             
-            await _mediator.Send(CreatePersonageCommand);
+            var response = await _mediator.Send(CreatePersonageCommand);
+            return response;
         }
 
         public async Task<GenericResponse> UpdateAsync(PersonageDTO personageDTO)
@@ -160,14 +159,15 @@ namespace FandomStarWars.Application.Services
             return response;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<GenericResponse> DeleteAsync(int id)
         {
             var deletePersonageCommand = new DeletePersonageCommandRequest(id);
 
             if (deletePersonageCommand == null)
                 throw new Exception($"Entity could not be loaded.");
 
-            await _mediator.Send(deletePersonageCommand);
+            var response = await _mediator.Send(deletePersonageCommand);
+            return response;
         }
     }
 }

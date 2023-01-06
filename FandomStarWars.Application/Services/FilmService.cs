@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using FandomStarWars.Application.CQRS.BaseResponses;
+using FandomStarWars.Application.CQRS.Films.Requests.Commands;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.ExternalApi.Querys;
-using FandomStarWars.Application.Films.Commands;
 using FandomStarWars.Application.Interfaces;
 using MediatR;
 using static FandomStarWars.Application.DTO_s.FilmsDataExternalApiDTO;
@@ -47,7 +48,10 @@ namespace FandomStarWars.Application.Services
 
                         int.TryParse(lastSegment.Remove(lastSegment.Length - 1), out idPersonage);
 
-                        personagesDTO.Add(_personageService.GetByIdAsync(idPersonage).Result);
+                        GenericResponse personageResponse = await _personageService.GetByIdAsync(idPersonage);
+                        
+
+                        personagesDTO.Add(personageResponse.Object as PersonageDTO);
                         Console.WriteLine(personagesDTO);
                     }
 

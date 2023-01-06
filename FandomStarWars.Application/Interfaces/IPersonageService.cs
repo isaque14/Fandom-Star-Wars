@@ -1,21 +1,21 @@
-﻿using FandomStarWars.Application.DTO_s;
-using FandomStarWars.Application.Personages.Responses.Base;
+﻿using FandomStarWars.Application.CQRS.BaseResponses;
+using FandomStarWars.Application.DTO_s;
 
 namespace FandomStarWars.Application.Interfaces
 {
     public interface IPersonageService
     {
-        Task<IEnumerable<PersonageDTO>> GetAllAsync();
+        Task<GenericResponse> GetAllAsync();
 
-        Task<PersonageDTO> GetByIdAsync(int id);
+        Task<GenericResponse> GetByIdAsync(int id);
 
-        Task<PersonageDTO> GetByNameAsync(string name);
+        Task<GenericResponse> GetByNameAsync(string name);
 
-        Task CreateAsync(PersonageDTO personageDTO);
+        Task<GenericResponse> CreateAsync(PersonageDTO personageDTO);
 
         Task<GenericResponse> UpdateAsync(PersonageDTO personageDTO);
 
-        Task DeleteAsync(int id);
+        Task<GenericResponse> DeleteAsync(int id);
 
         Task<IEnumerable<PersonageDTO>> GetAllPersonagesInExternalApiAsync();
 

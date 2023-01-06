@@ -1,8 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <Compile Remove="CQRS\Films\Requests\Querys\**" />
     <Compile Remove="Personage\**" />
+    <EmbeddedResource Remove="CQRS\Films\Requests\Querys\**" />
     <EmbeddedResource Remove="Personage\**" />
+    <None Remove="CQRS\Films\Requests\Querys\**" />
     <None Remove="Personage\**" />
   </ItemGroup>
 
@@ -15,10 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FandomStarWars.Domain\FandomStarWars.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Films\Requests\Querys\" />
   </ItemGroup>
 
   <PropertyGroup>

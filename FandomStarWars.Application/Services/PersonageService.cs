@@ -5,6 +5,7 @@ using FandomStarWars.Application.Interfaces;
 using FandomStarWars.Application.Personages.Commands;
 using FandomStarWars.Application.Personages.Handlers;
 using FandomStarWars.Application.Personages.Querys;
+using FandomStarWars.Application.Personages.Responses.Base;
 using FandomStarWars.Domain.Entities;
 using MediatR;
 
@@ -152,11 +153,11 @@ namespace FandomStarWars.Application.Services
             await _mediator.Send(CreatePersonageCommand);
         }
 
-        public async Task UpdateAsync(PersonageDTO personageDTO)
+        public async Task<GenericResponse> UpdateAsync(PersonageDTO personageDTO)
         {
             var UpdatePersonageCommand = _mapper.Map<UpdatePersonageCommandRequest>(personageDTO);
             var response = await _mediator.Send(UpdatePersonageCommand);
-            if (response is null) Console.WriteLine("null");
+            return response;
         }
 
         public async Task DeleteAsync(int id)

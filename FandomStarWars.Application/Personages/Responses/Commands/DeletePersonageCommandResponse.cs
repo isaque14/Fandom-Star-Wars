@@ -3,7 +3,7 @@ using FandomStarWars.Application.Personages.Responses.Base;
 
 namespace FandomStarWars.Application.Personages.Responses.Commands
 {
-    public class DeletePersonageCommandResponse : BaseResponseFilms
+    public class DeletePersonageCommandResponse : BaseResponse
     {
         public PersonageDTO PersonageDeleted { get; set; }
 

@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Personages.Commands;
+using FandomStarWars.Application.Personages.Responses.Base;
 using FandomStarWars.Application.Personages.Responses.Commands;
 using FandomStarWars.Domain.Interfaces;
 using MediatR;
 
 namespace FandomStarWars.Application.Personages.Handlers.Commands
 {
-    public class UpdatePersonageCommandHandler : IRequestHandler<UpdatePersonageCommandRequest, UpdatePersonageCommandResponse>
+    public class UpdatePersonageCommandHandler : IRequestHandler<UpdatePersonageCommandRequest, GenericResponse>
     {
         private readonly IPersonageRepository _repository;
         private readonly IMapper _mapper;
@@ -18,7 +19,7 @@ namespace FandomStarWars.Application.Personages.Handlers.Commands
             _mapper = mapper;
         }
 
-        public async Task<UpdatePersonageCommandResponse> Handle(UpdatePersonageCommandRequest request, CancellationToken cancellationToken)
+        public async Task<GenericResponse> Handle(UpdatePersonageCommandRequest request, CancellationToken cancellationToken)
         {
             try
             {
@@ -40,14 +41,16 @@ namespace FandomStarWars.Application.Personages.Handlers.Commands
                 await _repository.UpdateAsync(personage);
 
                 var personageDTO = _mapper.Map<PersonageDTO>(personage);
-                var response = new UpdatePersonageCommandResponse(personageDTO);
-                response.IsSuccessful = true;
-                response.Message = "successfully updated personage";
-                return response;
-            }
+                
+                return new GenericResponse{ 
+                    IsSuccessful = true,
+                    Message = "successfully updated personage",
+                    Object = personageDTO};
+                }
+
             catch (Exception e)
             {
-                return new UpdatePersonageCommandResponse { 
+                return new GenericResponse { 
                     IsSuccessful = false, 
                     Message = $"Error Updating Personage. {e.Message}" 
                 };

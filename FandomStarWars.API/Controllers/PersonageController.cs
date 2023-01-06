@@ -81,8 +81,8 @@ namespace FandomStarWars.API.Controllers
             if (id != personageDTO.Id || personageDTO is null)
                 return BadRequest("Data Invalid");
 
-            await _personageService.UpdateAsync(personageDTO);
-            return Ok(personageDTO);
+           var response = await _personageService.UpdateAsync(personageDTO);
+            return Ok(response);
         }
     }
 }

@@ -4,7 +4,7 @@ using FandomStarWars.Domain.Entities;
 
 namespace FandomStarWars.Application.Personages.Responses.Querys
 {
-    public class GetPersonageByIdQueryResponse : BaseResponseFilms
+    public class GetPersonageByIdQueryResponse : BaseResponse
     {
         public PersonageDTO PersonageDTO { get; set; }
     }

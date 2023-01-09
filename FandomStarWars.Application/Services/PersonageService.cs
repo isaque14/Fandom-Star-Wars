@@ -163,7 +163,7 @@ namespace FandomStarWars.Application.Services
         {
             var deletePersonageCommand = new DeletePersonageCommandRequest(id);
 
-            if (deletePersonageCommand == null)
+            if (deletePersonageCommand is null)
                 throw new Exception($"Entity could not be loaded.");
 
             var response = await _mediator.Send(deletePersonageCommand);

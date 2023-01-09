@@ -8,7 +8,7 @@ namespace FandomStarWars.Application.CQRS.Personages.Requests.Commands
         public int Id { get; set; }
         public DeletePersonageCommandRequest(int id)
         {
-            Id = Id;
+            Id = id;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FandomStarWars.Application.Interfaces;
+﻿using FandomStarWars.Application.DTO_s;
+using FandomStarWars.Application.Interfaces;
 using FandomStarWars.Domain.Interfaces;
 using FandomStarWars.Infra.Data.Context;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,15 @@ namespace FandomStarWars.API.Controllers
             await _filmService.InsertFilmsExternalApiIntoDataBase();
             return Ok("Films Createds");
         }
+
+        [HttpGet]
+        public async Task<ActionResult<FilmDTO>> GetMovies()
+        {
+            throw new Exception();
+        }
+
+
+
 
 
         [HttpGet]

@@ -1,9 +1,9 @@
-﻿using FandomStarWars.Application.ExternalApi.Querys;
+﻿using FandomStarWars.Application.CQRS.ExternalApi.Querys;
 using FandomStarWars.Application.Interfaces.APIClient;
 using MediatR;
 using static FandomStarWars.Application.DTO_s.PersonageDataExternalApiDTO;
 
-namespace FandomStarWars.Application.ExternalApi.Handlers
+namespace FandomStarWars.Application.CQRS.ExternalApi.Handlers
 {
     public class GetPersonagesExternalApiByPageQueryHandler : IRequestHandler<GetPersonagesExternalApiByPageQuery, Root>
     {

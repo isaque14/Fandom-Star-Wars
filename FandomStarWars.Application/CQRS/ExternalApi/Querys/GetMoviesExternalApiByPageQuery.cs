@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using static FandomStarWars.Application.DTO_s.MovieDataExternalApiDTO;
 
-namespace FandomStarWars.Application.ExternalApi.Querys
+namespace FandomStarWars.Application.CQRS.ExternalApi.Querys
 {
     public class GetMoviesExternalApiByPageQuery : IRequest<RootFilms>
     {

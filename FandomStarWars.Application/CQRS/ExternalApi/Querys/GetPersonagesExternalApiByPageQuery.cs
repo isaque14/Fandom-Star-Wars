@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using static FandomStarWars.Application.DTO_s.PersonageDataExternalApiDTO;
 
-namespace FandomStarWars.Application.ExternalApi.Querys
+namespace FandomStarWars.Application.CQRS.ExternalApi.Querys
 {
     public class GetPersonagesExternalApiByPageQuery : IRequest<Root>
     {

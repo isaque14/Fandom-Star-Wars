@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using FandomStarWars.Application.CQRS.BaseResponses;
+using FandomStarWars.Application.CQRS.ExternalApi.Querys;
 using FandomStarWars.Application.CQRS.Personages.Requests.Commands;
 using FandomStarWars.Application.CQRS.Personages.Requests.Querys;
 using FandomStarWars.Application.DTO_s;
-using FandomStarWars.Application.ExternalApi.Querys;
 using FandomStarWars.Application.Interfaces;
 using MediatR;
 

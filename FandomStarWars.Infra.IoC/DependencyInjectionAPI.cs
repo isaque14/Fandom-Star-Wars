@@ -29,11 +29,11 @@ namespace FandomStarWars.Infra.IoC
                 .AddDefaultTokenProviders();
 
             services.AddScoped<IPersonageRepository, PersonageRepository>();
-            services.AddScoped<IFilmRepository, FilmRepository>();
+            services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IMockRepository, MockRepository>();
 
             services.AddScoped<IPersonageService, PersonageService>();
-            services.AddScoped<IFilmService, FilmService>();
+            services.AddScoped<IMovieService, MovieService>();
 
             services.AddScoped<IAuthenticate, AuthenticateService>();
             services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();

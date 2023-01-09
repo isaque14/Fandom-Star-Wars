@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FandomStarWars.Application.DTO_s
 {
-    public class FilmDTO
+    public class MovieDTO
     {
         public string Title { get; set; }
         public int EpisodeId { get; set; }
@@ -16,7 +16,7 @@ namespace FandomStarWars.Application.DTO_s
         [Required(ErrorMessage = "Personages is Requireds")]
         public ICollection<PersonageDTO> PersonagesDTO { get; set; }
 
-        public FilmDTO(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)
+        public MovieDTO(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)
         {
             Title = title;
             EpisodeId = episodeId;
@@ -27,7 +27,7 @@ namespace FandomStarWars.Application.DTO_s
             Created = DateTime.Now.ToString();
         }
 
-        public FilmDTO(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate, 
+        public MovieDTO(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate, 
             ICollection<PersonageDTO> personagesDTO)
         {
             Title = title;

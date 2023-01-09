@@ -22,7 +22,7 @@ namespace FandomStarWars.Infra.Data.Repositories
             var list = new List<Personage>();
             list.Add(_personageRepository.GetByIdAsync(2).Result);
             
-            var movie = new Film("Testinng AVT", 17, "teste", "teste", "teste", "teste", list);
+            var movie = new Movie("Testinng AVT", 17, "teste", "teste", "teste", "teste", list);
 
 
             //_context.Add(personage);

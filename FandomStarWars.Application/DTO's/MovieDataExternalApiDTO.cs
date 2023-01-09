@@ -1,6 +1,6 @@
 ﻿namespace FandomStarWars.Application.DTO_s
 {
-    public class FilmsDataExternalApiDTO
+    public class MovieDataExternalApiDTO
     {
         public string Title { get; set; }
         public int Episode_Id { get; set; }
@@ -22,7 +22,7 @@
             public int Count { get; set; }
             public object Next { get; set; }
             public object Previous { get; set; }
-            public List<FilmsDataExternalApiDTO> Results { get; set; }
+            public List<MovieDataExternalApiDTO> Results { get; set; }
         }
     }
 }

@@ -8,18 +8,18 @@ using MediatR;
 
 namespace FandomStarWars.Application.CQRS.Films.Handlers
 {
-    public class CreateFilmCommandHandler : IRequestHandler<CreateFilmCommandRequest, GenericResponse>
+    public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommandRequest, GenericResponse>
     {
-        private readonly IFilmRepository _filmRepository;
+        private readonly IMovieRepository _filmRepository;
         private readonly IMapper _mapper;
 
-        public CreateFilmCommandHandler(IFilmRepository filmRepository, IMapper mapper)
+        public CreateMovieCommandHandler(IMovieRepository filmRepository, IMapper mapper)
         {
             _filmRepository = filmRepository;
             _mapper = mapper;
         }
 
-        public async Task<GenericResponse> Handle(CreateFilmCommandRequest request, CancellationToken cancellationToken)
+        public async Task<GenericResponse> Handle(CreateMovieCommandRequest request, CancellationToken cancellationToken)
         {
             var personagesEntity = new List<Personage>();
             try
@@ -32,7 +32,7 @@ namespace FandomStarWars.Application.CQRS.Films.Handlers
                     personagesEntity.Add(_mapper.Map<Personage>(personage));
                 }
 
-                var filmEntity = new Film(
+                var filmEntity = new Movie(
                     request.FilmDTO.Title,
                     request.FilmDTO.EpisodeId,
                     request.FilmDTO.OpeningCrawl,
@@ -46,7 +46,7 @@ namespace FandomStarWars.Application.CQRS.Films.Handlers
                     throw new ApplicationException($"Error creating Movie");
 
                 var movieCreated = await _filmRepository.CreateAsync(filmEntity);
-                var movieDTO = _mapper.Map<FilmDTO>(movieCreated);
+                var movieDTO = _mapper.Map<MovieDTO>(movieCreated);
 
                 return new GenericResponse
                 {

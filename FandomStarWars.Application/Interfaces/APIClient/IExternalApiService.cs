@@ -1,6 +1,6 @@
 ﻿using FandomStarWars.Application.DTO_s;
 using Refit;
-using static FandomStarWars.Application.DTO_s.FilmsDataExternalApiDTO;
+using static FandomStarWars.Application.DTO_s.MovieDataExternalApiDTO;
 using static FandomStarWars.Application.DTO_s.PersonageDataExternalApiDTO;
 
 namespace FandomStarWars.Application.Interfaces.APIClient

@@ -12,8 +12,8 @@ namespace FandomStarWars.Application.Mappings
             CreateMap<Personage, PersonageDataExternalApiDTO>().ReverseMap();
            
 
-            CreateMap<Film, FilmDTO>().ReverseMap();
-            CreateMap<Film, FilmsDataExternalApiDTO>();
+            CreateMap<Movie, MovieDTO>().ReverseMap();
+            CreateMap<Movie, MovieDataExternalApiDTO>();
         }
     }
 }

@@ -9,9 +9,9 @@ namespace FandomStarWars.API.Controllers
     public class PersonageController : ControllerBase
     {
         private readonly IPersonageService _personageService;
-        private readonly IFilmService _filmService;
+        private readonly IMovieService _filmService;
 
-        public PersonageController(IPersonageService personageService, IFilmService filmService)
+        public PersonageController(IPersonageService personageService, IMovieService filmService)
         {
             _personageService = personageService;
             _filmService = filmService;

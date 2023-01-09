@@ -1,20 +1,20 @@
 ﻿using FandomStarWars.Application.ExternalApi.Querys;
 using FandomStarWars.Application.Interfaces.APIClient;
 using MediatR;
-using static FandomStarWars.Application.DTO_s.FilmsDataExternalApiDTO;
+using static FandomStarWars.Application.DTO_s.MovieDataExternalApiDTO;
 
 namespace FandomStarWars.Application.ExternalApi.Handlers
 {
-    public class GetFilmsExternalApiByPageQueryHandler : IRequestHandler<GetFilmsExternalApiByPageQuery, RootFilms>
+    public class GetMoviesExternalApiByPageQueryHandler : IRequestHandler<GetMoviesExternalApiByPageQuery, RootFilms>
     {
         private readonly IExternalApiService _externalApiService;
 
-        public GetFilmsExternalApiByPageQueryHandler(IExternalApiService externalApiService)
+        public GetMoviesExternalApiByPageQueryHandler(IExternalApiService externalApiService)
         {
             _externalApiService = externalApiService;
         }
 
-        public async Task<RootFilms> Handle(GetFilmsExternalApiByPageQuery request, CancellationToken cancellationToken)
+        public async Task<RootFilms> Handle(GetMoviesExternalApiByPageQuery request, CancellationToken cancellationToken)
         {
             return await _externalApiService.GetFilmsByPageAsync(request.NumberPage);
         }

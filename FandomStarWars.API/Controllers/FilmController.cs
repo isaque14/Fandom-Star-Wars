@@ -11,11 +11,11 @@ namespace FandomStarWars.API.Controllers
     [ApiController]
     public class FilmController : ControllerBase
     {
-        private readonly IFilmService _filmService;
+        private readonly IMovieService _filmService;
         private readonly IMockRepository _mockRepository;
         
 
-        public FilmController(IFilmService filmService, IMockRepository mockRepository)
+        public FilmController(IMovieService filmService, IMockRepository mockRepository)
         {
             _filmService = filmService;
             _mockRepository = mockRepository;
@@ -31,7 +31,7 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<FilmDTO>> GetMovies()
+        public async Task<ActionResult<MovieDTO>> GetMovies()
         {
             throw new Exception();
         }

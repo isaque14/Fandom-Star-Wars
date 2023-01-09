@@ -12,7 +12,7 @@ namespace FandomStarWars.Application.Mappings
             CreateMap<PersonageDTO, CreatePersonageCommandRequest>().ReverseMap();
             CreateMap<PersonageDTO, UpdatePersonageCommandRequest>().ReverseMap();
 
-            CreateMap<FilmDTO, CreateFilmCommandRequest>();
+            CreateMap<MovieDTO, CreateMovieCommandRequest>();
         }
     }
 }

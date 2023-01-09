@@ -3,7 +3,7 @@ using FandomStarWars.Domain.Validation;
 
 namespace FandomStarWars.Domain.Entities
 {
-    public class Film : Entity
+    public class Movie : Entity
     {
         public string Title { get; private set; }
         public int EpisodeId { get; private set; }
@@ -15,21 +15,21 @@ namespace FandomStarWars.Domain.Entities
         public string? Edited { get; private set; }
         public ICollection<Personage> Personages { get; set; }
 
-        public Film(int id, string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)
+        public Movie(int id, string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)
         {
             DomainExceptionValidation.When(id >= 0, "Invalid Id");
             ValidationDomain(title, episodeId, openingCrawl, director, producer, releaseDate);
             Created = DateTime.Now.ToString();
         }
 
-        public Film(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate, ICollection<Personage> personages)
+        public Movie(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate, ICollection<Personage> personages)
         {
             ValidationDomain(title, episodeId, openingCrawl, director, producer, releaseDate);
             Personages = personages;
             Created = DateTime.Now.ToString();
         }
 
-        public Film(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)
+        public Movie(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)
         {
             ValidationDomain(title, episodeId, openingCrawl, director, producer, releaseDate);
             Created = DateTime.Now.ToString();

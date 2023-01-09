@@ -4,7 +4,7 @@ using MediatR;
 
 namespace FandomStarWars.Application.CQRS.Films.Requests.Commands.Base
 {
-    public abstract class FilmCommand : IRequest<Film>
+    public abstract class MovieCommand : IRequest<Movie>
     {
         public string Title { get; set; }
         public int EpisodeId { get; set; }

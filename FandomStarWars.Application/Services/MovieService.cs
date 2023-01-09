@@ -5,32 +5,32 @@ using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.ExternalApi.Querys;
 using FandomStarWars.Application.Interfaces;
 using MediatR;
-using static FandomStarWars.Application.DTO_s.FilmsDataExternalApiDTO;
+using static FandomStarWars.Application.DTO_s.MovieDataExternalApiDTO;
 
 namespace FandomStarWars.Application.Services
 {
-    public class FilmService : IFilmService
+    public class MovieService : IMovieService
     {
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
         private readonly IPersonageService _personageService;
 
-        public FilmService(IMapper mapper, IMediator mediator, IPersonageService personageService)
+        public MovieService(IMapper mapper, IMediator mediator, IPersonageService personageService)
         {
             _mapper = mapper;
             _mediator = mediator;
             _personageService = personageService;
         }
 
-        public async Task<IEnumerable<FilmDTO>> GetAllFilmsInExternalApiAsync()
+        public async Task<IEnumerable<MovieDTO>> GetAllFilmsInExternalApiAsync()
         {
             var numberPage = 1;
-            var filmsDTO = new List<FilmDTO>();
+            var filmsDTO = new List<MovieDTO>();
             RootFilms filmsApi;
             
             do
             {
-                var getFilms = new GetFilmsExternalApiByPageQuery(numberPage);
+                var getFilms = new GetMoviesExternalApiByPageQuery(numberPage);
 
                 if (getFilms == null)
                     throw new Exception($"API could not be loaded.");
@@ -55,7 +55,7 @@ namespace FandomStarWars.Application.Services
                         Console.WriteLine(personagesDTO);
                     }
 
-                    filmsDTO.Add(new FilmDTO(
+                    filmsDTO.Add(new MovieDTO(
                           film.Title,
                           film.Episode_Id,
                           film.Opening_Crawl,
@@ -97,20 +97,20 @@ namespace FandomStarWars.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<GenericResponse> GetFilmInExternalApiByIdAsync(int id)
+        public Task<MovieDTO> GetFilmInExternalApiByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<GenericResponse> CreateAsync(FilmDTO filmDTO)
+        public async Task<GenericResponse> CreateAsync(MovieDTO filmDTO)
         {
-            var createFilmCommand = _mapper.Map<CreateFilmCommandRequest>(filmDTO);
+            var createFilmCommand = _mapper.Map<CreateMovieCommandRequest>(filmDTO);
             createFilmCommand.FilmDTO.PersonagesDTO = filmDTO.PersonagesDTO;
             var response = await _mediator.Send(createFilmCommand);
             return response;
         }
 
-        public Task<GenericResponse> UpdateAsync(FilmDTO filmDTO)
+        public Task<GenericResponse> UpdateAsync(MovieDTO filmDTO)
         {
             throw new NotImplementedException();
         }

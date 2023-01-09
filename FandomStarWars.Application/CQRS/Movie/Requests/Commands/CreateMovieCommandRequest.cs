@@ -4,11 +4,11 @@ using MediatR;
 
 namespace FandomStarWars.Application.CQRS.Films.Requests.Commands
 {
-    public class CreateFilmCommandRequest : IRequest<GenericResponse>
+    public class CreateMovieCommandRequest : IRequest<GenericResponse>
     {
-        public FilmDTO FilmDTO { get; private set; }
+        public MovieDTO FilmDTO { get; private set; }
 
-        public CreateFilmCommandRequest(FilmDTO filmDTO)
+        public CreateMovieCommandRequest(MovieDTO filmDTO)
         {
             FilmDTO = filmDTO;
         }

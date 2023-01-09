@@ -5,31 +5,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FandomStarWars.Infra.Data.Repositories
 {
-    public class FilmRepository : IFilmRepository
+    public class MovieRepository : IMovieRepository
     {
         private readonly DataContext _context;
 
-        public FilmRepository(DataContext context)
+        public MovieRepository(DataContext context)
         {
             _context = context;
         }
         
-        public async Task<IEnumerable<Film>> GetAllAsync()
+        public async Task<IEnumerable<Movie>> GetAllAsync()
         {
             return await _context.Films.ToListAsync();
         }
 
-        public async Task<Film> GetByIdAsync(int id)
+        public async Task<Movie> GetByIdAsync(int id)
         {
             return await _context.Films.FindAsync(id);
         }
 
-        public async Task<Film> GetByNameAsync(string name)
+        public async Task<Movie> GetByNameAsync(string name)
         {
             return await _context.Films.FindAsync(name);
         }
 
-        public async Task<Film> CreateAsync(Film film)
+        public async Task<Movie> CreateAsync(Movie film)
         {
             try
             {
@@ -44,14 +44,14 @@ namespace FandomStarWars.Infra.Data.Repositories
             return film;
         }
 
-        public async Task<Film> UpdateAsync(Film film)
+        public async Task<Movie> UpdateAsync(Movie film)
         {
             _context.Update(film);
             await _context.SaveChangesAsync();
             return film;
         }
 
-        public async Task<Film> DeleteAsync(Film film)
+        public async Task<Movie> DeleteAsync(Movie film)
         {
             _context.Films.Remove(film);
             await _context.SaveChangesAsync();

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FandomStarWars.Infra.Data.EntityConfiguration
 {
-    public class FilmConfiguration : IEntityTypeConfiguration<Film>
+    public class FilmConfiguration : IEntityTypeConfiguration<Movie>
     {
-        public void Configure(EntityTypeBuilder<Film> builder)
+        public void Configure(EntityTypeBuilder<Movie> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Title).HasMaxLength(250).IsRequired();

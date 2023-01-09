@@ -1,11 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <Compile Remove="CQRS\Films\Requests\Querys\**" />
     <Compile Remove="Personage\**" />
-    <EmbeddedResource Remove="CQRS\Films\Requests\Querys\**" />
     <EmbeddedResource Remove="Personage\**" />
-    <None Remove="CQRS\Films\Requests\Querys\**" />
     <None Remove="Personage\**" />
   </ItemGroup>
 

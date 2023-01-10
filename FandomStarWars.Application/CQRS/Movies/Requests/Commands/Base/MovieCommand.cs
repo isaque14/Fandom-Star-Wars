@@ -1,6 +1,4 @@
 ﻿using FandomStarWars.Application.DTO_s;
-using FandomStarWars.Domain.Entities;
-using MediatR;
 
 namespace FandomStarWars.Application.CQRS.Movies.Requests.Commands.Base
 {

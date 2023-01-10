@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using FandomStarWars.Application.CQRS.BaseResponses;
-using FandomStarWars.Application.CQRS.Films.Requests.Commands;
+using FandomStarWars.Application.CQRS.Movies.Requests.Commands;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Domain.Entities;
 using FandomStarWars.Domain.Interfaces;
 using MediatR;
 
-namespace FandomStarWars.Application.CQRS.Films.Handlers
+namespace FandomStarWars.Application.CQRS.Movies.Handlers.Commands
 {
     public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommandRequest, GenericResponse>
     {

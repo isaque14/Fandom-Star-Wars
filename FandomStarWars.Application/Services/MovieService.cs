@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FandomStarWars.Application.CQRS.BaseResponses;
 using FandomStarWars.Application.CQRS.ExternalApi.Querys;
-using FandomStarWars.Application.CQRS.Films.Requests.Commands;
+using FandomStarWars.Application.CQRS.Movies.Requests.Commands;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Interfaces;
 using MediatR;

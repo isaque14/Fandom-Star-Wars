@@ -1,7 +1,7 @@
 ﻿using FandomStarWars.Application.CQRS.BaseResponses;
 using MediatR;
 
-namespace FandomStarWars.Application.CQRS.Movie.Requests.Querys
+namespace FandomStarWars.Application.CQRS.Movies.Requests.Querys
 {
     public class GetMovieByIdQueryRequest : IRequest<GenericResponse>
     {

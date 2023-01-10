@@ -1,32 +1,32 @@
 ﻿using AutoMapper;
 using FandomStarWars.Application.CQRS.BaseResponses;
-using FandomStarWars.Application.CQRS.Movie.Requests.Querys;
+using FandomStarWars.Application.CQRS.Movies.Requests.Querys;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Domain.Interfaces;
 using MediatR;
 
-namespace FandomStarWars.Application.CQRS.Movie.Handlers
+namespace FandomStarWars.Application.CQRS.Movies.Handlers.Querys
 {
-    public class GetMovieByIdQueryRequestHandler : IRequestHandler<GetMovieByIdQueryRequest, GenericResponse>
+    public class GetMovieByNameQueryRequestHandler : IRequestHandler<GetMovieByNameQueryRequest, GenericResponse>
     {
         private readonly IMapper _mapper;
         private readonly IMovieRepository _repository;
 
-        public GetMovieByIdQueryRequestHandler(IMapper mapper, IMovieRepository repository)
+        public GetMovieByNameQueryRequestHandler(IMapper mapper, IMovieRepository repository)
         {
             _mapper = mapper;
             _repository = repository;
         }
 
-        public async Task<GenericResponse> Handle(GetMovieByIdQueryRequest request, CancellationToken cancellationToken)
+        public async Task<GenericResponse> Handle(GetMovieByNameQueryRequest request, CancellationToken cancellationToken)
         {
             try
             {
-                var movieEntity = await _repository.GetByIdAsync(request.Id);
-                if (movieEntity is null)
-                    throw new Exception("Movie Not Found");
+                var movieEntity = await _repository.GetByNameAsync(request.Name);
+                if (movieEntity is null) throw new Exception("Movie Not found");
 
                 var movieDTO = _mapper.Map<MovieDTO>(movieEntity);
+
                 return new GenericResponse
                 {
                     IsSuccessful = true,
@@ -39,8 +39,8 @@ namespace FandomStarWars.Application.CQRS.Movie.Handlers
                 return new GenericResponse
                 {
                     IsSuccessful = false,
-                    Message = $"{e.Message}"
-                };             
+                    Message = e.Message
+                };
             }
         }
     }

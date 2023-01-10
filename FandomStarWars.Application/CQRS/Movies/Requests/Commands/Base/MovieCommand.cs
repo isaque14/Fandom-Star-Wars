@@ -2,9 +2,9 @@
 using FandomStarWars.Domain.Entities;
 using MediatR;
 
-namespace FandomStarWars.Application.CQRS.Films.Requests.Commands.Base
+namespace FandomStarWars.Application.CQRS.Movies.Requests.Commands.Base
 {
-    public abstract class MovieCommand : IRequest<Movie>
+    public abstract class MovieCommand
     {
         public string Title { get; set; }
         public int EpisodeId { get; set; }

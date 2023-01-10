@@ -2,7 +2,7 @@
 using FandomStarWars.Application.DTO_s;
 using MediatR;
 
-namespace FandomStarWars.Application.CQRS.Films.Requests.Commands
+namespace FandomStarWars.Application.CQRS.Movies.Requests.Commands
 {
     public class CreateMovieCommandRequest : IRequest<GenericResponse>
     {

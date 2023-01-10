@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using FandomStarWars.Application.CQRS.BaseResponses;
-using FandomStarWars.Application.CQRS.Films.Requests.Querys;
+using FandomStarWars.Application.CQRS.Movies.Requests.Querys;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Domain.Interfaces;
 using MediatR;
 
-namespace FandomStarWars.Application.CQRS.Films.Handlers
+namespace FandomStarWars.Application.CQRS.Movies.Handlers.Querys
 {
     public class GetMoviesQueryRequestHandler : IRequestHandler<GetMoviesQueryRequest, GenericResponse>
     {
@@ -31,7 +31,7 @@ namespace FandomStarWars.Application.CQRS.Films.Handlers
                     Message = moviesEntity is not null ? "Successfully obtained Movies" : "Not found Movies",
                     Object = moviesDTO
                 };
-                
+
             }
             catch (Exception e)
             {

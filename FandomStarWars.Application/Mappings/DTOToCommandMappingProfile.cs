@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FandomStarWars.Application.CQRS.Films.Requests.Commands;
+using FandomStarWars.Application.CQRS.Movies.Requests.Commands;
 using FandomStarWars.Application.CQRS.Personages.Requests.Commands;
 using FandomStarWars.Application.DTO_s;
 

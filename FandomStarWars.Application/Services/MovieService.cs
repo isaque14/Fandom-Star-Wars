@@ -2,6 +2,7 @@
 using FandomStarWars.Application.CQRS.BaseResponses;
 using FandomStarWars.Application.CQRS.ExternalApi.Querys;
 using FandomStarWars.Application.CQRS.Movies.Requests.Commands;
+using FandomStarWars.Application.CQRS.Movies.Requests.Querys;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Interfaces;
 using MediatR;
@@ -78,13 +79,18 @@ namespace FandomStarWars.Application.Services
 
             foreach (var film in filmsDTO)
             {
-                await CreateAsync(film);
+                var response = await CreateAsync(film);
             }
         }
 
-        public Task<GenericResponse> GetAllAsync()
+        public async Task<GenericResponse> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var getMoviesQuery = new GetMoviesQueryRequest();
+            if (getMoviesQuery is null) 
+                throw new Exception($"Entity could not be loaded.");
+
+            var response = await _mediator.Send(getMoviesQuery);
+            return response;
         }
 
         public Task<GenericResponse> GetByIdAsync(int id)
@@ -105,7 +111,7 @@ namespace FandomStarWars.Application.Services
         public async Task<GenericResponse> CreateAsync(MovieDTO filmDTO)
         {
             var createFilmCommand = _mapper.Map<CreateMovieCommandRequest>(filmDTO);
-            createFilmCommand.FilmDTO.PersonagesDTO = filmDTO.PersonagesDTO;
+            createFilmCommand.Personages = filmDTO.PersonagesDTO;
             var response = await _mediator.Send(createFilmCommand);
             return response;
         }

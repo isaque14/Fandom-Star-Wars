@@ -20,14 +20,14 @@ namespace FandomStarWars.Infra.Data.Repositories
             //var personage = new Personage("Madara", "teste", "teste", "teste", "teste", "teste", "teste", "teste", "teste");
 
             var list = new List<Personage>();
-            list.Add(_personageRepository.GetByIdAsync(2).Result);
+            list.Add(_personageRepository.GetByIdAsync(4).Result);
             
-            var movie = new Movie("Testinng AVT", 17, "teste", "teste", "teste", "teste", list);
+            var movie = new Movie("Movie Test", 17, "teste", "teste", "teste", "teste", list);
 
 
             //_context.Add(personage);
 
-            _context.Add(movie);
+            _context.AddAsync(movie);
             await _context.SaveChangesAsync();
         }
     }

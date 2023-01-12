@@ -57,8 +57,8 @@ namespace FandomStarWars.Application.Services
             
             var personagesDTO = new List<PersonageDTO>();
 
-            
-            while (personagesAPi.Next != null)
+            var nextElement = true;
+            while (nextElement)
             {
                 foreach (var p in personagesAPi.Results)
                 {
@@ -94,7 +94,11 @@ namespace FandomStarWars.Application.Services
                 if (nextPage == null)
                     throw new Exception($"API could not be loaded.");
 
-                personagesAPi = await _mediator.Send(nextPage);
+                if (personagesAPi.Next is null) 
+                    nextElement = false;
+                
+                else
+                    personagesAPi = await _mediator.Send(nextPage);
             }
             
 

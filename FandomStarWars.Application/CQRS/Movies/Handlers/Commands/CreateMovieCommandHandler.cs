@@ -10,12 +10,12 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Commands
 {
     public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommandRequest, GenericResponse>
     {
-        private readonly IMovieRepository _filmRepository;
+        private readonly IMovieRepository _movieRepository;
         private readonly IMapper _mapper;
 
-        public CreateMovieCommandHandler(IMovieRepository filmRepository, IMapper mapper)
+        public CreateMovieCommandHandler(IMovieRepository movieRepository, IMapper mapper)
         {
-            _filmRepository = filmRepository;
+            _movieRepository = movieRepository;
             _mapper = mapper;
         }
 
@@ -24,29 +24,39 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Commands
             var personagesEntity = new List<Personage>();
             try
             {
-                if (request.FilmDTO.PersonagesDTO is null)
+                if (request is null)
                     throw new Exception("Personages is Requireds");
 
-                foreach (var personage in request.FilmDTO.PersonagesDTO)
+
+                //var list = _mapper.Map<List<Personage>>(request.Personages);
+                foreach (var personageDTO in request.Personages)
                 {
-                    personagesEntity.Add(_mapper.Map<Personage>(personage));
+                    personagesEntity.Add(_mapper.Map<Personage>(personageDTO));
                 }
 
                 var filmEntity = new Movie(
-                    request.FilmDTO.Title,
-                    request.FilmDTO.EpisodeId,
-                    request.FilmDTO.OpeningCrawl,
-                    request.FilmDTO.Director,
-                    request.FilmDTO.Producer,
-                    request.FilmDTO.ReleaseDate,
+                    request.Title,
+                    request.EpisodeId,
+                    request.OpeningCrawl,
+                    request.Director,
+                    request.Producer,
+                    request.ReleaseDate,
                     personagesEntity
                 );
 
                 if (filmEntity is null)
                     throw new ApplicationException($"Error creating Movie");
 
-                var movieCreated = await _filmRepository.CreateAsync(filmEntity);
+                var movieCreated = await _movieRepository.CreateAsync(filmEntity);
                 var movieDTO = _mapper.Map<MovieDTO>(movieCreated);
+
+                var personagesDTO = new List<PersonageDTO>();
+                foreach (var personage in movieCreated.Personages)
+                {
+                    personagesDTO.Add(_mapper.Map<PersonageDTO>(personage));
+                }
+                movieDTO.PersonagesDTO = personagesDTO;
+                
 
                 return new GenericResponse
                 {
@@ -59,8 +69,8 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Commands
             {
                 return new GenericResponse
                 {
-                    IsSuccessful = true,
-                    Message = $"Error Deleting Personage. {e.Message}"
+                    IsSuccessful = false,
+                    Message = $"Error Creating Movie. {e.Message}"
                 };
             }
         }

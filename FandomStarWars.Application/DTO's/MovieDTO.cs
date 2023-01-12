@@ -13,7 +13,7 @@ namespace FandomStarWars.Application.DTO_s
         public string ReleaseDate { get; set; }
         public string Created { get; set; }
 
-        [Required(ErrorMessage = "Personages is Requireds")]
+        //[Required(ErrorMessage = "Personages is Requireds")]
         public ICollection<PersonageDTO> PersonagesDTO { get; set; }
 
         public MovieDTO(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)

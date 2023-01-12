@@ -13,7 +13,7 @@ namespace FandomStarWars.Infra.Data.Context
         }
 
         public DbSet<Personage> Personages { get; set; }
-        public DbSet<Movie> Films { get; set; }
+        public DbSet<Movie> Movies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

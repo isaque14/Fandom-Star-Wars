@@ -23,7 +23,12 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Querys
             try
             {
                 var moviesEntity = await _repository.GetAllAsync();
-                var moviesDTO = _mapper.Map<MovieDTO>(moviesEntity);
+                var moviesDTO = new List<MovieDTO>();
+
+                foreach (var movie in moviesEntity)
+                {
+                                        
+                }
 
                 return new GenericResponse
                 {

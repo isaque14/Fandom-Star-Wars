@@ -16,12 +16,12 @@ namespace FandomStarWars.Domain.Entities
         public string Homeworld { get; private set; }
         public string Created { get; private set; }
         public string? Edited { get; private set; }
-        public ICollection<Movie> Films { get; set; }
+        public ICollection<Movie> Movies { get; set; }
 
         public Personage(int id, string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear, string gender,
             string homeworld)
         {
-            DomainExceptionValidation.When(id >= 0, "Invalid Id");
+            DomainExceptionValidation.When(id <= 0, "Invalid Id");
             ValidationDomain(name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld);
             Created = DateTime.Now.ToString();
         }

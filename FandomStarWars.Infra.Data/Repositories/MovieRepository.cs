@@ -16,32 +16,31 @@ namespace FandomStarWars.Infra.Data.Repositories
         
         public async Task<IEnumerable<Movie>> GetAllAsync()
         {
-            return await _context.Films.ToListAsync();
+            var movies = await _context.Movies.Include("Personages").ToListAsync();
+            //foreach (var movie in movies)
+            //{
+            //    var personages = new List<Personage>();
+            //    var a = _context.Personages.Where(x => x.Films.Any(p => p.Title == movie.Title)).ToListAsync();
+            //    //movie.Personages = personages;
+            //}
+            return movies;
         }
 
         public async Task<Movie> GetByIdAsync(int id)
         {
-            return await _context.Films.FindAsync(id);
+            return await _context.Movies.FindAsync(id);
         }
 
         public async Task<Movie> GetByNameAsync(string name)
         {
-            return await _context.Films.FindAsync(name);
+            return await _context.Movies.FindAsync(name);
         }
 
-        public async Task<Movie> CreateAsync(Movie film)
+        public async Task<Movie> CreateAsync(Movie movie)
         {
-            try
-            {
-                _context.Films.Add(film);
-                await _context.SaveChangesAsync();
-                return film;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            return film;
+            await _context.Movies.AddAsync(movie);
+            await _context.SaveChangesAsync();
+            return movie;           
         }
 
         public async Task<Movie> UpdateAsync(Movie film)
@@ -53,7 +52,7 @@ namespace FandomStarWars.Infra.Data.Repositories
 
         public async Task<Movie> DeleteAsync(Movie film)
         {
-            _context.Films.Remove(film);
+            _context.Movies.Remove(film);
             await _context.SaveChangesAsync();
             return film;
         }

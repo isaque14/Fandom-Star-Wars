@@ -27,8 +27,6 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Commands
                 if (request is null)
                     throw new Exception("Personages is Requireds");
 
-
-                //var list = _mapper.Map<List<Personage>>(request.Personages);
                 foreach (var personageDTO in request.Personages)
                 {
                     personagesEntity.Add(_mapper.Map<Personage>(personageDTO));

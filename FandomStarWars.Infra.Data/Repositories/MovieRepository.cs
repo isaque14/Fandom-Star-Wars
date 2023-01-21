@@ -16,7 +16,7 @@ namespace FandomStarWars.Infra.Data.Repositories
         
         public async Task<IEnumerable<Movie>> GetAllAsync()
         {
-            var movies = await _context.Movies.Include("Personages").ToListAsync();
+            var movies = await _context.Movies.ToListAsync();
             //foreach (var movie in movies)
             //{
             //    var personages = new List<Personage>();
@@ -38,9 +38,22 @@ namespace FandomStarWars.Infra.Data.Repositories
 
         public async Task<Movie> CreateAsync(Movie movie)
         {
+            await InsertMoviePersonage(movie);
             await _context.Movies.AddAsync(movie);
             await _context.SaveChangesAsync();
             return movie;           
+        }
+
+        public async Task InsertMoviePersonage(Movie movie)
+        {
+            var personagesMattch = new List<Personage>();
+            foreach (var personage in movie.Personages)
+            {
+                var personageMatch = await _context.Personages.Where(x => x.Name == personage.Name).FirstOrDefaultAsync();
+                personagesMattch.Add(personageMatch);
+                Console.WriteLine(personageMatch.ToString());
+            }
+            movie.Personages = personagesMattch;
         }
 
         public async Task<Movie> UpdateAsync(Movie film)

@@ -5,6 +5,7 @@ using FandomStarWars.Application.CQRS.Movies.Requests.Commands;
 using FandomStarWars.Application.CQRS.Movies.Requests.Querys;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Interfaces;
+using FandomStarWars.Application.Interfaces.APIClient;
 using MediatR;
 using static FandomStarWars.Application.DTO_s.MovieDataExternalApiDTO;
 
@@ -15,12 +16,14 @@ namespace FandomStarWars.Application.Services
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
         private readonly IPersonageService _personageService;
+        private readonly IExternalApiService _externalApiService;
 
-        public MovieService(IMapper mapper, IMediator mediator, IPersonageService personageService)
+        public MovieService(IMapper mapper, IMediator mediator, IPersonageService personageService, IExternalApiService externalApiService)
         {
             _mapper = mapper;
             _mediator = mediator;
             _personageService = personageService;
+            _externalApiService = externalApiService;
         }
 
         public async Task<IEnumerable<MovieDTO>> GetAllFilmsInExternalApiAsync()
@@ -28,6 +31,7 @@ namespace FandomStarWars.Application.Services
             var numberPage = 1;
             var filmsDTO = new List<MovieDTO>();
             RootFilms filmsApi;
+            var nextMovie = true;
             
             do
             {
@@ -48,12 +52,11 @@ namespace FandomStarWars.Application.Services
                         var lastSegment = new Uri(personage).Segments.Last();
 
                         int.TryParse(lastSegment.Remove(lastSegment.Length - 1), out idPersonage);
-
-                        GenericResponse personageResponse = await _personageService.GetByIdAsync(idPersonage);
+                        var getPersonageApi = await _externalApiService.GetPersonageByIdAsync(idPersonage);
+                        GenericResponse personageResponse = await _personageService.GetByNameAsync(getPersonageApi.Name);
                         
 
                         personagesDTO.Add(personageResponse.Object as PersonageDTO);
-                        Console.WriteLine(personagesDTO);
                     }
 
                     filmsDTO.Add(new MovieDTO(
@@ -68,7 +71,11 @@ namespace FandomStarWars.Application.Services
                 }
 
                 numberPage++;
-            } while (filmsApi.Next != null);
+
+                if (filmsApi.Next is null)
+                    nextMovie = false;
+                
+            } while (nextMovie);
 
             return filmsDTO;
         }

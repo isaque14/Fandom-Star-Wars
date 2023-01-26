@@ -23,18 +23,12 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Querys
             try
             {
                 var moviesEntity = await _repository.GetAllAsync();
-                var moviesDTO = new List<MovieDTO>();
-
-                foreach (var movie in moviesEntity)
-                {
-                                        
-                }
-
+ 
                 return new GenericResponse
                 {
                     IsSuccessful = true,
                     Message = moviesEntity is not null ? "Successfully obtained Movies" : "Not found Movies",
-                    Object = moviesDTO
+                    Object = moviesEntity
                 };
 
             }

@@ -42,7 +42,6 @@ namespace FandomStarWars.Application.DTO_s
         [DisplayName("Edited")]
         public string Edited { get; set; }
 
-
         public PersonageDTO()
         {
 

@@ -16,19 +16,18 @@ namespace FandomStarWars.Infra.Data.Repositories
         
         public async Task<IEnumerable<Movie>> GetAllAsync()
         {
-            var movies = await _context.Movies.ToListAsync();
-            //foreach (var movie in movies)
-            //{
-            //    var personages = new List<Personage>();
-            //    var a = _context.Personages.Where(x => x.Films.Any(p => p.Title == movie.Title)).ToListAsync();
-            //    //movie.Personages = personages;
-            //}
+            var movies = await _context.Movies
+                .Include(p => p.Personages)
+                .AsNoTracking()
+                .ToListAsync();
+
             return movies;
         }
 
         public async Task<Movie> GetByIdAsync(int id)
         {
             return await _context.Movies.FindAsync(id);
+                
         }
 
         public async Task<Movie> GetByNameAsync(string name)

@@ -16,7 +16,10 @@ namespace FandomStarWars.Infra.Data.Repositories
 
         public async Task<IEnumerable<Personage>> GetAllAsync()
         {
-            return await _context.Personages.ToListAsync();
+            return await _context.Personages
+                .Include(x => x.Movies)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task<Personage> GetByIdAsync(int id)
@@ -28,6 +31,13 @@ namespace FandomStarWars.Infra.Data.Repositories
         {
             return await _context.Personages.Where(x => x.Name == name).FirstOrDefaultAsync();
         }
+
+        //public async Task<IEnumerable<Personage>> GetAllPersonagesByIdMovie(int movieId)
+        //{
+        //    return await _context.Personages;
+        //    //    //.Include(p => p.)
+        //    //    .AsNoTracking().Where(x => x.Movies.)
+        //}
 
         public async Task<Personage> CreateAsync(Personage personage)
         {

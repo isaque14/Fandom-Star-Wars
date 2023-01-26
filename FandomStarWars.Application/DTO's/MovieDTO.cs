@@ -14,30 +14,6 @@ namespace FandomStarWars.Application.DTO_s
         public string Created { get; set; }
 
         //[Required(ErrorMessage = "Personages is Requireds")]
-        public ICollection<PersonageDTO> PersonagesDTO { get; set; }
-
-        public MovieDTO(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)
-        {
-            Title = title;
-            EpisodeId = episodeId;
-            OpeningCrawl = openingCrawl;
-            Director = director;
-            Producer = producer;
-            ReleaseDate = releaseDate;
-            Created = DateTime.Now.ToString();
-        }
-
-        public MovieDTO(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate, 
-            ICollection<PersonageDTO> personagesDTO)
-        {
-            Title = title;
-            EpisodeId = episodeId;
-            OpeningCrawl = openingCrawl;
-            Director = director;
-            Producer = producer;
-            ReleaseDate = releaseDate;
-            Created = DateTime.Now.ToString();
-            PersonagesDTO = personagesDTO;
-        }
+        public IEnumerable<PersonageDTO> PersonagesDTO { get; set; }
     }
 }

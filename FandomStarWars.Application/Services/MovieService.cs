@@ -41,11 +41,11 @@ namespace FandomStarWars.Application.Services
                     throw new Exception($"API could not be loaded.");
 
                 filmsApi = await _mediator.Send(getFilms);
-            
+
                 foreach (var film in filmsApi.Results)
                 {
                     var personagesDTO = new List<PersonageDTO>();
-                   
+
                     foreach (var personage in film.Characters)
                     {
                         int idPersonage = 0;
@@ -54,20 +54,21 @@ namespace FandomStarWars.Application.Services
                         int.TryParse(lastSegment.Remove(lastSegment.Length - 1), out idPersonage);
                         var getPersonageApi = await _externalApiService.GetPersonageByIdAsync(idPersonage);
                         GenericResponse personageResponse = await _personageService.GetByNameAsync(getPersonageApi.Name);
-                        
+
 
                         personagesDTO.Add(personageResponse.Object as PersonageDTO);
                     }
 
-                    filmsDTO.Add(new MovieDTO(
-                          film.Title,
-                          film.Episode_Id,
-                          film.Opening_Crawl,
-                          film.Director,
-                          film.Producer,
-                          film.Release_Date,
-                          personagesDTO
-                          ));
+                    filmsDTO.Add(new MovieDTO
+                    {
+                        Title = film.Title,
+                        EpisodeId = film.Episode_Id,
+                        OpeningCrawl = film.Opening_Crawl,
+                        Director = film.Director,
+                        Producer = film.Producer,
+                        ReleaseDate = film.Release_Date
+                    });
+
                 }
 
                 numberPage++;
@@ -118,7 +119,7 @@ namespace FandomStarWars.Application.Services
         public async Task<GenericResponse> CreateAsync(MovieDTO filmDTO)
         {
             var createFilmCommand = _mapper.Map<CreateMovieCommandRequest>(filmDTO);
-            createFilmCommand.Personages = filmDTO.PersonagesDTO;
+            //createFilmCommand.Personages = filmDTO.PersonagesDTO;
             var response = await _mediator.Send(createFilmCommand);
             return response;
         }

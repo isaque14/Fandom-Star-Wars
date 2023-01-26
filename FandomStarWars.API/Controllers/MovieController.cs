@@ -1,4 +1,5 @@
-﻿using FandomStarWars.Application.DTO_s;
+﻿using FandomStarWars.Application.CQRS.BaseResponses;
+using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Interfaces;
 using FandomStarWars.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,6 @@ namespace FandomStarWars.API.Controllers
         private readonly IMovieService _movieService;
         private readonly IMockRepository _mockRepository;
         
-
         public MovieController(IMovieService movieService, IMockRepository mockRepository)
         {
             _movieService = movieService;
@@ -29,21 +29,11 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MovieDTO>>> GetMovies()
+        public async Task<ActionResult<IEnumerable<MovieDTO>>>  GetMovies()
         {
-            try
-            {
-                var response = _movieService.GetAllAsync();
+                GenericResponse response = _movieService.GetAllAsync().Result;
                 return Ok(response);
-            }catch(Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
-
-
-
-
 
         [HttpGet]
         [Route("testeMuitos")]

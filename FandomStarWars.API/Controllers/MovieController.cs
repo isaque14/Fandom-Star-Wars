@@ -29,11 +29,19 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MovieDTO>>>  GetMovies()
+        public async Task<ActionResult<IEnumerable<MovieDTO>>> GetMovies()
         {
                 GenericResponse response = _movieService.GetAllAsync().Result;
                 return Ok(response);
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<MovieDTO>> GetById(int id)
+        {
+            var response = _movieService.GetByIdAsync(id).Result;
+            return response.IsSuccessful ? Ok(response) : BadRequest(response); 
+        } 
 
         [HttpGet]
         [Route("testeMuitos")]

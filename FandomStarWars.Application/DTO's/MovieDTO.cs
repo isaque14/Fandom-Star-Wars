@@ -5,6 +5,7 @@ namespace FandomStarWars.Application.DTO_s
 {
     public class MovieDTO
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public int EpisodeId { get; set; }
         public string OpeningCrawl { get; set; }

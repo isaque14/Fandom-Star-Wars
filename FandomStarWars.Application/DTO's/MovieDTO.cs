@@ -1,5 +1,4 @@
-﻿using FandomStarWars.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FandomStarWars.Application.DTO_s
 {
@@ -12,9 +11,11 @@ namespace FandomStarWars.Application.DTO_s
         public string Director { get; set; }
         public string Producer { get; set; }
         public string ReleaseDate { get; set; }
-        public string Created { get; set; }
+        public string? Created { get; set; }
+        public string? Edited { get; set; }
+        public IEnumerable<int> PersonagesId { get; set; }
 
         //[Required(ErrorMessage = "Personages is Requireds")]
-        public IEnumerable<PersonageDTO> PersonagesDTO { get; set; }
+        public IEnumerable<PersonageDTO>? PersonagesDTO { get; set; }
     }
 }

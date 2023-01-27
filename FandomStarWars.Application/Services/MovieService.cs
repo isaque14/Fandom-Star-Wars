@@ -66,7 +66,8 @@ namespace FandomStarWars.Application.Services
                         OpeningCrawl = film.Opening_Crawl,
                         Director = film.Director,
                         Producer = film.Producer,
-                        ReleaseDate = film.Release_Date
+                        ReleaseDate = film.Release_Date,
+                        PersonagesDTO = personagesDTO
                     });
 
                 }

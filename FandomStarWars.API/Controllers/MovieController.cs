@@ -66,7 +66,7 @@ namespace FandomStarWars.API.Controllers
         public async Task<ActionResult<MovieDTO>> Delete(int id)
         {
             var response = _movieService.DeleteAsync(id).Result;
-            return response.IsSuccessful ? ok(response) : BadRequest(response); 
+            return response.IsSuccessful ? Ok(response) : BadRequest(response); 
         }
     }
 }

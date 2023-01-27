@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using FandomStarWars.Application.CQRS.BaseResponses;
 using FandomStarWars.Application.CQRS.Movies.Requests.Commands;
+using FandomStarWars.Application.CQRS.Personages.Requests.Querys;
 using FandomStarWars.Application.DTO_s;
+using FandomStarWars.Application.Interfaces;
 using FandomStarWars.Domain.Entities;
 using FandomStarWars.Domain.Interfaces;
 using MediatR;
@@ -12,11 +14,13 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Commands
     {
         private readonly IMovieRepository _movieRepository;
         private readonly IMapper _mapper;
+        private readonly IPersonageService _personageService;
 
-        public CreateMovieCommandHandler(IMovieRepository movieRepository, IMapper mapper)
+        public CreateMovieCommandHandler(IMovieRepository movieRepository, IMapper mapper, IPersonageService personageService)
         {
             _movieRepository = movieRepository;
             _mapper = mapper;
+            _personageService = personageService;
         }
 
         public async Task<GenericResponse> Handle(CreateMovieCommandRequest request, CancellationToken cancellationToken)
@@ -27,9 +31,10 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Commands
                 if (request is null)
                     throw new Exception("Personages is Requireds");
 
-                foreach (var personageDTO in request.Personages)
+                foreach (var id in request.PersonagesId)
                 {
-                    personagesEntity.Add(_mapper.Map<Personage>(personageDTO));
+                    var personageEntity = _personageService.GetByIdAsync(id).Result;
+                    personagesEntity.Add(_mapper.Map<Personage>(personageEntity.Object));
                 }
 
                 var filmEntity = new Movie(

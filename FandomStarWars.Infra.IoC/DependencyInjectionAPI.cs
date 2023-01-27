@@ -30,7 +30,6 @@ namespace FandomStarWars.Infra.IoC
 
             services.AddScoped<IPersonageRepository, PersonageRepository>();
             services.AddScoped<IMovieRepository, MovieRepository>();
-            services.AddScoped<IMockRepository, MockRepository>();
 
             services.AddScoped<IPersonageService, PersonageService>();
             services.AddScoped<IMovieService, MovieService>();

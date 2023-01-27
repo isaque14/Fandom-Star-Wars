@@ -11,13 +11,10 @@ namespace FandomStarWars.API.Controllers
     public class MovieController : ControllerBase
     {
         private readonly IMovieService _movieService;
-        private readonly IMockRepository _mockRepository;
         
-        public MovieController(IMovieService movieService, IMockRepository mockRepository)
+        public MovieController(IMovieService movieService)
         {
             _movieService = movieService;
-            _mockRepository = mockRepository;
-          
         }
         
         [HttpGet]
@@ -42,13 +39,5 @@ namespace FandomStarWars.API.Controllers
             var response = _movieService.GetByIdAsync(id).Result;
             return response.IsSuccessful ? Ok(response) : BadRequest(response); 
         } 
-
-        [HttpGet]
-        [Route("testeMuitos")]
-        public async Task<ActionResult> Teste()
-        {
-            await _mockRepository.SeedBank();
-            return Ok("Status finish");
-        }
     }
 }

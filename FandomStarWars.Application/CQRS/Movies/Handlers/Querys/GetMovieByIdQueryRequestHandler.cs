@@ -27,6 +27,7 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Querys
                     throw new Exception("Movie Not Found");
 
                 var movieDTO = _mapper.Map<MovieDTO>(movieEntity);
+                movieDTO.PersonagesDTO = _mapper.Map<IEnumerable<PersonageDTO>>(movieEntity.Personages);
                 return new GenericResponse
                 {
                     IsSuccessful = true,

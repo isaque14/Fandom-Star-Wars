@@ -26,13 +26,21 @@ namespace FandomStarWars.Infra.Data.Repositories
 
         public async Task<Movie> GetByIdAsync(int id)
         {
-            return await _context.Movies.FindAsync(id);
+            return await _context.Movies
+                .Include(p => p.Personages)
+                .AsNoTracking()
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
                 
         }
 
-        public async Task<Movie> GetByNameAsync(string name)
+        public async Task<Movie> GetByNameAsync(string title)
         {
-            return await _context.Movies.FindAsync(name);
+            return await _context.Movies
+                .Include(p => p.Personages)
+                .AsNoTracking()
+                .Where(x => x.Title == title)
+                .FirstOrDefaultAsync();
         }
 
         public async Task<Movie> CreateAsync(Movie movie)

@@ -111,9 +111,14 @@ namespace FandomStarWars.Application.Services
             return response;
         }
 
-        public Task<GenericResponse> GetByNameAsync(string name)
+        public async Task<GenericResponse> GetByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            var getMovie = new GetMovieByNameQueryRequest(name);
+            if (getMovie is null) 
+                throw new Exception($"Entity could not be loaded.");
+
+            var response = await _mediator.Send(getMovie);
+            return response;
         }
 
         public Task<MovieDTO> GetFilmInExternalApiByIdAsync(int id)

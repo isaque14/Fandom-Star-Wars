@@ -127,22 +127,25 @@ namespace FandomStarWars.Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task<GenericResponse> CreateAsync(MovieDTO filmDTO)
+        public async Task<GenericResponse> CreateAsync(MovieDTO movieDTO)
         {
-            var createFilmCommand = _mapper.Map<CreateMovieCommandRequest>(filmDTO);
-            //createFilmCommand.Personages = filmDTO.PersonagesDTO;
-            var response = await _mediator.Send(createFilmCommand);
+            var createMovieCommand = _mapper.Map<CreateMovieCommandRequest>(movieDTO);
+            var response = await _mediator.Send(createMovieCommand);
             return response;
         }
 
-        public Task<GenericResponse> UpdateAsync(MovieDTO filmDTO)
+        public async Task<GenericResponse> UpdateAsync(MovieDTO movieDTO)
         {
-            throw new NotImplementedException();
+            var updateMovieCommand = _mapper.Map<UpdateMovieCommandRequest>(movieDTO);
+            var response = await _mediator.Send(updateMovieCommand);
+            return response;
         }
 
-        public Task<GenericResponse> DeleteAsync(int id)
+        public async Task<GenericResponse> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var deleteMovie = new DeleteMovieCommandRequest(id);
+            var response = await _mediator.Send(deleteMovie);
+            return response;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace FandomStarWars.API.Controllers
         public async Task<ActionResult<IEnumerable<MovieDTO>>> GetMovies()
         {
                 GenericResponse response = _movieService.GetAllAsync().Result;
-                return Ok(response);
+                return response.IsSuccessful ? Ok(response) : BadRequest(response);
         }
 
         [HttpGet]
@@ -37,7 +37,16 @@ namespace FandomStarWars.API.Controllers
         public async Task<ActionResult<MovieDTO>> GetById(int id)
         {
             var response = _movieService.GetByIdAsync(id).Result;
-            return response.IsSuccessful ? Ok(response) : BadRequest(response); 
-        } 
+            return response.IsSuccessful ? Ok(response) : BadRequest(response);
+        }
+        [HttpGet]
+        [Route("/Title/{title}")]
+        public async Task<ActionResult<MovieDTO>> GetByTitle(string title)
+        {
+            var response = _movieService.GetByNameAsync(title).Result;
+            return response.IsSuccessful ? Ok(response) : BadRequest(response);
+        }
+
+        
     }
 }

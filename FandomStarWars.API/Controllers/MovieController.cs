@@ -47,6 +47,26 @@ namespace FandomStarWars.API.Controllers
             return response.IsSuccessful ? Ok(response) : BadRequest(response);
         }
 
-        
+        [HttpPost]
+        public async Task<ActionResult<MovieDTO>> Create(MovieDTO movie) 
+        {
+            var response = _movieService.CreateAsync(movie).Result;
+            return response.IsSuccessful ? Ok(response) : BadRequest(response);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<MovieDTO>> Update(MovieDTO movie)
+        {
+            var response = _movieService.UpdateAsync(movie).Result;
+            return response.IsSuccessful ? Ok(response) : BadRequest(response);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<ActionResult<MovieDTO>> Delete(int id)
+        {
+            var response = _movieService.DeleteAsync(id).Result;
+            return response.IsSuccessful ? ok(response) : BadRequest(response); 
+        }
     }
 }

@@ -51,7 +51,7 @@ namespace FandomStarWars.Infra.Data.Repositories
             return movie;           
         }
 
-        public async Task InsertMoviePersonage(Movie movie)
+        private async Task InsertMoviePersonage(Movie movie)
         {
             var personagesMattch = new List<Personage>();
             foreach (var personage in movie.Personages)
@@ -63,11 +63,28 @@ namespace FandomStarWars.Infra.Data.Repositories
             movie.Personages = personagesMattch;
         }
 
-        public async Task<Movie> UpdateAsync(Movie film)
+        private async Task UpdateMoviePersonage(Movie movie, Movie movieMatch)
         {
-            _context.Update(film);
+            movieMatch.Personages.Clear();
+
+            foreach (var personage in movie.Personages)
+            {
+                var personageMatch = await _context.Personages.FindAsync(personage.Id);
+                movieMatch.Personages.Add(personageMatch);
+            }
+        }
+
+        public async Task<Movie> UpdateAsync(Movie movie)
+        {
+            Movie movieMatch = await _context.Movies.Include(p => p.Personages).SingleOrDefaultAsync(x => x.Id == movie.Id);
+
+            if (movieMatch is null)
+                return null;
+
+            _context.Entry(movieMatch).CurrentValues.SetValues(movie);
+            await UpdateMoviePersonage(movie, movieMatch);
             await _context.SaveChangesAsync();
-            return film;
+            return movieMatch;
         }
 
         public async Task<Movie> DeleteAsync(Movie film)

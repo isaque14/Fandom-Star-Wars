@@ -55,8 +55,14 @@ namespace FandomStarWars.Application.Services
                         var getPersonageApi = await _externalApiService.GetPersonageByIdAsync(idPersonage);
                         GenericResponse personageResponse = await _personageService.GetByNameAsync(getPersonageApi.Name);
 
-
                         personagesDTO.Add(personageResponse.Object as PersonageDTO);
+                    }
+
+                    var personagesId = new List<int>();
+                    foreach (var personageDTO in personagesDTO)
+                    {
+                        var idPersonage = personageDTO.Id;
+                        personagesId.Add(idPersonage);
                     }
 
                     filmsDTO.Add(new MovieDTO
@@ -67,6 +73,7 @@ namespace FandomStarWars.Application.Services
                         Director = film.Director,
                         Producer = film.Producer,
                         ReleaseDate = film.Release_Date,
+                        PersonagesId = personagesId,
                         PersonagesDTO = personagesDTO
                     });
 

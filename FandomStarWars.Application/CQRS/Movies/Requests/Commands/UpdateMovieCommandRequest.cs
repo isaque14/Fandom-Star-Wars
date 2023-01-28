@@ -7,5 +7,6 @@ namespace FandomStarWars.Application.CQRS.Movies.Requests.Commands
     public class UpdateMovieCommandRequest : MovieCommand, IRequest<GenericResponse>
     {
         public int Id { get; set; }
+        public IEnumerable<int> PersonagesId { get; set; }
     }
 }

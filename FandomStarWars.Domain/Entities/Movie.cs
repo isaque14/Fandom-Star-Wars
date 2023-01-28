@@ -13,7 +13,7 @@ namespace FandomStarWars.Domain.Entities
         public string ReleaseDate { get; private set; }
         public string Created { get; private set; }
         public string? Edited { get; private set; }
-        public ICollection<Personage> Personages { get; set; }
+        public ICollection<Personage>? Personages { get; set; }
 
         public Movie(int id, string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)
         {
@@ -35,8 +35,13 @@ namespace FandomStarWars.Domain.Entities
             Created = DateTime.Now.ToString();
         }
 
-        public void Update(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate,
-            string created)
+        public void Update(string title, 
+            int episodeId, 
+            string openingCrawl, 
+            string director, 
+            string producer, 
+            string releaseDate, 
+            ICollection<Personage> personages)
         {
             Title = title;
             EpisodeId = episodeId;
@@ -44,8 +49,8 @@ namespace FandomStarWars.Domain.Entities
             Director = director;
             Producer = producer;
             ReleaseDate = releaseDate;
-            Created = created;
             Edited = DateTime.Now.ToString();
+            Personages = personages;
         }
 
         public void ValidationDomain(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)

@@ -24,7 +24,8 @@ namespace FandomStarWars.Infra.Data.Repositories
 
         public async Task<Personage> GetByIdAsync(int id)
         {
-            return await _context.Personages.FindAsync(id);
+            var result = await _context.Personages.FindAsync(id);
+            return result;
         }
 
         public async Task<Personage> GetByNameAsync(string name)

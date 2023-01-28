@@ -19,6 +19,7 @@ namespace FandomStarWars.API.Controllers
         
         [HttpGet]
         [Route("insertFilms")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult> InsertFilmsApiIntoDataBase()
         {
             await _movieService.InsertFilmsExternalApiIntoDataBase();
@@ -40,7 +41,7 @@ namespace FandomStarWars.API.Controllers
             return response.IsSuccessful ? Ok(response) : BadRequest(response);
         }
         [HttpGet]
-        [Route("/Title/{title}")]
+        [Route("Title/{title}")]
         public async Task<ActionResult<MovieDTO>> GetByTitle(string title)
         {
             var response = _movieService.GetByNameAsync(title).Result;

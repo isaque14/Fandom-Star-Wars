@@ -19,6 +19,7 @@ namespace FandomStarWars.API.Controllers
 
         [HttpPost]
         [Route("insertIntoDataBase")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult> InsertPersonagesApiIntoDataBase()
         {
             await _personageService.InsertPersonagesExternalApiIntoDataBase();
@@ -36,7 +37,7 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpGet]
-        [Route("getname{name}")]
+        [Route("Name/{name}")]
         public async Task<ActionResult<PersonageDTO>> GetPersonageByName(string name)
         {
             var response = await _personageService.GetByNameAsync(name);

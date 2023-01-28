@@ -37,10 +37,10 @@ namespace FandomStarWars.Application.DTO_s
         public string Homeworld { get; set; }
 
         [DisplayName("Created")]
-        public string Created { get; set; }
+        public string? Created { get; set; }
 
         [DisplayName("Edited")]
-        public string Edited { get; set; }
+        public string? Edited { get; set; }
 
         public PersonageDTO()
         {

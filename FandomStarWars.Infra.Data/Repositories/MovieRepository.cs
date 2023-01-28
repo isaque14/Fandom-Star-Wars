@@ -87,11 +87,11 @@ namespace FandomStarWars.Infra.Data.Repositories
             return movieMatch;
         }
 
-        public async Task<Movie> DeleteAsync(Movie film)
+        public async Task<Movie> DeleteAsync(Movie movie)
         {
-            _context.Movies.Remove(film);
+            _context.Movies.Remove(movie);
             await _context.SaveChangesAsync();
-            return film;
+            return movie;
         }
     }
 }

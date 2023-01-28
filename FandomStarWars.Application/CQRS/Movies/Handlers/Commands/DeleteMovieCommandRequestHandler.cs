@@ -25,12 +25,20 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Commands
                 var movieEntity = await _repository.GetByIdAsync(request.Id);
                 if (movieEntity is null) throw new Exception("Movie Not found by id");
 
+                await _repository.DeleteAsync(movieEntity);
+
                 var movieDTO = _mapper.Map<MovieDTO>(movieEntity);
+                var personagesDTO = new List<PersonageDTO>();
+                foreach (var personage in movieEntity.Personages)
+                {
+                    personagesDTO.Add(_mapper.Map<PersonageDTO>(personage));
+                }
+                movieDTO.PersonagesDTO = personagesDTO;
 
                 return new GenericResponse
                 {
                     IsSuccessful = true,
-                    Message = "successfully obtained movie",
+                    Message = "successfully removed movie",
                     Object = movieDTO
                 };
 			}

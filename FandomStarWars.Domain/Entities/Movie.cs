@@ -1,5 +1,4 @@
 ﻿using FandomStarWars.Domain.Entities.Base;
-using FandomStarWars.Domain.Validation;
 
 namespace FandomStarWars.Domain.Entities
 {
@@ -17,22 +16,36 @@ namespace FandomStarWars.Domain.Entities
 
         public Movie(int id, string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)
         {
-            //DomainExceptionValidation.When(id >= 0, "Invalid Id");
-            ValidationDomain(title, episodeId, openingCrawl, director, producer, releaseDate);
-            Created = DateTime.Now.ToString();
             Id = id;
+            Title = title;
+            EpisodeId = episodeId;
+            OpeningCrawl = openingCrawl;
+            Director = director;
+            Producer = producer;
+            ReleaseDate = releaseDate;
+            Created = DateTime.Now.ToString();
         }
 
         public Movie(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate, ICollection<Personage> personages)
         {
-            ValidationDomain(title, episodeId, openingCrawl, director, producer, releaseDate);
+            Title = title;
+            EpisodeId = episodeId;
+            OpeningCrawl = openingCrawl;
+            Director = director;
+            Producer = producer;
+            ReleaseDate = releaseDate;
             Personages = personages;
             Created = DateTime.Now.ToString();
         }
 
         public Movie(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)
         {
-            ValidationDomain(title, episodeId, openingCrawl, director, producer, releaseDate);
+            Title = title;
+            EpisodeId = episodeId;
+            OpeningCrawl = openingCrawl;
+            Director = director;
+            Producer = producer;
+            ReleaseDate = releaseDate;
             Created = DateTime.Now.ToString();
         }
 
@@ -52,23 +65,6 @@ namespace FandomStarWars.Domain.Entities
             ReleaseDate = releaseDate;
             Edited = DateTime.Now.ToString();
             Personages = personages;
-        }
-
-        public void ValidationDomain(string title, int episodeId, string openingCrawl, string director, string producer, string releaseDate)
-        {
-            //DomainExceptionValidation.When(string.IsNullOrEmpty(title), "Title is Required");
-            //DomainExceptionValidation.When(episodeId <= 0, "EpisodeId is Required");
-            //DomainExceptionValidation.When(string.IsNullOrEmpty(openingCrawl), "openingCrawl is Required");
-            //DomainExceptionValidation.When(string.IsNullOrEmpty(director), "Director is Required");
-            //DomainExceptionValidation.When(string.IsNullOrEmpty(producer), "Producer is Required");
-            //DomainExceptionValidation.When(string.IsNullOrEmpty(releaseDate), "releaseDate is Required");
-            
-            Title = title;
-            EpisodeId = episodeId;
-            OpeningCrawl = openingCrawl;
-            Director = director;
-            Producer = producer;
-            ReleaseDate = releaseDate;
         }
     }
 }

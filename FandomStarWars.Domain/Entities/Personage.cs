@@ -1,5 +1,4 @@
 ﻿using FandomStarWars.Domain.Entities.Base;
-using FandomStarWars.Domain.Validation;
 
 namespace FandomStarWars.Domain.Entities
 {
@@ -18,41 +17,19 @@ namespace FandomStarWars.Domain.Entities
         public string? Edited { get; private set; }
         public ICollection<Movie> Movies { get; set; }
 
-        public Personage(int id, string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear, string gender,
+        public Personage(
+            int id, 
+            string name, 
+            string height, 
+            string mass, 
+            string hairColor, 
+            string skinColor, 
+            string eyeColor, 
+            string birthYear, 
+            string gender,
             string homeworld)
         {
-            DomainExceptionValidation.When(id <= 0, "Invalid Id");
-            ValidationDomain(name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld);
-            Created = DateTime.Now.ToString();
-        }
-
-        public Personage(string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear, string gender,
-            string homeworld)
-        {
-            ValidationDomain(name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld);
-            Created = DateTime.Now.ToString();
-        }
-
-        public void Update(string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear, string gender,
-            string homeworld)
-        {
-            ValidationDomain(name, height, mass, hairColor, skinColor, eyeColor, birthYear, gender, homeworld);
-            Edited = DateTime.Now.ToString();
-        }
-
-        public void ValidationDomain(string name, string height, string mass, string hairColor, string skinColor,
-            string eyeColor, string birthYear, string gender, string homeworld)
-        {
-            DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Name is Required");
-            DomainExceptionValidation.When(string.IsNullOrEmpty(height), "Height is Required");
-            DomainExceptionValidation.When(string.IsNullOrEmpty(mass), "Mass is Required");
-            DomainExceptionValidation.When(string.IsNullOrEmpty(hairColor), "HairColor is Required");
-            DomainExceptionValidation.When(string.IsNullOrEmpty(skinColor), "skinColor is Required");
-            DomainExceptionValidation.When(string.IsNullOrEmpty(eyeColor), "eyeColor is Required");
-            DomainExceptionValidation.When(string.IsNullOrEmpty(birthYear), "birthYear is Required");
-            DomainExceptionValidation.When(string.IsNullOrEmpty(gender), "gender is Required");
-            DomainExceptionValidation.When(string.IsNullOrEmpty(homeworld), "homeworld is Required");
-
+            Id = id;
             Name = name;
             Height = height;
             Mass = mass;
@@ -62,6 +39,37 @@ namespace FandomStarWars.Domain.Entities
             BirthYear = birthYear;
             Gender = gender;
             Homeworld = homeworld;
+            Created = DateTime.Now.ToString();
+        }
+
+        public Personage(string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear, string gender,
+            string homeworld)
+        {
+            Name = name;
+            Height = height;
+            Mass = mass;
+            HairColor = hairColor;
+            SkinColor = skinColor;
+            EyeColor = eyeColor;
+            BirthYear = birthYear;
+            Gender = gender;
+            Homeworld = homeworld;
+            Created = DateTime.Now.ToString();
+        }
+
+        public void Update(string name, string height, string mass, string hairColor, string skinColor, string eyeColor, string birthYear, string gender,
+            string homeworld)
+        {
+            Name = name;
+            Height = height;
+            Mass = mass;
+            HairColor = hairColor;
+            SkinColor = skinColor;
+            EyeColor = eyeColor;
+            BirthYear = birthYear;
+            Gender = gender;
+            Homeworld = homeworld;
+            Edited = DateTime.Now.ToString();
         }
     }
 }

@@ -1,6 +1,8 @@
 using FandomStarWars.Infra.IoC;
 using FandomStarWars.Domain.Account;
 using System.Text.Json.Serialization;
+using FluentValidation.AspNetCore;
+using FandomStarWars.Application.DTO_s;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,11 @@ builder.Services.AddInfrastructureExternalApiClients(builder.Configuration);
 builder.Services.AddInfrastructureAPI(builder.Configuration);
 
 // Add services to the container.
+
+//builder.Services.AddControllers().AddFluentValidation(config =>
+//{
+//    config.RegisterValidatorsFromAssembly(typeof(MovieDTO).Assembly);
+//});
 
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);

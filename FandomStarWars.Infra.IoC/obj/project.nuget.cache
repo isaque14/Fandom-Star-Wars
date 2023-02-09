@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "m4tOCeEuFJ+Wibr71bbpU9iUJgu7sv3pIWAps/s3QutbwiiHUW/Xn8+HwGBxhDs2ul77fVz8M8FqxOYQjBomRg==",
+  "dgSpecHash": "Gu252jiKFT6+1KsX5Vn5myMCS8BkvxdesNRV8mPs/GF/cJBWCMAj/IrlPveqimBzmwEhdylhrHw5KJOE+lFQpw==",
   "success": true,
   "projectFilePath": "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Infra.IoC\\FandomStarWars.Infra.IoC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\fluentvalidation\\11.2.1\\fluentvalidation.11.2.1.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.1\\fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",

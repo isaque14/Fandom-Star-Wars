@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "wZ7SfHH9orYmPdoxZRwfr0sloH0GCVdTTjL4litPxrI4P0IA2/4yF6Voere10VXe3Mm3KRcB8af8xQBB3y2Ovg==",
+  "dgSpecHash": "O7ta3fedkJqsZbyM5aeLXSDmSAyN5cywWNuj5xh8rxkRIx101bCmHvkPj18Us7cEWELjFZ59DLjzxIjf7tnt2w==",
   "success": true,
   "projectFilePath": "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Application\\FandomStarWars.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\fluentvalidation\\11.2.1\\fluentvalidation.11.2.1.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.1\\fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

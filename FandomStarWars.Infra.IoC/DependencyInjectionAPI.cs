@@ -1,4 +1,6 @@
-﻿using FandomStarWars.Application.Interfaces;
+﻿using FandomStarWars.Application.DTO_s;
+using FandomStarWars.Application.DTO_s.Validations;
+using FandomStarWars.Application.Interfaces;
 using FandomStarWars.Application.Mappings;
 using FandomStarWars.Application.Services;
 using FandomStarWars.Domain.Account;
@@ -6,6 +8,7 @@ using FandomStarWars.Domain.Interfaces;
 using FandomStarWars.Infra.Data.Context;
 using FandomStarWars.Infra.Data.Identity;
 using FandomStarWars.Infra.Data.Repositories;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +30,11 @@ namespace FandomStarWars.Infra.IoC
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<DataContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddControllers().AddFluentValidation(config =>
+            {
+                config.RegisterValidatorsFromAssembly(typeof(MovieDTO).Assembly);
+            });
 
             services.AddScoped<IPersonageRepository, PersonageRepository>();
             services.AddScoped<IMovieRepository, MovieRepository>();

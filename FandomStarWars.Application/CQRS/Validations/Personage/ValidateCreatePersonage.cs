@@ -1,15 +1,20 @@
-﻿using FluentValidation;
+﻿using FandomStarWars.Application.CQRS.Personages.Requests.Commands;
+using FluentValidation;
 
-namespace FandomStarWars.Application.DTO_s.Validations
+namespace FandomStarWars.Application.CQRS.Validations.Personage
 {
-    public class PersonageDTOValidation : AbstractValidator<PersonageDTO>
+    public class ValidateCreatePersonage : AbstractValidator<CreatePersonageCommandRequest>
     {
-        public PersonageDTOValidation() 
+        public ValidateCreatePersonage()
         {
             RuleFor(p => p.Name)
                 .NotEmpty()
                 .NotNull()
                 .WithMessage("Nome não pode ser vazio");
+
+            RuleFor(p => p.Name)
+                .MinimumLength(3)
+                .WithMessage("Nome não pode ser menor que 3 caracteres");
 
             RuleFor(p => p.Height)
                 .NotEmpty()

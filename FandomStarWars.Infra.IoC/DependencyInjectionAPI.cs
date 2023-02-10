@@ -1,5 +1,4 @@
 ﻿using FandomStarWars.Application.DTO_s;
-using FandomStarWars.Application.DTO_s.Validations;
 using FandomStarWars.Application.Interfaces;
 using FandomStarWars.Application.Mappings;
 using FandomStarWars.Application.Services;

@@ -15,7 +15,6 @@ namespace FandomStarWars.Application.DTO_s
         public string? Edited { get; set; }
         public IEnumerable<int> PersonagesId { get; set; }
 
-        //[Required(ErrorMessage = "Personages is Requireds")]
         public IEnumerable<PersonageDTO>? PersonagesDTO { get; set; }
     }
 }

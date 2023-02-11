@@ -8,7 +8,7 @@ namespace FandomStarWars.Application.CQRS.Validations.Personage
         public ValidateUpdatePersonage() 
         {
             RuleFor(p => p.Id)
-                .LessThanOrEqualTo(0)
+                .GreaterThan(0)
                 .WithMessage("Id Inválido");
 
             RuleFor(p => p.Name)

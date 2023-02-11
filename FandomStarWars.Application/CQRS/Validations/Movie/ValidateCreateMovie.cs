@@ -1,13 +1,13 @@
-﻿using FandomStarWars.Application.DTO_s;
+﻿using FandomStarWars.Application.CQRS.Movies.Requests.Commands;
 using FluentValidation;
 
 namespace FandomStarWars.Application.CQRS.Validations.Movie
 {
-    public class ValidateCreateMovie : AbstractValidator<MovieDTO>
+    public class ValidateCreateMovie : AbstractValidator<CreateMovieCommandRequest>
     {
         public ValidateCreateMovie()
         {
-            RuleFor(x => x.Title).NotEmpty().MinimumLength(3).WithMessage("Título não pode ser vazio");
+            RuleFor(x => x.Title).NotEmpty().WithMessage("Título não pode ser vazio");
             RuleFor(x => x.Title).MinimumLength(3).WithMessage("Título não pode ser menor que 3 caracteres");
             RuleFor(x => x.Director).NotEmpty().WithMessage("Diretor não pode ser vazio");
             RuleFor(x => x.Producer).NotEmpty().WithMessage("Produtor não pode ser vazio");

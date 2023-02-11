@@ -2,6 +2,7 @@
 using FandomStarWars.Application.CQRS.BaseResponses;
 using FandomStarWars.Application.CQRS.Movies.Requests.Commands;
 using FandomStarWars.Application.CQRS.Personages.Requests.Querys;
+using FandomStarWars.Application.CQRS.Validations.Movie;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Interfaces;
 using FandomStarWars.Domain.Entities;
@@ -15,12 +16,14 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Commands
         private readonly IMovieRepository _movieRepository;
         private readonly IMapper _mapper;
         private readonly IPersonageService _personageService;
+        private readonly ValidateCreateMovie _validator;
 
-        public CreateMovieCommandHandler(IMovieRepository movieRepository, IMapper mapper, IPersonageService personageService)
+        public CreateMovieCommandHandler(IMovieRepository movieRepository, IMapper mapper, IPersonageService personageService, ValidateCreateMovie validator)
         {
             _movieRepository = movieRepository;
             _mapper = mapper;
             _personageService = personageService;
+            _validator = validator;
         }
 
         public async Task<GenericResponse> Handle(CreateMovieCommandRequest request, CancellationToken cancellationToken)
@@ -28,8 +31,12 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Commands
             var personagesEntity = new List<Personage>();
             try
             {
-                if (request is null)
-                    throw new Exception("Personages is Requireds");
+                var results = _validator.Validate(request);
+
+                if (!results.IsValid)
+                {
+
+                }
 
                 foreach (var id in request.PersonagesId)
                 {

@@ -1,7 +1,6 @@
 ﻿using FandomStarWars.Application.CQRS.Personages.Requests.Commands;
 using FandomStarWars.Application.CQRS.Validations.Personage;
 using Microsoft.Extensions.DependencyInjection;
-using System.Security.Principal;
 
 namespace FandomStarWars.Tests.CommandTests
 {

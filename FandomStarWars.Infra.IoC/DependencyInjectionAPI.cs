@@ -1,4 +1,5 @@
-﻿using FandomStarWars.Application.DTO_s;
+﻿using FandomStarWars.Application.CQRS.Validations.Personage;
+using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Interfaces;
 using FandomStarWars.Application.Mappings;
 using FandomStarWars.Application.Services;

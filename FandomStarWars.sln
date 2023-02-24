@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FandomStarWars.Infra.Data",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FandomStarWars.Infra.IoC", "FandomStarWars.Infra.IoC\FandomStarWars.Infra.IoC.csproj", "{7128C07D-E85C-4A7A-A623-9A91DCA7F005}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FandomStarWars.API", "FandomStarWars.API\FandomStarWars.API.csproj", "{D0D96335-AB54-492D-9CC3-314BEB401AD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FandomStarWars.API", "FandomStarWars.API\FandomStarWars.API.csproj", "{D0D96335-AB54-492D-9CC3-314BEB401AD3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FandomStarWars.Tests", "FandomStarWars.Tests\FandomStarWars.Tests.csproj", "{60D0A24F-675D-4128-92E3-F4571BDCD6DC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D0D96335-AB54-492D-9CC3-314BEB401AD3} = {D0D96335-AB54-492D-9CC3-314BEB401AD3}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +44,10 @@ Global
 		{D0D96335-AB54-492D-9CC3-314BEB401AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0D96335-AB54-492D-9CC3-314BEB401AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0D96335-AB54-492D-9CC3-314BEB401AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60D0A24F-675D-4128-92E3-F4571BDCD6DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60D0A24F-675D-4128-92E3-F4571BDCD6DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60D0A24F-675D-4128-92E3-F4571BDCD6DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60D0A24F-675D-4128-92E3-F4571BDCD6DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

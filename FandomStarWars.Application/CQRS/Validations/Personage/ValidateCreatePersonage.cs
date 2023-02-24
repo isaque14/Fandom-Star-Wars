@@ -1,4 +1,5 @@
 ﻿using FandomStarWars.Application.CQRS.Personages.Requests.Commands;
+using FandomStarWars.Application.Interfaces;
 using FluentValidation;
 
 namespace FandomStarWars.Application.CQRS.Validations.Personage

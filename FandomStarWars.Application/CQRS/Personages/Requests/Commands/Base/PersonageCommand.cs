@@ -4,15 +4,15 @@ namespace FandomStarWars.Application.CQRS.Personages.Requests.Commands.Base
 {
     public abstract class PersonageCommand
     {
-        public string Name { get; private set; }
-        public string Height { get; private set; }
-        public string Mass { get; private set; }
-        public string HairColor { get; private set; }
-        public string SkinColor { get; private set; }
-        public string EyeColor { get; private set; }
-        public string BirthYear { get; private set; }
-        public string Gender { get; private set; }
-        public string Homeworld { get; private set; }
+        public string Name { get; set; }
+        public string Height { get; set; }
+        public string Mass { get; set; }
+        public string HairColor { get; set; }
+        public string SkinColor { get; set; }
+        public string EyeColor { get; set; }
+        public string BirthYear { get; set; }
+        public string Gender { get; set; }
+        public string Homeworld { get; set; }
 
         public string ErrorMensage (List<ValidationFailure> errors)
         {

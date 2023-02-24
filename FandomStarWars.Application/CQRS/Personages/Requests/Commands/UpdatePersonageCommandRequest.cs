@@ -6,6 +6,6 @@ namespace FandomStarWars.Application.CQRS.Personages.Requests.Commands
 {
     public class UpdatePersonageCommandRequest : PersonageCommand, IRequest<GenericResponse>
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
     }
 }

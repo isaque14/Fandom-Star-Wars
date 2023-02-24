@@ -1,14 +1,15 @@
 ﻿using FandomStarWars.Application.CQRS.Personages.Requests.Commands;
 using FandomStarWars.Application.CQRS.Validations.Personage;
-using FandomStarWars.Application.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using System.Security.Principal;
 
 namespace FandomStarWars.Tests.CommandTests
 {
-    public class CreatePersonageCommandTest
+    public class UpdatePersonageCommandTests
     {
-        private readonly CreatePersonageCommandRequest _validCommand = new CreatePersonageCommandRequest
-        {
+        private readonly UpdatePersonageCommandRequest _validCommand = new UpdatePersonageCommandRequest
+        {      
+            Id = 1,
             Name = "teste",
             Height = "164",
             Mass = "70",
@@ -20,8 +21,9 @@ namespace FandomStarWars.Tests.CommandTests
             Homeworld = "earth"
         };
 
-        private readonly CreatePersonageCommandRequest _invalidCommand = new CreatePersonageCommandRequest
+        private readonly UpdatePersonageCommandRequest _invalidCommand = new UpdatePersonageCommandRequest
         {
+            Id = 0,
             Name = "",
             Height = "164",
             Mass = "70",
@@ -32,30 +34,30 @@ namespace FandomStarWars.Tests.CommandTests
             Gender = "male",
             Homeworld = "earth"
         };
-        private readonly ValidateCreatePersonage _validator;
 
-        public CreatePersonageCommandTest()
+        private readonly ValidateUpdatePersonage _validator;
+
+        public UpdatePersonageCommandTests()
         {
             var service = new ServiceCollection();
-            service.AddScoped<ValidateCreatePersonage>();
+            service.AddScoped<ValidateUpdatePersonage>();
 
             var provider = service.BuildServiceProvider();
-            _validator = provider.GetService<ValidateCreatePersonage>();
+            _validator = provider.GetService<ValidateUpdatePersonage>();
         }
 
-
-        [Fact(DisplayName = "Create Personage With Valid State")]
-        public void CreatePersonage_WithValidParameters_ResultObjectValidateState()
+        [Fact(DisplayName = "Update Personage With Valid State")]
+        public void UpadatePersonage_WithValidParameters_ResultObjectValidState()
         {
             var result = _validator.Validate(_validCommand);
             Assert.True(result.IsValid);
         }
-
-        [Fact(DisplayName = "Create Personage With Invalid State")]
-        public void CreatePersonage_WithInvalidParameters_ResultObjectInvalidState()
+        
+        [Fact(DisplayName = "Update Personage With Invalid State")]
+        public void UpadatePersonage_WithInvalidParameters_ResultObjectInvalidState()
         {
-            var result = _validator.Validate(_invalidCommand); 
-            Assert.False(result.IsValid);    
+            var result = _validator.Validate(_invalidCommand);
+            Assert.False(result.IsValid);
         }
     }
 }

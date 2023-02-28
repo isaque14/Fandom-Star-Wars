@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "DwWfGMNFuknd8KhxvZenZAzNoKHqfsXr+sVFvZnQneVTAr/RL+bgMfz7LPqbiGYmvYBFr/tuvdqypFvMJvKRSA==",
+  "dgSpecHash": "mGZA0qD/Pd5GJ21QKHwOSMukiwcio6HhxaV2lqR/Ke2Uh/ALyZs4/b4SG5kLHpTPDSvf4StmuB2OHui6OJl0ww==",
   "success": true,
   "projectFilePath": "D:\\Dev\\ws-vs22\\FandomStarWars\\FandomStarWars.Tests\\FandomStarWars.Tests.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\IsaqueDinizdaSilva\\.nuget\\packages\\fluentassertions\\6.10.0\\fluentassertions.6.10.0.nupkg.sha512",

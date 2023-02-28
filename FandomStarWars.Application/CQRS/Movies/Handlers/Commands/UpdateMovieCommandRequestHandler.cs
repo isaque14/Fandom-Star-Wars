@@ -65,11 +65,11 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Commands
                 request.ReleaseDate,
                 personages);
 
-            var response = _movieRepository.UpdateAsync(movieEntity).Result;
-            var movieDTO = _mapper.Map<MovieDTO>(response);
+            _movieRepository.UpdateAsync(movieEntity);
+            var movieDTO = _mapper.Map<MovieDTO>(movieEntity);
                 
             var personagesDTO = new List<PersonageDTO>();
-            foreach (var personage in response.Personages)
+            foreach (var personage in movieEntity.Personages)
             {
                 personagesDTO.Add(_mapper.Map<PersonageDTO>(personage));
             }

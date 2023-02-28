@@ -57,11 +57,11 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Commands
                 if (filmEntity is null)
                     throw new ApplicationException($"Error creating Movie");
 
-                var movieCreated = await _movieRepository.CreateAsync(filmEntity);
-                var movieDTO = _mapper.Map<MovieDTO>(movieCreated);
+                _movieRepository.CreateAsync(filmEntity);
+                var movieDTO = _mapper.Map<MovieDTO>(filmEntity);
 
                 var personagesDTO = new List<PersonageDTO>();
-                foreach (var personage in movieCreated.Personages)
+                foreach (var personage in filmEntity.Personages)
                 {
                     personagesDTO.Add(_mapper.Map<PersonageDTO>(personage));
                 }

@@ -27,7 +27,7 @@ namespace FandomStarWars.Application.CQRS.Personages.Handlers.Commands
                 if (personage is null)
                     throw new ApplicationException($"Error, Personage Not found");
 
-                await _repository.DeleteAsync(personage);
+                _repository.DeleteAsync(personage);
                 var personageDTO = _mapper.Map<PersonageDTO>(personage);
                 return new GenericResponse
                 {

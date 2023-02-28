@@ -25,7 +25,7 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Commands
                 var movieEntity = await _repository.GetByIdAsync(request.Id);
                 if (movieEntity is null) throw new Exception("Movie Not found by id");
 
-                await _repository.DeleteAsync(movieEntity);
+                _repository.DeleteAsync(movieEntity);
 
                 var movieDTO = _mapper.Map<MovieDTO>(movieEntity);
                 var personagesDTO = new List<PersonageDTO>();

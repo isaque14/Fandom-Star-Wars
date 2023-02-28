@@ -47,7 +47,7 @@ namespace FandomStarWars.Application.CQRS.Personages.Handlers.Commands
                 homeworld: request.Homeworld
             );
 
-            await _repository.CreateAsync(personage);
+            _repository.CreateAsync(personage);
             var personageDTO = _mapper.Map<PersonageDTO>(personage);
             return new GenericResponse
             {

@@ -5,34 +5,34 @@ namespace FandomStarWars.Tests.Repositories
 {
     public class FakePersonageRepository : IPersonageRepository
     {
-        public Task<Personage> CreateAsync(Personage personage)
+        public void CreateAsync(Personage personage)
         {
-            return null;
+            
         }
 
-        public Task<Personage> DeleteAsync(Personage personage)
+        public void DeleteAsync(Personage personage)
         {
-            return null;
+            
         }
 
         public Task<IEnumerable<Personage>> GetAllAsync()
         {
-            return null;
+            throw new NotImplementedException();
         }
 
         public Task<Personage> GetByIdAsync(int id)
         {
-            return null;
+            throw new NotImplementedException();
         }
 
         public Task<Personage> GetByNameAsync(string name)
         {
-            return null;
+            throw new NotImplementedException();
         }
 
-        public Task<Personage> UpdateAsync(Personage personage)
+        public void UpdateAsync(Personage personage)
         {
-            return null;
+            
         }
     }
 }

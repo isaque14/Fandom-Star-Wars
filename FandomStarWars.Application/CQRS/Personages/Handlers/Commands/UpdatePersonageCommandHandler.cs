@@ -50,7 +50,7 @@ namespace FandomStarWars.Application.CQRS.Personages.Handlers.Commands
                 homeworld: request.Homeworld
                 );
 
-            await _repository.UpdateAsync(personage);
+            _repository.UpdateAsync(personage);
 
             var personageDTO = _mapper.Map<PersonageDTO>(personage);
 

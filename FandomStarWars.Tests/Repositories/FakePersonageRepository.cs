@@ -1,28 +1,55 @@
 ﻿using FandomStarWars.Domain.Entities;
 using FandomStarWars.Domain.Interfaces;
+using System.Xml.Linq;
 
 namespace FandomStarWars.Tests.Repositories
 {
     public class FakePersonageRepository : IPersonageRepository
     {
-        public void CreateAsync(Personage personage)
+        public async Task CreateAsync(Personage personage)
         {
             
         }
 
-        public void DeleteAsync(Personage personage)
+        public async Task DeleteAsync(Personage personage)
         {
             
         }
 
         public Task<IEnumerable<Personage>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var personagesMock = new List<Personage>();
+            var personageMock =  new Personage(
+            1,
+            "teste",
+            "164",
+            "70",
+            "black",
+            "black",
+            "green",
+            "data",
+            "male",
+            "earth");
+
+            personagesMock.Add(personageMock);
+            return Task.FromResult(personagesMock as IEnumerable<Personage>);
         }
 
         public Task<Personage> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var personageMock = new Personage(
+            1,
+            "teste",
+            "164",
+            "70",
+            "black",
+            "black",
+            "green",
+            "data",
+            "male",
+            "earth");
+
+            return Task.FromResult(personageMock);
         }
 
         public Task<Personage> GetByNameAsync(string name)
@@ -30,7 +57,7 @@ namespace FandomStarWars.Tests.Repositories
             throw new NotImplementedException();
         }
 
-        public void UpdateAsync(Personage personage)
+        public async Task UpdateAsync(Personage personage)
         {
             
         }

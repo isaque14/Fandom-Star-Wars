@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-
-namespace FandomStarWars.Application.DTO_s
+﻿namespace FandomStarWars.Application.DTO_s
 {
     public class PersonageDTO
     {

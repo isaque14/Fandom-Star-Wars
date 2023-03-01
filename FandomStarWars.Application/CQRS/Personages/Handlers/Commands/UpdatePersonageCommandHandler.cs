@@ -30,7 +30,7 @@ namespace FandomStarWars.Application.CQRS.Personages.Handlers.Commands
                 return new GenericResponse
                 {
                     IsSuccessful = false,
-                    Message = "Ops, parece que o filme contém dados inválidos",
+                    Message = "Ops, parece que o Personagem contém dados inválidos",
                     Object = request.ErrorMensage(results.Errors)
                 };
             }

@@ -40,19 +40,19 @@ namespace FandomStarWars.Infra.Data.Repositories
         //    //    .AsNoTracking().Where(x => x.Movies.)
         //}
 
-        public async void CreateAsync(Personage personage)
+        public async Task CreateAsync(Personage personage)
         {
-            _context.Personages.Add(personage);
+            await _context.Personages.AddAsync(personage);
             await _context.SaveChangesAsync();
         }
 
-        public async void UpdateAsync(Personage personage)
+        public async Task UpdateAsync(Personage personage)
         {
             _context.Personages.Update(personage);
-            await _context.SaveChangesAsync();
+            _context.SaveChangesAsync();
         }
 
-        public async void DeleteAsync(Personage personage)
+        public async Task DeleteAsync(Personage personage)
         {
             _context.Personages.Remove(personage);
             await _context.SaveChangesAsync();

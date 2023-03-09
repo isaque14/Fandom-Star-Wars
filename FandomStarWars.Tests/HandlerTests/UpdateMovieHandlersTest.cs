@@ -12,10 +12,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FandomStarWars.Tests.HandlerTests
 {
-    public class CreateMovieHandlersTests
+    public class UpdateMovieHandlersTest
     {
-        private readonly CreateMovieCommandRequest _validCommand = new CreateMovieCommandRequest
+        private readonly UpdateMovieCommandRequest _validCommand = new UpdateMovieCommandRequest
         {
+            Id = 1,
             Title = "Title",
             EpisodeId = 78,
             OpeningCrawl = "OpeningTests",
@@ -25,7 +26,7 @@ namespace FandomStarWars.Tests.HandlerTests
             PersonagesId = new List<int> { 1, 7, 56, 9, 16 }
         };
 
-        private readonly CreateMovieCommandRequest _invalidCommand = new CreateMovieCommandRequest
+        private readonly UpdateMovieCommandRequest _invalidCommand = new UpdateMovieCommandRequest
         {
             Title = "Ti",
             EpisodeId = 78,
@@ -36,10 +37,10 @@ namespace FandomStarWars.Tests.HandlerTests
         };
 
         private readonly IMapper _mapper;
-        private readonly ValidateCreateMovie _validator;
-        private readonly CreateMovieCommandHandler _handler;
+        private readonly ValidateUpdateMovie _validator;
+        private readonly UpdateMovieCommandRequestHandler _handler;
 
-        public CreateMovieHandlersTests()
+        public UpdateMovieHandlersTest()
         {
             var configuration = new MapperConfiguration(config =>
             {
@@ -49,23 +50,29 @@ namespace FandomStarWars.Tests.HandlerTests
             _mapper = configuration.CreateMapper();
             var service = new ServiceCollection();
             service.AddSingleton(_mapper);
-            service.AddScoped<ValidateCreateMovie>();
+            service.AddScoped<ValidateUpdateMovie>();
             service.AddScoped<IPersonageService, PersonageService>();
             var provider = service.BuildServiceProvider();
-            _validator = provider.GetService<ValidateCreateMovie>();
+            _validator = provider.GetService<ValidateUpdateMovie>();
 
-            _handler = new CreateMovieCommandHandler(new FakeMovieRepository(), _mapper, new FakePersonageService(), _validator);
+            _handler = new UpdateMovieCommandRequestHandler(
+                _mapper,
+                new FakeMovieRepository(), 
+                new FakePersonageService(), 
+                new FakePersonageRepository(), 
+                _validator
+                );
         }
 
         [Fact(DisplayName = "Handler with invalid command result in stop application")]
-        public void CreateMovieHandler_WithInvalidCommand_ResultInStopApplication()
+        public void UpdateMovieHandler_WithInvalidCommand_ResultInStopApplication()
         {
             GenericResponse response = _handler.Handle(_invalidCommand, new CancellationToken()).Result;
             Assert.False(response.IsSuccessful);
         }
 
-        [Fact(DisplayName = "Handler with valid command, create Movie")]
-        public void CreateMovieHandler_WithValidCommand_ResultInMovieCreated()
+        [Fact(DisplayName = "Handler with valid command, Update Movie")]
+        public void MovieHandler_WithValidCommand_ResultInMovieUpdated()
         {
             GenericResponse response = _handler.Handle(_validCommand, new CancellationToken()).Result;
             Assert.True(response.IsSuccessful);

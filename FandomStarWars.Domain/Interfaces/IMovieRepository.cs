@@ -7,8 +7,8 @@ namespace FandomStarWars.Domain.Interfaces
         Task<IEnumerable<Movie>> GetAllAsync();
         Task<Movie> GetByIdAsync(int id);
         Task<Movie> GetByNameAsync(string name);
-        void CreateAsync(Movie film);
-        void UpdateAsync(Movie film);
-        void DeleteAsync(Movie film);
+        Task CreateAsync(Movie film);
+        Task UpdateAsync(Movie film);
+        Task DeleteAsync(Movie film);
     }
 }

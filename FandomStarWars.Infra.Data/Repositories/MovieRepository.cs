@@ -43,7 +43,7 @@ namespace FandomStarWars.Infra.Data.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public async void CreateAsync(Movie movie)
+        public async Task CreateAsync(Movie movie)
         {
             await InsertMoviePersonage(movie);
             await _context.Movies.AddAsync(movie);
@@ -73,7 +73,7 @@ namespace FandomStarWars.Infra.Data.Repositories
             }
         }
 
-        public async void UpdateAsync(Movie movie)
+        public async Task UpdateAsync(Movie movie)
         {
             Movie movieMatch = await _context.Movies.Include(p => p.Personages).SingleOrDefaultAsync(x => x.Id == movie.Id);
 
@@ -85,7 +85,7 @@ namespace FandomStarWars.Infra.Data.Repositories
             }
         }
 
-        public async void DeleteAsync(Movie movie)
+        public async Task DeleteAsync(Movie movie)
         {
             _context.Movies.Remove(movie);
             await _context.SaveChangesAsync();

@@ -19,7 +19,8 @@ namespace FandomStarWars.Tests.Repositories
         public Task<IEnumerable<Personage>> GetAllAsync()
         {
             var personagesMock = new List<Personage>();
-            var personageMock =  new Personage(
+
+            personagesMock.Add(new Personage(
             1,
             "teste",
             "164",
@@ -29,9 +30,44 @@ namespace FandomStarWars.Tests.Repositories
             "green",
             "data",
             "male",
-            "earth");
+            "earth"));
 
-            personagesMock.Add(personageMock);
+            personagesMock.Add(new Personage(
+           2,
+           "teste",
+           "164",
+           "70",
+           "black",
+           "black",
+           "green",
+           "data",
+           "male",
+           "earth"));
+
+            personagesMock.Add(new Personage(
+           3,
+           "teste",
+           "164",
+           "70",
+           "black",
+           "black",
+           "green",
+           "data",
+           "male",
+           "earth"));
+
+            personagesMock.Add(new Personage(
+           4,
+           "teste",
+           "164",
+           "70",
+           "black",
+           "black",
+           "green",
+           "data",
+           "male",
+           "earth"));
+
             return Task.FromResult(personagesMock as IEnumerable<Personage>);
         }
 

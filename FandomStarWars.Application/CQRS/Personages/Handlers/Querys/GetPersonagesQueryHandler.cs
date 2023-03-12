@@ -2,7 +2,6 @@
 using FandomStarWars.Application.CQRS.BaseResponses;
 using FandomStarWars.Application.CQRS.Personages.Requests.Querys;
 using FandomStarWars.Application.DTO_s;
-using FandomStarWars.Domain.Entities;
 using FandomStarWars.Domain.Interfaces;
 using MediatR;
 

@@ -20,7 +20,7 @@ namespace FandomStarWars.Tests.Repositories
         public Task<IEnumerable<Movie>> GetAllAsync()
         {
             var mock = new List<Movie>();
-            var movie = new Movie(
+            mock.Add(new Movie(
                 3,
                 "Title",
                 78,
@@ -28,8 +28,28 @@ namespace FandomStarWars.Tests.Repositories
                 "Director",
                 "Producer",
                 "ReleaseDate"
-                );
-            mock.Add( movie );
+                ));
+            
+            mock.Add(new Movie(
+                4,
+                "Title",
+                78,
+                "OpeningTests",
+                "Director",
+                "Producer",
+                "ReleaseDate"
+                ));
+           
+            mock.Add(new Movie(
+                5,
+                "Title",
+                78,
+                "OpeningTests",
+                "Director",
+                "Producer",
+                "ReleaseDate"
+                ));
+
 
             return Task.FromResult( mock as IEnumerable<Movie> );
         }
@@ -53,7 +73,7 @@ namespace FandomStarWars.Tests.Repositories
         {
             var movie = new Movie(
                 3,
-                "Title",
+                "Vingadores",
                 78,
                 "OpeningTests",
                 "Director",

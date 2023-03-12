@@ -4,6 +4,7 @@ using FandomStarWars.Application.CQRS.Movies.Requests.Querys;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Domain.Interfaces;
 using MediatR;
+using System.Threading.Tasks.Dataflow;
 
 namespace FandomStarWars.Application.CQRS.Movies.Handlers.Querys
 {
@@ -23,7 +24,7 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Querys
             try
             {
                 var moviesEntity = await _repository.GetAllAsync();
- 
+                                
                 return new GenericResponse
                 {
                     IsSuccessful = true,

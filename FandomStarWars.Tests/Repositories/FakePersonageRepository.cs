@@ -90,7 +90,19 @@ namespace FandomStarWars.Tests.Repositories
 
         public Task<Personage> GetByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            var personageMock = new Personage(
+            1,
+            "Isaque",
+            "164",
+            "70",
+            "black",
+            "black",
+            "green",
+            "data",
+            "male",
+            "earth");
+
+            return Task.FromResult(personageMock);
         }
 
         public async Task UpdateAsync(Personage personage)

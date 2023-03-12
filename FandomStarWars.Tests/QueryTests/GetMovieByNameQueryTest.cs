@@ -9,12 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FandomStarWars.Tests.QueryTests
 {
-    public class GetMovieByIdQueryTest
+    public class GetMovieByNameQueryTest
     {
         private readonly IMapper _mapper;
-        private readonly GetMovieByIdQueryRequestHandler _queryGetMovieByID;
+        private readonly GetMovieByNameQueryRequestHandler _queryGetMovieByName;
 
-        public GetMovieByIdQueryTest()
+        public GetMovieByNameQueryTest()
         {
             var configuration = new MapperConfiguration(config =>
             {
@@ -26,16 +26,16 @@ namespace FandomStarWars.Tests.QueryTests
             service.AddSingleton(_mapper);
 
             var provider = service.BuildServiceProvider();
-            _queryGetMovieByID = new GetMovieByIdQueryRequestHandler(_mapper, new FakeMovieRepository());
+            _queryGetMovieByName = new GetMovieByNameQueryRequestHandler(_mapper, new FakeMovieRepository());
         }
 
         [Fact(DisplayName = "Handler Query valid return movie By ID")]
         public void QueryHandler_ValidQuery_ReturnMovieByID()
         {
-            var id = 3;
-            GenericResponse response = _queryGetMovieByID.Handle(new GetMovieByIdQueryRequest(id), new CancellationToken()).Result;
+            var title = "Vingadores";
+            GenericResponse response = _queryGetMovieByName.Handle(new GetMovieByNameQueryRequest(title), new CancellationToken()).Result;
             var movieDTO = response.Object as MovieDTO;
-            Assert.Equal(id, movieDTO.Id);
+            Assert.Equal(title, movieDTO.Title);
         }
     }
 }

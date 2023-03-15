@@ -30,8 +30,8 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Querys
 
                 return new GenericResponse
                 {
-                    IsSuccessful = true,
-                    Message = "Successfully obtained Movie",
+                    IsSuccessful = movieEntity is not null ? true : false,
+                    Message = movieEntity is not null ? "Successfully obtained movie" : "No movie found with this title",
                     Object = movieDTO
                 };
             }

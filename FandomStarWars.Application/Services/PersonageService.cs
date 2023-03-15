@@ -5,6 +5,7 @@ using FandomStarWars.Application.CQRS.Personages.Requests.Commands;
 using FandomStarWars.Application.CQRS.Personages.Requests.Querys;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Interfaces;
+using FandomStarWars.Domain.Entities;
 using MediatR;
 
 namespace FandomStarWars.Application.Services
@@ -80,8 +81,6 @@ namespace FandomStarWars.Application.Services
                         BirthYear = p.Birth_Year,
                         Gender = p.Gender,
                         Homeworld = planet.Name,
-                        //Convert.ToDateTime(p.Created),
-                        //Convert.ToDateTime(p.Edited)
                         Created = p.Created,
                         Edited = p.Edited
                     });
@@ -109,9 +108,13 @@ namespace FandomStarWars.Application.Services
         {
             var personagesDTO = await GetAllPersonagesInExternalApiAsync();
 
+            
             foreach (var personage in personagesDTO)
             {
-                await CreateAsync(personage);
+                GenericResponse response = GetByNameAsync(personage.Name).Result;
+
+                if (!response.IsSuccessful)
+                    await CreateAsync(personage);
             }
         }
 

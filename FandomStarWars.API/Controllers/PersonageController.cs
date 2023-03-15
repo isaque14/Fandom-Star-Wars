@@ -19,7 +19,7 @@ namespace FandomStarWars.API.Controllers
 
         [HttpPost]
         [Route("insertIntoDataBase")]
-        [ApiExplorerSettings(IgnoreApi = true)]
+        //[ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult> InsertPersonagesApiIntoDataBase()
         {
             await _personageService.InsertPersonagesExternalApiIntoDataBase();

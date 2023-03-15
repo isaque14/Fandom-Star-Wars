@@ -30,7 +30,8 @@ namespace FandomStarWars.Infra.Data.Repositories
 
         public async Task<Personage> GetByNameAsync(string name)
         {
-            return await _context.Personages.Where(x => x.Name == name).FirstOrDefaultAsync();
+            var result = await _context.Personages.Where(x => x.Name == name).FirstOrDefaultAsync();
+            return result;
         }
 
         //public async Task<IEnumerable<Personage>> GetAllPersonagesByIdMovie(int movieId)

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FandomStarWars.Infra.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230309221537_Inicial")]
-    partial class Inicial
+    [Migration("20230315162239_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

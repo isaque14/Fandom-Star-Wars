@@ -6,6 +6,7 @@ using FandomStarWars.Application.CQRS.Movies.Requests.Querys;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Interfaces;
 using FandomStarWars.Application.Interfaces.APIClient;
+using FandomStarWars.Domain.Entities;
 using MediatR;
 using static FandomStarWars.Application.DTO_s.MovieDataExternalApiDTO;
 
@@ -91,11 +92,14 @@ namespace FandomStarWars.Application.Services
 
         public async Task InsertFilmsExternalApiIntoDataBase()
         {
-            var filmsDTO = await GetAllFilmsInExternalApiAsync();
+            var movieDTO = await GetAllFilmsInExternalApiAsync();
 
-            foreach (var film in filmsDTO)
+            foreach (var movie in movieDTO)
             {
-                var response = await CreateAsync(film);
+                GenericResponse response = GetByNameAsync(movie.Title).Result;
+
+                if (!response.IsSuccessful)
+                    await CreateAsync(movie);
             }
         }
 

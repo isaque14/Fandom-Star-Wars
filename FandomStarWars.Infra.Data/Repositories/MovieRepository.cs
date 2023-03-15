@@ -8,10 +8,12 @@ namespace FandomStarWars.Infra.Data.Repositories
     public class MovieRepository : IMovieRepository
     {
         private readonly DataContext _context;
+        private readonly IPersonageRepository _personageRepository;
 
-        public MovieRepository(DataContext context)
+        public MovieRepository(DataContext context, IPersonageRepository personageRepository)
         {
             _context = context;
+            _personageRepository = personageRepository;
         }
         
         public async Task<IEnumerable<Movie>> GetAllAsync()
@@ -55,9 +57,9 @@ namespace FandomStarWars.Infra.Data.Repositories
             var personagesMattch = new List<Personage>();
             foreach (var personage in movie.Personages)
             {
-                var personageMatch = await _context.Personages.Where(x => x.Name == personage.Name).FirstOrDefaultAsync();
+                //var personageMatch = await _context.Personages.Where(x => x.Name == personage.Name).FirstOrDefaultAsync();
+                Personage personageMatch = _personageRepository.GetByNameAsync(personage.Name).Result;
                 personagesMattch.Add(personageMatch);
-                Console.WriteLine(personageMatch.ToString());
             }
             movie.Personages = personagesMattch;
         }

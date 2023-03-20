@@ -1,7 +1,7 @@
 # REST API Fandom-Star-Wars
 
 ## Sobre o Projeto 
-- Esta Aplicação consiste de 6 projetos (Domain, Application, Infra.Data, Infra.Data.IoC, API, Tests) que compõem uma API REST Sobre o Universo de Star Wars, onde temos um CRUD onde pode-se criar e editar personages e filmes da franquia. Para popular inicialmente o banco de dados, foi consumida a API https://swapi.dev que contém diversas informações sobre a franquia. Esta é uma aplicação onde foi possível realizar uma ampla cobertura de testes, onde temos tanto o domínio quanto a camada de aplicação coberto por testes unitários.
+- Esta Aplicação consiste de 6 projetos (Domain, Application, Infra.Data, Infra.Data.IoC, API, Tests) que compõem uma API REST Sobre o Universo de Star Wars, onde temos um CRUD onde pode-se criar e editar personages e filmes da franquia, além disso, este projeto está integrado com o ChatGPT onde podemos utiliza-lo para obtermos informações, curiosidades, notícias e o que mais precisarmos sobre o Universo de Star Wars. Para popular inicialmente o banco de dados, foi consumida a API https://swapi.dev que contém diversas informações sobre a franquia. Esta é uma aplicação onde foi possível realizar uma ampla cobertura de testes, onde temos tanto o domínio quanto a camada de aplicação coberto por testes unitários.
 
 ## Ferramentas e padrões de desenvolvimento utilizados
 - C#
@@ -21,6 +21,8 @@
 - Arquitetura Clean Code
 - Princípios SOLID
 - Refit 
+- Integração entre API's
+- Integração com ChatGPT
 - DTO's
 - CQRS (Obs.: Neste projeto o CQRS foi utilizado apenas para fins didáticos, pois o volume de dados é baixo, em um cenário ideal com um alto volume de dados, poderíamos utilizar bancos diferentes para escrita e consulta, conseguindo assim obter uma melhor performance deste padrão)
 - Notification Pattern 

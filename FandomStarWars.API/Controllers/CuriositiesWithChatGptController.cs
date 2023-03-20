@@ -9,11 +9,11 @@ namespace FandomStarWars.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CuriositiesWithChatGpt : ControllerBase
+    public class CuriositiesWithChatGptController : ControllerBase
     {
         private readonly HttpClient _httpClient;
 
-        public CuriositiesWithChatGpt(HttpClient httpClient)
+        public CuriositiesWithChatGptController(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

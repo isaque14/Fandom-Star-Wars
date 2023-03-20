@@ -12,7 +12,7 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHttpClient<CuriositiesWithChatGpt>();
+builder.Services.AddHttpClient<CuriositiesWithChatGptController>();
 IConfiguration config = builder.Configuration;
 var keySecret = config["ConnectionStrings:Default"];
 

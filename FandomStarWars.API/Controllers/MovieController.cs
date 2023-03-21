@@ -1,8 +1,9 @@
 ﻿using FandomStarWars.Application.CQRS.BaseResponses;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Interfaces;
-using FandomStarWars.Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+//using Refit;
 
 namespace FandomStarWars.API.Controllers
 {
@@ -18,6 +19,7 @@ namespace FandomStarWars.API.Controllers
         }
         
         [HttpGet]
+        [Authorize]
         [Route("insertFilms")]
         //[ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult> InsertFilmsApiIntoDataBase()
@@ -27,20 +29,24 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<MovieDTO>>> GetMovies()
         {
-                GenericResponse response = _movieService.GetAllAsync().Result;
-                return response.IsSuccessful ? Ok(response) : BadRequest(response);
+            GenericResponse response = _movieService.GetAllAsync().Result;
+            return response.IsSuccessful ? Ok(response) : BadRequest(response);
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("{id}")]
         public async Task<ActionResult<MovieDTO>> GetById(int id)
         {
             var response = _movieService.GetByIdAsync(id).Result;
             return response.IsSuccessful ? Ok(response) : BadRequest(response);
         }
+
         [HttpGet]
+        [AllowAnonymous]
         [Route("Title/{title}")]
         public async Task<ActionResult<MovieDTO>> GetByTitle(string title)
         {
@@ -49,6 +55,7 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<MovieDTO>> Create(MovieDTO movie) 
         {
             var response = _movieService.CreateAsync(movie).Result;
@@ -56,6 +63,7 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<ActionResult<MovieDTO>> Update(MovieDTO movie)
         {
             var response = _movieService.UpdateAsync(movie).Result;
@@ -63,6 +71,7 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         [Route("{id}")]
         public async Task<ActionResult<MovieDTO>> Delete(int id)
         {

@@ -7,7 +7,7 @@ namespace FandomStarWars.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+ 
     public class PersonageController : ControllerBase
     {
         private readonly IPersonageService _personageService;
@@ -21,6 +21,7 @@ namespace FandomStarWars.API.Controllers
 
         [HttpPost]
         [Route("insertIntoDataBase")]
+        [Authorize]
         //[ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult> InsertPersonagesApiIntoDataBase()
         {
@@ -29,6 +30,7 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<PersonageDTO>>> Get()
         {
             var response = await _personageService.GetAllAsync();
@@ -39,6 +41,7 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("Name/{name}")]
         public async Task<ActionResult<PersonageDTO>> GetPersonageByName(string name)
         {
@@ -51,6 +54,7 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("{id}")]
         public async Task<ActionResult<PersonageDTO>> GetPersonageById(int id)
         {
@@ -63,6 +67,7 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<PersonageDTO>> CreatePersonage(PersonageDTO personageDTO)
         {
             var response = await _personageService.CreateAsync(personageDTO);
@@ -70,6 +75,7 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<ActionResult<PersonageDTO>> UpdatePersonage(int id, [FromBody] PersonageDTO personageDTO)
         {
             if (id != personageDTO.Id || personageDTO is null)
@@ -80,6 +86,7 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public async Task<ActionResult<PersonageDTO>> Delete(int id)
         {
             var response =  await _personageService.DeleteAsync(id);

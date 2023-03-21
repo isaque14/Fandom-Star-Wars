@@ -1,4 +1,5 @@
 ﻿using FandomStarWars.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http.Headers;
@@ -19,6 +20,7 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Get(string text, [FromServices] IConfiguration configuration)
         {
             var token = configuration.GetValue<string>("ChatGptSecretKey");

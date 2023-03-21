@@ -1,5 +1,6 @@
 using CleanArchMvc.Infra.IoC;
 using FandomStarWars.API.Controllers;
+using FandomStarWars.Domain.Account;
 using FandomStarWars.Infra.IoC;
 using System.Text.Json.Serialization;
 
@@ -35,11 +36,13 @@ app.UseRouting();
 using (var serviceScope = app.Services.CreateScope())
 {
     var services = serviceScope.ServiceProvider;
-    //var seedUserRoleInitial = services.GetRequiredService<ISeedUserRoleInitial>();
+    var seedUserRoleInitial = services.GetRequiredService<ISeedUserRoleInitial>();
 
-    //seedUserRoleInitial.SeedRoles();
-    //seedUserRoleInitial.SeedUsers();
+    seedUserRoleInitial.SeedRoles();
+    seedUserRoleInitial.SeedUsers();
 }
+
+app.UseStatusCodePages();
 
 app.UseAuthentication();
 app.UseAuthorization();

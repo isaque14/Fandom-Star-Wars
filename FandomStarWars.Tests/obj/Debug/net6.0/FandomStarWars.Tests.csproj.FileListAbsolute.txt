@@ -296,3 +296,8 @@ C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\obj\Debug\net6.0\refint\FandomS
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\obj\Debug\net6.0\FandomStarWars.Tests.pdb
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\obj\Debug\net6.0\FandomStarWars.Tests.genruntimeconfig.cache
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\obj\Debug\net6.0\ref\FandomStarWars.Tests.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

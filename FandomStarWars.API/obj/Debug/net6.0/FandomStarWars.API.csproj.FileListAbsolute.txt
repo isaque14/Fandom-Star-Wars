@@ -126,3 +126,8 @@ C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\obj\Debug\net6.0\scopedcss\bundle
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\obj\Debug\net6.0\FandomStarWars.API.csproj.CopyComplete
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\obj\Debug\net6.0\FandomStarWars.API.genruntimeconfig.cache
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\obj\Debug\net6.0\ref\FandomStarWars.API.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

@@ -1,11 +1,13 @@
 ﻿using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FandomStarWars.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PersonageController : ControllerBase
     {
         private readonly IPersonageService _personageService;

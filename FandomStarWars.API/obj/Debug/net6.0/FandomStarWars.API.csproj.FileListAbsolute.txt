@@ -134,3 +134,15 @@ C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\System.IdentityM
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Serilog.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Serilog.AspNetCore.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Serilog.Extensions.Hosting.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Serilog.Extensions.Logging.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Serilog.Formatting.Compact.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Serilog.Settings.Configuration.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Serilog.Sinks.Console.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Serilog.Sinks.Debug.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Serilog.Sinks.File.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Serilog.Sinks.PeriodicBatching.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\Serilog.Sinks.PostgreSQL.dll

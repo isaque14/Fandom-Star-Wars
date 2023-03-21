@@ -2,9 +2,16 @@ using CleanArchMvc.Infra.IoC;
 using FandomStarWars.API.Controllers;
 using FandomStarWars.Domain.Account;
 using FandomStarWars.Infra.IoC;
+using Serilog;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using Serilog.Sinks.PostgreSQL;
+using Microsoft.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//builder.Host.UseSerilog(Log.Logger);
 
 builder.Services.AddInfrastructureExternalApiClients(builder.Configuration);
 builder.Services.AddInfrastructureAPI(builder.Configuration);
@@ -19,6 +26,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient<CuriositiesWithChatGptController>();
 IConfiguration config = builder.Configuration;
 var keySecret = config["ConnectionStrings:Default"];
+
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .WriteTo.PostgreSQL(keySecret, "Logs", needAutoCreateTable: true)
+    .CreateLogger();
+
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
 
 var app = builder.Build();
 
@@ -41,6 +57,8 @@ using (var serviceScope = app.Services.CreateScope())
     seedUserRoleInitial.SeedRoles();
     seedUserRoleInitial.SeedUsers();
 }
+
+
 
 app.UseStatusCodePages();
 

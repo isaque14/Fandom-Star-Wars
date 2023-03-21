@@ -2,7 +2,7 @@
 
 namespace FandomStarWars.Application.DTO_s
 {
-    public class LoginUserDTO
+    public class LoginUserModel
     {
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [EmailAddress(ErrorMessage = "Formato inválido do campo {0}")]

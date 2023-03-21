@@ -19,7 +19,7 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpPost("new-account")]
-        public async Task<ActionResult> Register(RegisterUserDTO registerUserDTO)
+        public async Task<ActionResult> Register(RegisterUserModel registerUserDTO)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState.Values.SelectMany(e => e.Errors));
 

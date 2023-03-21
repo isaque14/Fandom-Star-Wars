@@ -1,4 +1,5 @@
 ﻿using FandomStarWars.API.Models;
+using FandomStarWars.Application.CQRS.BaseResponses;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Domain.Account;
 using Microsoft.AspNetCore.Http;
@@ -35,6 +36,30 @@ namespace FandomStarWars.API.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Invalid Login attempt.");
                 return BadRequest(ModelState);
+            }
+        }
+
+        [HttpPost("CreateUser")]
+        public async Task<ActionResult> CreateUser([FromBody] LoginUserModel userInfo)
+        {
+            var result = await _authentication.RegisterUser(userInfo.Email, userInfo.Password);
+
+            if (result)
+            {
+                return Ok(new GenericResponse
+                {
+                    IsSuccessful = true,
+                    Message = $"Usuário {userInfo.Email} criado com Sucesso"
+                });
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Invalid Login attempt.");
+                return BadRequest(new GenericResponse
+                {
+                    IsSuccessful = false,
+                    Message = "Ops, Erro ao criar conta"
+                });
             }
         }
 

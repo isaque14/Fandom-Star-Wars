@@ -49,14 +49,14 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-using (var serviceScope = app.Services.CreateScope())
-{
-    var services = serviceScope.ServiceProvider;
-    var seedUserRoleInitial = services.GetRequiredService<ISeedUserRoleInitial>();
+//using (var serviceScope = app.Services.CreateScope())
+//{
+//    var services = serviceScope.ServiceProvider;
+//    var seedUserRoleInitial = services.GetRequiredService<ISeedUserRoleInitial>();
 
-    seedUserRoleInitial.SeedRoles();
-    seedUserRoleInitial.SeedUsers();
-}
+//    seedUserRoleInitial.SeedRoles();
+//    seedUserRoleInitial.SeedUsers();
+//}
 
 
 

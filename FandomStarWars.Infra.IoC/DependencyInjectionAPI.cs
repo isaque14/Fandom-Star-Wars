@@ -50,10 +50,7 @@ namespace FandomStarWars.Infra.IoC
             var myHandlers = AppDomain.CurrentDomain.Load("FandomStarWars.Application");
             services.AddMediatR(myHandlers);
 
-            //services.AddDefaultI
-            //services.AddDefaultIdentity<IdentityUser>;
-            //services.addDefaultIdentity<IdentityUser>();
-            //services.AddDe
+            //services.AddSendGrid(opt => )
 
             return services;
         }

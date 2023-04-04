@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Serilog.Sinks.PostgreSQL;
 using Microsoft.AspNetCore;
+using SendGrid.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,12 @@ var logger = new LoggerConfiguration()
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
 
+builder.Services.AddSendGrid(opt =>
+{
+    opt.ApiKey = builder
+    .Configuration.GetSection("SendGridEmailSettings").GetValue<string>("APIKey");
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -49,17 +56,14 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-//using (var serviceScope = app.Services.CreateScope())
-//{
-//    var services = serviceScope.ServiceProvider;
-//    var seedUserRoleInitial = services.GetRequiredService<ISeedUserRoleInitial>();
+using (var serviceScope = app.Services.CreateScope())
+{
+    var services = serviceScope.ServiceProvider;
+    var seedUserRoleInitial = services.GetRequiredService<ISeedUserRoleInitial>();
 
-//    seedUserRoleInitial.SeedRoles();
-//    seedUserRoleInitial.SeedUsers();
-//}
-
-string myVar = Environment.GetEnvironmentVariable("ConnectionStrings:Default");
-
+    seedUserRoleInitial.SeedRoles();
+    seedUserRoleInitial.SeedUsers();
+}
 
 app.UseStatusCodePages();
 

@@ -316,3 +316,7 @@ C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\bin\Debug\net6.0\Serilog.Sinks.
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\bin\Debug\net6.0\Serilog.Sinks.File.dll
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\bin\Debug\net6.0\Serilog.Sinks.PeriodicBatching.dll
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\bin\Debug\net6.0\Serilog.Sinks.PostgreSQL.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\bin\Debug\net6.0\libman.json
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\bin\Debug\net6.0\SendGrid.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\bin\Debug\net6.0\SendGrid.Extensions.DependencyInjection.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Tests\bin\Debug\net6.0\StarkbankEcdsa.dll

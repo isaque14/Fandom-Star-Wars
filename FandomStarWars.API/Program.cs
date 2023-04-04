@@ -4,15 +4,9 @@ using FandomStarWars.Domain.Account;
 using FandomStarWars.Infra.IoC;
 using Serilog;
 using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Serilog.Sinks.PostgreSQL;
-using Microsoft.AspNetCore;
 using SendGrid.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
-
-//builder.Host.UseSerilog(Log.Logger);
 
 builder.Services.AddInfrastructureExternalApiClients(builder.Configuration);
 builder.Services.AddInfrastructureAPI(builder.Configuration);

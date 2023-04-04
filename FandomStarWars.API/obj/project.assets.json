@@ -1942,7 +1942,8 @@
           "FluentValidation.AspNetCore": "11.2.2",
           "MediatR": "11.0.0",
           "Refit": "6.3.2",
-          "Refit.HttpClientFactory": "6.3.2"
+          "Refit.HttpClientFactory": "6.3.2",
+          "SendGrid": "9.28.1"
         },
         "compile": {
           "bin/placeholder/FandomStarWars.Application.dll": {}
@@ -5210,7 +5211,6 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "FandomStarWars.Infra.IoC >= 1.0.0",
-      "SendGrid >= 9.28.1",
       "SendGrid.Extensions.DependencyInjection >= 1.0.1",
       "Serilog.AspNetCore >= 6.1.0",
       "Serilog.Sinks.PostgreSQL >= 2.3.0",
@@ -5261,10 +5261,6 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
-          "SendGrid": {
-            "target": "Package",
-            "version": "[9.28.1, )"
-          },
           "SendGrid.Extensions.DependencyInjection": {
             "target": "Package",
             "version": "[1.0.1, )"

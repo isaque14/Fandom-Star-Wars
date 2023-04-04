@@ -44,10 +44,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "SendGrid": {
-              "target": "Package",
-              "version": "[9.28.1, )"
-            },
             "SendGrid.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[1.0.1, )"
@@ -151,6 +147,10 @@
             "Refit.HttpClientFactory": {
               "target": "Package",
               "version": "[6.3.2, )"
+            },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.28.1, )"
             }
           },
           "imports": [

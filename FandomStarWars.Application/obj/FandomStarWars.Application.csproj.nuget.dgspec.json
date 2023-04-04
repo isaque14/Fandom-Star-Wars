@@ -63,6 +63,10 @@
             "Refit.HttpClientFactory": {
               "target": "Package",
               "version": "[6.3.2, )"
+            },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.28.1, )"
             }
           },
           "imports": [

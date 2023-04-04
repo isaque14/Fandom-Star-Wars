@@ -1,0 +1,29 @@
+version: '1'
+name: minha-api-dotnet6
+env:
+  - name: ConnectionStrings:Default
+    value: "${{ secrets.RAILWAY_POSTGRES_URL }}"
+  - name: ChatGptSecretKey
+    value: "{{userSecrets:ChatGptSecretKey}}"
+  - name: JWT:SecretKey
+    value: "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY3OTQwNjUyMCwiaWF0IjoxNjc5NDA2NTIwfQ.rv_pHnb0yxzvtQPIZVOi-9bJsWIdFlRFD4x2zHuP7fQ"
+  - name: JWT:Issuer
+    value: "isaque.diniz"
+  - name: JWT:Audience
+    value: "github.com/isaque14"
+  - name: Serilog:Using:0
+    value: "Serilog.Sinks.Console"
+  - name: Serilog:Using:1
+    value: "Serilog.Sinks.PostgreSQL"
+  - name: Serilog:MinimumLevel
+    value: "Information"
+  - name: Serilog:WriteTo:0:Name
+    value: "Console"
+  - name: Serilog:WriteTo:1:Name
+    value: "PostgreSQL"
+  - name: Serilog:WriteTo:1:Args:connectionString
+    value: "${ConnectionStrings:Default}"
+  - name: Serilog:WriteTo:1:Args:tableName
+    value: "Logs"
+  - name: Serilog:WriteTo:1:Args:needAutoCreateTable
+    value: "true"

@@ -58,6 +58,7 @@ app.UseRouting();
 //    seedUserRoleInitial.SeedUsers();
 //}
 
+string myVar = Environment.GetEnvironmentVariable("ConnectionStrings:Default");
 
 
 app.UseStatusCodePages();

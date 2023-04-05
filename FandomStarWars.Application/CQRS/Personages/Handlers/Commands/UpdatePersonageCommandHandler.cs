@@ -35,7 +35,7 @@ namespace FandomStarWars.Application.CQRS.Personages.Handlers.Commands
                 };
             }
 
-            var personage = _repository.GetByIdAsync(request.Id).Result;
+            var personage = await _repository.GetByIdAsync(request.Id);
             if (personage is null) throw new ApplicationException($"Error Updating Personage");
 
             personage.Update(

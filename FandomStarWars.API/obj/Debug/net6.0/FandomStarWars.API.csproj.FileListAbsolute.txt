@@ -113,7 +113,6 @@ C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\obj\Debug\net6.0\FandomStarWars.A
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\obj\Debug\net6.0\FandomStarWars.API.AssemblyInfoInputs.cache
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\obj\Debug\net6.0\FandomStarWars.API.AssemblyInfo.cs
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\obj\Debug\net6.0\FandomStarWars.API.csproj.CoreCompileInputs.cache
-C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\obj\Debug\net6.0\FandomStarWars.API.MvcApplicationPartsAssemblyInfo.cs
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\obj\Debug\net6.0\FandomStarWars.API.MvcApplicationPartsAssemblyInfo.cache
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\obj\Debug\net6.0\staticwebassets\msbuild.FandomStarWars.API.Microsoft.AspNetCore.StaticWebAssets.props
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\obj\Debug\net6.0\staticwebassets\msbuild.build.FandomStarWars.API.props

@@ -49,8 +49,12 @@ namespace FandomStarWars.Infra.Data.Repositories
 
         public async Task UpdateAsync(Personage personage)
         {
-            _context.Personages.Update(personage);
-            _context.SaveChangesAsync();
+            await Task.Run(() =>
+            {
+                _context.Personages.Update(personage);
+            });
+
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Personage personage)

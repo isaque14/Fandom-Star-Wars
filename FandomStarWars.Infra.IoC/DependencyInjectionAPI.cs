@@ -45,6 +45,8 @@ namespace FandomStarWars.Infra.IoC
             services.AddScoped<IAuthenticate, AuthenticateService>();
             services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
 
+            services.AddScoped<ISendEmailService, SendEmailService>();
+
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
             var myHandlers = AppDomain.CurrentDomain.Load("FandomStarWars.Application");

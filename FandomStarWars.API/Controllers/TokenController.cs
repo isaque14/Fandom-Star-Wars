@@ -1,8 +1,8 @@
 ﻿using FandomStarWars.API.Models;
 using FandomStarWars.Application.CQRS.BaseResponses;
 using FandomStarWars.Application.DTO_s;
+using FandomStarWars.Application.Interfaces;
 using FandomStarWars.Domain.Account;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,11 +17,13 @@ namespace FandomStarWars.API.Controllers
     {
         private readonly IAuthenticate _authentication;
         private readonly IConfiguration _configuration;
+        private readonly ISendEmailService _sendEmailService;
 
-        public TokenController(IAuthenticate authentication, IConfiguration configuration)
+        public TokenController(IAuthenticate authentication, IConfiguration configuration, ISendEmailService sendEmailService)
         {
             _authentication = authentication;
             _configuration = configuration;
+            _sendEmailService = sendEmailService;
         }
 
         [HttpPost("LoginUser")]
@@ -42,25 +44,44 @@ namespace FandomStarWars.API.Controllers
         [HttpPost("CreateUser")]
         public async Task<ActionResult> CreateUser([FromBody] LoginUserModel userInfo)
         {
-            var result = await _authentication.RegisterUser(userInfo.Email, userInfo.Password);
+            try
+            {
+                var result = await _authentication.RegisterUser(userInfo.Email, userInfo.Password);
 
-            if (result)
-            {
-                return Ok(new GenericResponse
+                if (result)
                 {
-                    IsSuccessful = true,
-                    Message = $"Usuário {userInfo.Email} criado com Sucesso"
-                });
+                    var content = "Olá, Seja muito bem vindo à Fandom-Star-Wars-API, e não se esqueça, não toleraremos quem vá para o lado escuro da força";
+                    var subject = "Conta criada na Fandom-Star-Wars-API";
+
+                    await _sendEmailService.SendEmail(userInfo.Email, subject, content);
+
+                    return Ok(new GenericResponse
+                    {
+                        IsSuccessful = true,
+                        Message = $"Usuário {userInfo.Email} criado com Sucesso, verifique sua conta de E-mail"
+                    });
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid Login attempt.");
+                    return BadRequest(new GenericResponse
+                    {
+                        IsSuccessful = false,
+                        Message = "Ops, Erro ao criar conta"
+                    });
+                }
             }
-            else
+            catch (Exception e)
             {
-                ModelState.AddModelError(string.Empty, "Invalid Login attempt.");
                 return BadRequest(new GenericResponse
                 {
                     IsSuccessful = false,
-                    Message = "Ops, Erro ao criar conta"
+                    Message = "Ops, Erro ao criar conta",
+                    Object = e.Message
                 });
             }
+
+            
         }
 
         private UserToken GenerateToken(LoginUserModel userInfo)

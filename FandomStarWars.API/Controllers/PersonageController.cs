@@ -1,7 +1,9 @@
-﻿using FandomStarWars.Application.DTO_s;
+﻿using FandomStarWars.Application.CQRS.BaseResponses;
+using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FandomStarWars.API.Controllers
 {
@@ -12,6 +14,7 @@ namespace FandomStarWars.API.Controllers
     {
         private readonly IPersonageService _personageService;
         private readonly IMovieService _filmService;
+        private const int IdLastPersonageOrigin = 82;
 
         public PersonageController(IPersonageService personageService, IMovieService filmService)
         {
@@ -89,6 +92,16 @@ namespace FandomStarWars.API.Controllers
         [Authorize]
         public async Task<ActionResult<PersonageDTO>> Delete(int id)
         {
+            var role = HttpContext.User.FindFirstValue(ClaimTypes.Role);
+
+            if (id <= IdLastPersonageOrigin && role is not "Admin")
+            {
+                return StatusCode(403, new GenericResponse
+                {
+                    IsSuccessful = false,
+                    Message = "Ops, parece que você não tem permissão de deletar este personagem, confira se possua uma conta Admin"
+                });
+            }
             var response =  await _personageService.DeleteAsync(id);
             return Ok(response);
         }

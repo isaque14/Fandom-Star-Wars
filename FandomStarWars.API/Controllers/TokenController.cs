@@ -3,6 +3,8 @@ using FandomStarWars.Application.CQRS.BaseResponses;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Interfaces;
 using FandomStarWars.Domain.Account;
+using FandomStarWars.Infra.Data.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -18,12 +20,18 @@ namespace FandomStarWars.API.Controllers
         private readonly IAuthenticate _authentication;
         private readonly IConfiguration _configuration;
         private readonly ISendEmailService _sendEmailService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public TokenController(IAuthenticate authentication, IConfiguration configuration, ISendEmailService sendEmailService)
+        public TokenController(
+            IAuthenticate authentication, 
+            IConfiguration configuration, 
+            ISendEmailService sendEmailService, 
+            UserManager<ApplicationUser> userManager)
         {
             _authentication = authentication;
             _configuration = configuration;
             _sendEmailService = sendEmailService;
+            _userManager = userManager;
         }
 
         [HttpPost("LoginUser")]
@@ -32,7 +40,7 @@ namespace FandomStarWars.API.Controllers
             var result = await _authentication.Authenticate(userInfo.Email, userInfo.Password);
 
             if (result)
-                return GenerateToken(userInfo);
+                return GenerateToken(userInfo).Result;
 
             else
             {
@@ -84,14 +92,26 @@ namespace FandomStarWars.API.Controllers
             
         }
 
-        private UserToken GenerateToken(LoginUserModel userInfo)
+        private async Task<UserToken> GenerateToken(LoginUserModel userInfo)
         {
+            var isAuth = User.Identity.IsAuthenticated;
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
             //declarações do usuário
-            var claims = new[]
+            var claims = new List<Claim>
             {
                 new Claim("email", userInfo.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
+
+            if(user is not null)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                foreach (var role in roles)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                }
+            }
 
             //gerar chave privada para assinar o token
             var privateKey = new SymmetricSecurityKey(
@@ -116,7 +136,6 @@ namespace FandomStarWars.API.Controllers
                 //assinatura digital
                 signingCredentials: credentials
                 );
-
             return new UserToken()
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token),

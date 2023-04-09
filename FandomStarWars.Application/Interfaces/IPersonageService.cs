@@ -16,11 +16,5 @@ namespace FandomStarWars.Application.Interfaces
         Task<GenericResponse> UpdateAsync(PersonageDTO personageDTO);
 
         Task<GenericResponse> DeleteAsync(int id);
-
-        Task<IEnumerable<PersonageDTO>> GetAllPersonagesInExternalApiAsync();
-
-        Task InsertPersonagesExternalApiIntoDataBase();
-
-        Task<PersonageDTO> GetPersonageInExternalApiByIdAsync(int id);
     }
 }

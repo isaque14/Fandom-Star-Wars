@@ -14,7 +14,7 @@ namespace FandomStarWars.API.Controllers
     {
         private readonly IPersonageService _personageService;
         private readonly IMovieService _filmService;
-        private const int IdLastPersonageOrigin = 82;
+        private const int IdLastPersonageOrigin = 86;
 
         public PersonageController(IPersonageService personageService, IMovieService filmService)
         {
@@ -84,7 +84,18 @@ namespace FandomStarWars.API.Controllers
             if (id != personageDTO.Id || personageDTO is null)
                 return BadRequest("Data Invalid");
 
-           var response = await _personageService.UpdateAsync(personageDTO);
+            var role = HttpContext.User.FindFirstValue(ClaimTypes.Role);
+
+            if (id <= IdLastPersonageOrigin && role is not "Admin")
+            {
+                return StatusCode(403, new GenericResponse
+                {
+                    IsSuccessful = false,
+                    Message = "Ops, parece que você não tem permissão de alterar este personagem, confira se possua uma conta Admin"
+                });
+            }
+
+            var response = await _personageService.UpdateAsync(personageDTO);
             return Ok(response);
         }
 
@@ -94,7 +105,7 @@ namespace FandomStarWars.API.Controllers
         {
             var role = HttpContext.User.FindFirstValue(ClaimTypes.Role);
 
-            if (id <= IdLastPersonageOrigin && role is not "Admin")
+            //if (id <= IdLastPersonageOrigin && role is not "ADMIN")
             {
                 return StatusCode(403, new GenericResponse
                 {

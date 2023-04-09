@@ -13,23 +13,11 @@ namespace FandomStarWars.API.Controllers
     public class PersonageController : ControllerBase
     {
         private readonly IPersonageService _personageService;
-        private readonly IMovieService _filmService;
         private const int IdLastPersonageOrigin = 86;
 
-        public PersonageController(IPersonageService personageService, IMovieService filmService)
+        public PersonageController(IPersonageService personageService)
         {
             _personageService = personageService;
-            _filmService = filmService;
-        }
-
-        [HttpPost]
-        [Route("insertIntoDataBase")]
-        [Authorize]
-        //[ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<ActionResult> InsertPersonagesApiIntoDataBase()
-        {
-            await _personageService.InsertPersonagesExternalApiIntoDataBase();
-            return Ok("insert into database finish");
         }
 
         [HttpGet]

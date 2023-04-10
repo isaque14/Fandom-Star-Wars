@@ -27,82 +27,6 @@ namespace FandomStarWars.Application.Services
             _externalApiService = externalApiService;
         }
 
-        public async Task<IEnumerable<MovieDTO>> GetAllFilmsInExternalApiAsync()
-        {
-            var numberPage = 1;
-            var filmsDTO = new List<MovieDTO>();
-            RootFilms filmsApi;
-            var nextMovie = true;
-            
-            do
-            {
-                var getFilms = new GetMoviesExternalApiByPageQuery(numberPage);
-
-                if (getFilms == null)
-                    throw new Exception($"API could not be loaded.");
-
-                filmsApi = await _mediator.Send(getFilms);
-
-                foreach (var film in filmsApi.Results)
-                {
-                    var personagesDTO = new List<PersonageDTO>();
-
-                    foreach (var personage in film.Characters)
-                    {
-                        int idPersonage = 0;
-                        var lastSegment = new Uri(personage).Segments.Last();
-
-                        int.TryParse(lastSegment.Remove(lastSegment.Length - 1), out idPersonage);
-                        var getPersonageApi = await _externalApiService.GetPersonageByIdAsync(idPersonage);
-                        GenericResponse personageResponse = await _personageService.GetByNameAsync(getPersonageApi.Name);
-
-                        personagesDTO.Add(personageResponse.Object as PersonageDTO);
-                    }
-
-                    var personagesId = new List<int>();
-                    foreach (var personageDTO in personagesDTO)
-                    {
-                        var idPersonage = personageDTO.Id;
-                        personagesId.Add(idPersonage);
-                    }
-
-                    filmsDTO.Add(new MovieDTO
-                    {
-                        Title = film.Title,
-                        EpisodeId = film.Episode_Id,
-                        OpeningCrawl = film.Opening_Crawl,
-                        Director = film.Director,
-                        Producer = film.Producer,
-                        ReleaseDate = film.Release_Date,
-                        PersonagesId = personagesId,
-                        PersonagesDTO = personagesDTO
-                    });
-
-                }
-
-                numberPage++;
-
-                if (filmsApi.Next is null)
-                    nextMovie = false;
-                
-            } while (nextMovie);
-
-            return filmsDTO;
-        }
-
-        public async Task InsertFilmsExternalApiIntoDataBase()
-        {
-            var movieDTO = await GetAllFilmsInExternalApiAsync();
-
-            foreach (var movie in movieDTO)
-            {
-                GenericResponse response = GetByNameAsync(movie.Title).Result;
-
-                if (!response.IsSuccessful)
-                    await CreateAsync(movie);
-            }
-        }
-
         public async Task<GenericResponse> GetAllAsync()
         {
             var getMoviesQuery = new GetMoviesQueryRequest();
@@ -131,11 +55,6 @@ namespace FandomStarWars.Application.Services
 
             var response = await _mediator.Send(getMovie);
             return response;
-        }
-
-        public Task<MovieDTO> GetFilmInExternalApiByIdAsync(int id)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<GenericResponse> CreateAsync(MovieDTO movieDTO)

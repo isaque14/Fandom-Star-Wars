@@ -17,16 +17,6 @@ namespace FandomStarWars.API.Controllers
         {
             _movieService = movieService;
         }
-        
-        [HttpGet]
-        [Authorize]
-        [Route("insertFilms")]
-        //[ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<ActionResult> InsertFilmsApiIntoDataBase()
-        {
-            await _movieService.InsertFilmsExternalApiIntoDataBase();
-            return Ok("Films Createds");
-        }
 
         [HttpGet]
         [AllowAnonymous]

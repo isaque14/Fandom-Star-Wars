@@ -10,5 +10,8 @@ namespace FandomStarWars.Application.Interfaces
 
         public Task InsertPersonagesExternalApiIntoDataBase();
 
+        public Task<IEnumerable<MovieDTO>> GetAllFilmsInExternalApiAsync();
+
+        public Task InsertFilmsExternalApiIntoDataBase();
     }
 }

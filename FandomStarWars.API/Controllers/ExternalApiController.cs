@@ -16,13 +16,23 @@ namespace FandomStarWars.API.Controllers
         }
 
         [HttpPost]
-        [Route("insertIntoDataBase")]
+        [Route("insertPersonages")]
         [Authorize]
         //[ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult> InsertPersonagesApiIntoDataBase()
         {
             await _apiClientService.InsertPersonagesExternalApiIntoDataBase();
             return Ok("insert into database finish");
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("insertFilms")]
+        //[ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<ActionResult> InsertFilmsApiIntoDataBase()
+        {
+            await _apiClientService.InsertFilmsExternalApiIntoDataBase();
+            return Ok("Films Createds");
         }
     }
 }

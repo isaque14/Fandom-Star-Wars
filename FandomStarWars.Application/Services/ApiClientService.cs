@@ -2,7 +2,9 @@
 using FandomStarWars.Application.CQRS.ExternalApi.Querys;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Interfaces;
+using FandomStarWars.Application.Interfaces.APIClient;
 using MediatR;
+using static FandomStarWars.Application.DTO_s.MovieDataExternalApiDTO;
 
 namespace FandomStarWars.Application.Services
 {
@@ -10,11 +12,15 @@ namespace FandomStarWars.Application.Services
     {
         private readonly IMediator _mediator;
         private readonly IPersonageService _personageService;
+        private readonly IExternalApiService _externalApiService;
+        private readonly IMovieService _movieService;
 
-        public ApiClientService(IMediator mediator, IPersonageService personageService)
+        public ApiClientService(IMediator mediator, IPersonageService personageService, IExternalApiService externalApiService, IMovieService movieService)
         {
             _mediator = mediator;
             _personageService = personageService;
+            _externalApiService = externalApiService;
+            _movieService = movieService;
         }
 
         public async Task<PersonageDTO> GetPersonageInExternalApiByIdAsync(int id)
@@ -112,6 +118,82 @@ namespace FandomStarWars.Application.Services
 
                 if (!response.IsSuccessful)
                     await _personageService.CreateAsync(personage);
+            }
+        }
+
+        public async Task<IEnumerable<MovieDTO>> GetAllFilmsInExternalApiAsync()
+        {
+            var numberPage = 1;
+            var filmsDTO = new List<MovieDTO>();
+            RootFilms filmsApi;
+            var nextMovie = true;
+
+            do
+            {
+                var getFilms = new GetMoviesExternalApiByPageQuery(numberPage);
+
+                if (getFilms == null)
+                    throw new Exception($"API could not be loaded.");
+
+                filmsApi = await _mediator.Send(getFilms);
+
+                foreach (var film in filmsApi.Results)
+                {
+                    var personagesDTO = new List<PersonageDTO>();
+
+                    foreach (var personage in film.Characters)
+                    {
+                        int idPersonage = 0;
+                        var lastSegment = new Uri(personage).Segments.Last();
+
+                        int.TryParse(lastSegment.Remove(lastSegment.Length - 1), out idPersonage);
+                        var getPersonageApi = await _externalApiService.GetPersonageByIdAsync(idPersonage);
+                        GenericResponse personageResponse = await _personageService.GetByNameAsync(getPersonageApi.Name);
+
+                        personagesDTO.Add(personageResponse.Object as PersonageDTO);
+                    }
+
+                    var personagesId = new List<int>();
+                    foreach (var personageDTO in personagesDTO)
+                    {
+                        var idPersonage = personageDTO.Id;
+                        personagesId.Add(idPersonage);
+                    }
+
+                    filmsDTO.Add(new MovieDTO
+                    {
+                        Title = film.Title,
+                        EpisodeId = film.Episode_Id,
+                        OpeningCrawl = film.Opening_Crawl,
+                        Director = film.Director,
+                        Producer = film.Producer,
+                        ReleaseDate = film.Release_Date,
+                        PersonagesId = personagesId,
+                        PersonagesDTO = personagesDTO
+                    });
+
+                }
+
+                numberPage++;
+
+                if (filmsApi.Next is null)
+                    nextMovie = false;
+
+            } while (nextMovie);
+
+            return filmsDTO;
+        }
+
+        public async Task InsertFilmsExternalApiIntoDataBase()
+        {
+            var movieDTO = await GetAllFilmsInExternalApiAsync();
+
+            foreach (var movie in movieDTO)
+            {
+                GenericResponse response = _movieService.GetByNameAsync(movie.Title).Result;
+
+                if (!response.IsSuccessful)
+                    await _movieService.CreateAsync(movie);
             }
         }
     }

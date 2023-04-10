@@ -11,9 +11,5 @@ namespace FandomStarWars.Application.Interfaces
         Task<GenericResponse> CreateAsync(MovieDTO filmDTO);
         Task<GenericResponse> UpdateAsync(MovieDTO filmDTO);
         Task<GenericResponse> DeleteAsync(int id);
-
-        Task InsertFilmsExternalApiIntoDataBase();
-        Task<MovieDTO> GetFilmInExternalApiByIdAsync(int id);
-        Task<IEnumerable<MovieDTO>> GetAllFilmsInExternalApiAsync();
     }
 }

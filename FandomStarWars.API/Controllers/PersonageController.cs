@@ -13,7 +13,7 @@ namespace FandomStarWars.API.Controllers
     public class PersonageController : ControllerBase
     {
         private readonly IPersonageService _personageService;
-        private const int IdLastPersonageOrigin = 86;
+        private const int IdLastPersonageOrigin = 82;
 
         public PersonageController(IPersonageService personageService)
         {
@@ -93,7 +93,7 @@ namespace FandomStarWars.API.Controllers
         {
             var role = HttpContext.User.FindFirstValue(ClaimTypes.Role);
 
-            //if (id <= IdLastPersonageOrigin && role is not "ADMIN")
+            if (id <= IdLastPersonageOrigin && role is not "Admin")
             {
                 return StatusCode(403, new GenericResponse
                 {

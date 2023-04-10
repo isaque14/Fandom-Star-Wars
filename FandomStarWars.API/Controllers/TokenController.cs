@@ -58,7 +58,7 @@ namespace FandomStarWars.API.Controllers
 
                 if (result)
                 {
-                    var content = "Olá, Seja muito bem vindo à Fandom-Star-Wars-API, e não se esqueça, não toleraremos quem vá para o lado escuro da força";
+                    var content = "Olá, Seja muito bem vindo à Fandom-Star-Wars-API, e não se esqueça, não toleraremos quem vá para o lado negro da força";
                     var subject = "Conta criada na Fandom-Star-Wars-API";
 
                     await _sendEmailService.SendEmail(userInfo.Email, subject, content);
@@ -94,53 +94,60 @@ namespace FandomStarWars.API.Controllers
 
         private async Task<UserToken> GenerateToken(LoginUserModel userInfo)
         {
-            var isAuth = User.Identity.IsAuthenticated;
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-
-            //declarações do usuário
-            var claims = new List<Claim>
+            try
             {
-                new Claim("email", userInfo.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
-
-            if(user is not null)
-            {
-                var roles = await _userManager.GetRolesAsync(user);
-                foreach (var role in roles)
+                var user = await _userManager.FindByEmailAsync(userInfo.Email);
+              
+                //declarações do usuário
+                var claims = new List<Claim>
                 {
-                    claims.Add(new Claim(ClaimTypes.Role, role));
+                    new Claim("email", userInfo.Email),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                };
+
+                if (user is not null)
+                {
+                    var roles = await _userManager.GetRolesAsync(user);
+                    foreach (var role in roles)
+                    {
+                        claims.Add(new Claim(ClaimTypes.Role, role));
+                    }
                 }
+
+                //gerar chave privada para assinar o token
+                var privateKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(_configuration["JWT:SecretKey"]));
+
+                //gerar a assinatura digital
+                var credentials = new SigningCredentials(privateKey, SecurityAlgorithms.HmacSha256);
+
+                //definir o tempo de expiração
+                var expiration = DateTime.UtcNow.AddMinutes(10);
+
+                //gerar o token
+                JwtSecurityToken token = new JwtSecurityToken(
+                    //emissor
+                    issuer: _configuration["JWT:Issuer"],
+                    //audiencia
+                    audience: _configuration["JWT:Audience"],
+                    //claims
+                    claims: claims,
+                    //data de expiracao
+                    expires: expiration,
+                    //assinatura digital
+                    signingCredentials: credentials
+                    );
+                return new UserToken()
+                {
+                    Token = new JwtSecurityTokenHandler().WriteToken(token),
+                    Expiration = expiration
+                };
             }
-
-            //gerar chave privada para assinar o token
-            var privateKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(_configuration["JWT:SecretKey"]));
-
-            //gerar a assinatura digital
-            var credentials = new SigningCredentials(privateKey, SecurityAlgorithms.HmacSha256);
-
-            //definir o tempo de expiração
-            var expiration = DateTime.UtcNow.AddMinutes(10);
-
-            //gerar o token
-            JwtSecurityToken token = new JwtSecurityToken(
-                //emissor
-                issuer: _configuration["JWT:Issuer"],
-                //audiencia
-                audience: _configuration["JWT:Audience"],
-                //claims
-                claims: claims,
-                //data de expiracao
-                expires: expiration,
-                //assinatura digital
-                signingCredentials: credentials
-                );
-            return new UserToken()
+            catch (Exception e)
             {
-                Token = new JwtSecurityTokenHandler().WriteToken(token),
-                Expiration = expiration
-            };
+                throw new Exception(e.Message);
+            }
+            
         }
     }
 }

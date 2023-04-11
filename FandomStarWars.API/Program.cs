@@ -17,7 +17,26 @@ builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Fandom-Star-Wars",
+        Version = "v1",
+        Contact = new Microsoft.OpenApi.Models.OpenApiContact
+        {
+            Name = "Isaque Diniz da Silva",
+            Email = "isaquediniz14@gmail.com",
+            Url = new Uri("https://www.linkedin.com/in/isaque-diniz-da-silva-a0773459/")
+        }
+    });
+
+    var xmlFile = "FandomStarWars.API.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+});
+
+
 builder.Services.AddHttpClient<CuriositiesWithChatGptController>();
 IConfiguration config = builder.Configuration;
 var keySecret = config["ConnectionStrings:Default"];

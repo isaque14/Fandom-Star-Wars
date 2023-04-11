@@ -5,6 +5,7 @@ using FandomStarWars.Infra.IoC;
 using Serilog;
 using System.Text.Json.Serialization;
 using SendGrid.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,11 +20,11 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    c.SwaggerDoc("v2", new OpenApiInfo
     {
-        Title = "Fandom-Star-Wars",
+        Title = "FandomStarWars.API",
         Version = "v1",
-        Contact = new Microsoft.OpenApi.Models.OpenApiContact
+        Contact = new OpenApiContact
         {
             Name = "Isaque Diniz da Silva",
             Email = "isaquediniz14@gmail.com",

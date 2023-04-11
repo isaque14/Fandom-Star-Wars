@@ -35,31 +35,50 @@ namespace FandomStarWars.Application.CQRS.Personages.Handlers.Commands
                 };
             }
 
-            var personage = await _repository.GetByIdAsync(request.Id);
-            if (personage is null) throw new ApplicationException($"Error Updating Personage");
-
-            personage.Update(
-                name: request.Name,
-                height: request.Height,
-                mass: request.Mass,
-                hairColor: request.HairColor,
-                skinColor: request.SkinColor,
-                eyeColor: request.EyeColor,
-                birthYear: request.BirthYear,
-                gender: request.Gender,
-                homeworld: request.Homeworld
-                );
-
-            await _repository.UpdateAsync(personage);
-
-            var personageDTO = _mapper.Map<PersonageDTO>(personage);
-
-            return new GenericResponse
+            try
             {
-                IsSuccessful = true,
-                Message = "successfully updated personage",
-                Object = personageDTO
-            };
+                var personage = await _repository.GetByIdAsync(request.Id);
+                if (personage is null)
+                {
+                    return new GenericResponse
+                    {
+                        IsSuccessful = false,
+                        Message = "Ops, Nenhum personagem encontrado com este Id",
+                        Object = request.ErrorMensage(results.Errors)
+                    };
+                }
+
+                personage.Update(
+                    name: request.Name,
+                    height: request.Height,
+                    mass: request.Mass,
+                    hairColor: request.HairColor,
+                    skinColor: request.SkinColor,
+                    eyeColor: request.EyeColor,
+                    birthYear: request.BirthYear,
+                    gender: request.Gender,
+                    homeworld: request.Homeworld
+                    );
+
+                await _repository.UpdateAsync(personage);
+
+                var personageDTO = _mapper.Map<PersonageDTO>(personage);
+
+                return new GenericResponse
+                {
+                    IsSuccessful = true,
+                    Message = "successfully updated personage",
+                    Object = personageDTO
+                };
+            }
+            catch (Exception e)
+            {
+                return new GenericResponse
+                {
+                    IsSuccessful = false,
+                    Message = e.Message
+                };
+            }
         }
     }
 }

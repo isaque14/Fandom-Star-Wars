@@ -50,8 +50,8 @@ namespace FandomStarWars.API.Controllers
         {
             var response = await _personageService.GetByNameAsync(name);
 
-            if (response is null)
-                return NotFound("Personage not found");
+            if (!response.IsSuccessful)
+                return NotFound(response);
 
             return Ok(response);
         }
@@ -72,8 +72,8 @@ namespace FandomStarWars.API.Controllers
         {
             var response = await _personageService.GetByIdAsync(id);
 
-            if (response is null)
-                return NotFound("Personage not found");
+            if (!response.IsSuccessful)
+                return NotFound(response);
 
             return Ok(response);
         }
@@ -92,7 +92,9 @@ namespace FandomStarWars.API.Controllers
         public async Task<ActionResult<PersonageDTO>> CreatePersonage(PersonageDTO personageDTO)
         {
             var response = await _personageService.CreateAsync(personageDTO);
-            return Ok(response);
+            if (!response.IsSuccessful) return BadRequest(response);
+
+            return StatusCode(201, response);
         }
 
         /// <summary>
@@ -114,7 +116,11 @@ namespace FandomStarWars.API.Controllers
         public async Task<ActionResult<PersonageDTO>> UpdatePersonage(int id, [FromBody] PersonageDTO personageDTO)
         {
             if (id != personageDTO.Id || personageDTO is null)
-                return BadRequest("Data Invalid");
+                return BadRequest(new GenericResponse
+                {
+                    IsSuccessful = false, 
+                    Message = "Ops, Dados do Personagem são inválidos"
+                });
 
             var role = HttpContext.User.FindFirstValue(ClaimTypes.Role);
 
@@ -158,7 +164,11 @@ namespace FandomStarWars.API.Controllers
                     Message = "Ops, parece que você não tem permissão de deletar este personagem, confira se possua uma conta Admin"
                 });
             }
+
             var response =  await _personageService.DeleteAsync(id);
+
+            if (!response.IsSuccessful) return NotFound(response);
+
             return Ok(response);
         }
     }

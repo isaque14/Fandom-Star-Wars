@@ -47,14 +47,26 @@ namespace FandomStarWars.Application.CQRS.Personages.Handlers.Commands
                 homeworld: request.Homeworld
             );
 
-            await _repository.CreateAsync(personage);
-            var personageDTO = _mapper.Map<PersonageDTO>(personage);
-            return new GenericResponse
+            try
             {
-                IsSuccessful = true,
-                Message = "successfully created personage",
-                Object = personageDTO
-            };
+                await _repository.CreateAsync(personage);
+                var personageDTO = _mapper.Map<PersonageDTO>(personage);
+                return new GenericResponse
+                {
+                    IsSuccessful = true,
+                    Message = "successfully created personage",
+                    Object = personageDTO
+                };
+            }
+            catch (Exception e) 
+            {
+                return new GenericResponse
+                {
+                    IsSuccessful = false,
+                    Message = e.Message
+                };                
+            }
+            
         }
     }
 

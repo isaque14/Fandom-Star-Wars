@@ -27,7 +27,7 @@ namespace FandomStarWars.Application.CQRS.Personages.Handlers.Querys
 
                 return new GenericResponse
                 {
-                    IsSuccessful = true,
+                    IsSuccessful = personageEntity is not null ? true : false,
                     Message = personageEntity is not null ? "Successfully obtained personage" : "No personage found with this id",
                     Object = personageDTO
                 };

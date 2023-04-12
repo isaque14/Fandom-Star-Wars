@@ -14,9 +14,9 @@ namespace FandomStarWars.Application.CQRS.ExternalApi.Handlers
             _externalApiService = externalApiService;
         }
 
-        public Task<PlanetDataExternalApiDTO> Handle(GetPlanetExternalApiByIdQuery request, CancellationToken cancellationToken)
+        public async Task<PlanetDataExternalApiDTO> Handle(GetPlanetExternalApiByIdQuery request, CancellationToken cancellationToken)
         {
-            return _externalApiService.GetPlanetByIdAsync(request.Id);
+            return await _externalApiService.GetPlanetByIdAsync(request.Id);
         }
     }
 }

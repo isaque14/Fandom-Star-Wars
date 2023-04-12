@@ -27,7 +27,7 @@ namespace FandomStarWars.Infra.Data.Identity
                 user.LockoutEnabled = false;
                 user.SecurityStamp = Guid.NewGuid().ToString();
 
-                IdentityResult result = _userManager.CreateAsync(user, "Numsey#2021").Result;
+                IdentityResult result = _userManager.CreateAsync(user, "@User123").Result;
 
                 if (result.Succeeded)
                     _userManager.AddToRoleAsync(user, "User").Wait();
@@ -44,7 +44,7 @@ namespace FandomStarWars.Infra.Data.Identity
                 user.LockoutEnabled = false;
                 user.SecurityStamp = Guid.NewGuid().ToString();
 
-                IdentityResult result = _userManager.CreateAsync(user, "Numsey#2021").Result;
+                IdentityResult result = _userManager.CreateAsync(user, "@Admin1234").Result;
 
                 if (result.Succeeded)
                     _userManager.AddToRoleAsync(user, "Admin").Wait();

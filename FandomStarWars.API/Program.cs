@@ -6,6 +6,7 @@ using Serilog;
 using System.Text.Json.Serialization;
 using SendGrid.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using FandomStarWars.Application.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,9 +56,11 @@ using (var serviceScope = app.Services.CreateScope())
 {
     var services = serviceScope.ServiceProvider;
     var seedUserRoleInitial = services.GetRequiredService<ISeedUserRoleInitial>();
+    var seedbankInitial = services.GetRequiredService<ISeedDataBankService>();
 
     seedUserRoleInitial.SeedRoles();
     seedUserRoleInitial.SeedUsers();
+    await seedbankInitial.InsertData();
 }
 
 app.UseStatusCodePages();

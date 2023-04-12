@@ -14,9 +14,9 @@ namespace FandomStarWars.Application.CQRS.ExternalApi.Handlers
             _externalApiService = externalApiService;
         }
 
-        public Task<Root> Handle(GetPersonagesExternalApiByPageQuery request, CancellationToken cancellationToken)
+        public async Task<Root> Handle(GetPersonagesExternalApiByPageQuery request, CancellationToken cancellationToken)
         {
-            return _externalApiService.GetPersonagesByPageAsync(request.NumberPage);
+            return await _externalApiService.GetPersonagesByPageAsync(request.NumberPage);
         }
     }
 }

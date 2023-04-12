@@ -1,6 +1,7 @@
 ﻿using FandomStarWars.Application.CQRS.Validations.Personage;
 using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Application.Interfaces;
+using FandomStarWars.Application.Interfaces.APIClient;
 using FandomStarWars.Application.Mappings;
 using FandomStarWars.Application.Services;
 using FandomStarWars.Domain.Account;
@@ -38,14 +39,16 @@ namespace FandomStarWars.Infra.IoC
 
             services.AddScoped<IPersonageRepository, PersonageRepository>();
             services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IStatusTableRepository, StatusTableRepository>();
 
             services.AddScoped<IPersonageService, PersonageService>();
             services.AddScoped<IMovieService, MovieService>();
+            services.AddScoped<ISendEmailService, SendEmailService>();
+            services.AddScoped<ISeedDataBankService, SeedDataBankService>();
+            services.AddScoped<IApiClientService, ApiClientService>();
 
             services.AddScoped<IAuthenticate, AuthenticateService>();
             services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
-
-            services.AddScoped<ISendEmailService, SendEmailService>();
 
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 

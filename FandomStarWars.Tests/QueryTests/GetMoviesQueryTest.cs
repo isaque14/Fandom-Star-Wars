@@ -1,32 +1,18 @@
-﻿using AutoMapper;
-using FandomStarWars.Application.CQRS.BaseResponses;
+﻿using FandomStarWars.Application.CQRS.BaseResponses;
 using FandomStarWars.Application.CQRS.Movies.Handlers.Querys;
 using FandomStarWars.Application.CQRS.Movies.Requests.Querys;
-using FandomStarWars.Application.Mappings;
 using FandomStarWars.Domain.Entities;
 using FandomStarWars.Tests.Repositories;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace FandomStarWars.Tests.QueryTests
 {
     public class GetMoviesQueryTest
     {
-        private readonly IMapper _mapper;
         private readonly GetMoviesQueryRequestHandler _queryGetMovies;
 
         public GetMoviesQueryTest()
         {
-            var configuration = new MapperConfiguration(config =>
-            {
-                config.AddProfile<DomainToDTOMappingProfile>();
-            });
-
-            _mapper = configuration.CreateMapper();
-            var service = new ServiceCollection();
-            service.AddSingleton(_mapper);
-
-            var provider = service.BuildServiceProvider();
-            _queryGetMovies = new GetMoviesQueryRequestHandler(_mapper, new FakeMovieRepository());
+            _queryGetMovies = new GetMoviesQueryRequestHandler(new FakeMovieRepository());
         }
 
         [Fact(DisplayName = "Handler Query valid return all Movies")]

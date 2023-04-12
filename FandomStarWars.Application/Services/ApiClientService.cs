@@ -25,176 +25,202 @@ namespace FandomStarWars.Application.Services
 
         public async Task<PersonageDTO> GetPersonageInExternalApiByIdAsync(int id)
         {
-            var getPersonage = new GetPersonageExternalApiByIdQuery(id);
-
-            if (getPersonage == null)
-                throw new Exception($"API could not be loaded.");
-
-            var personageApi = await _mediator.Send(getPersonage);
-
-            return new PersonageDTO
+            try
             {
-                Name = personageApi.Name,
-                Height = personageApi.Height,
-                Mass = personageApi.Mass,
-                HairColor = personageApi.Hair_Color,
-                SkinColor = personageApi.Skin_Color,
-                EyeColor = personageApi.Eye_Color,
-                BirthYear = personageApi.Birth_Year,
-                Gender = personageApi.Gender,
-                Homeworld = personageApi.Homeworld,
-                Created = personageApi.Created,
-                Edited = personageApi.Edited
-            };
+                var getPersonage = new GetPersonageExternalApiByIdQuery(id);
+
+                if (getPersonage == null)
+                    throw new Exception($"API could not be loaded.");
+
+                var personageApi = await _mediator.Send(getPersonage);
+
+                return new PersonageDTO
+                {
+                    Name = personageApi.Name,
+                    Height = personageApi.Height,
+                    Mass = personageApi.Mass,
+                    HairColor = personageApi.Hair_Color,
+                    SkinColor = personageApi.Skin_Color,
+                    EyeColor = personageApi.Eye_Color,
+                    BirthYear = personageApi.Birth_Year,
+                    Gender = personageApi.Gender,
+                    Homeworld = personageApi.Homeworld,
+                    Created = personageApi.Created,
+                    Edited = personageApi.Edited
+                };
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public async Task<IEnumerable<PersonageDTO>> GetAllPersonagesInExternalApiAsync()
         {
-            int numberPage = 1;
-            var getPersonageExternalApi = new GetPersonagesExternalApiByPageQuery(numberPage);
-
-            if (getPersonageExternalApi == null)
-                throw new Exception($"API could not be loaded.");
-
-            var personagesAPi = await _mediator.Send(getPersonageExternalApi);
-
-            var personagesDTO = new List<PersonageDTO>();
-
-            var nextElement = true;
-            while (nextElement)
+            try
             {
-                foreach (var p in personagesAPi.Results)
-                {
-                    int idPlanet = 0;
-                    var lastSegment = new Uri(p.Homeworld).Segments.Last();
+                int numberPage = 1;
+                var getPersonageExternalApi = new GetPersonagesExternalApiByPageQuery(numberPage);
 
-                    int.TryParse(lastSegment.Remove(lastSegment.Length - 1), out idPlanet);
-
-                    var getPlanetExternalApiByIdQuery = new GetPlanetExternalApiByIdQuery(idPlanet);
-                    var planet = await _mediator.Send(getPlanetExternalApiByIdQuery);
-
-                    personagesDTO.Add(new PersonageDTO
-                    {
-                        Name = p.Name,
-                        Height = p.Height,
-                        Mass = p.Mass,
-                        HairColor = p.Hair_Color,
-                        SkinColor = p.Skin_Color,
-                        EyeColor = p.Eye_Color,
-                        BirthYear = p.Birth_Year,
-                        Gender = p.Gender,
-                        Homeworld = planet.Name,
-                        Created = p.Created,
-                        Edited = p.Edited
-                    });
-                }
-
-                numberPage++;
-
-                var nextPage = new GetPersonagesExternalApiByPageQuery(numberPage);
-
-                if (nextPage == null)
+                if (getPersonageExternalApi == null)
                     throw new Exception($"API could not be loaded.");
 
-                if (personagesAPi.Next is null)
-                    nextElement = false;
+                var personagesAPi = await _mediator.Send(getPersonageExternalApi);
 
-                else
-                    personagesAPi = await _mediator.Send(nextPage);
+                var personagesDTO = new List<PersonageDTO>();
+
+                var nextElement = true;
+                while (nextElement)
+                {
+                    foreach (var p in personagesAPi.Results)
+                    {
+                        int idPlanet = 0;
+                        var lastSegment = new Uri(p.Homeworld).Segments.Last();
+
+                        int.TryParse(lastSegment.Remove(lastSegment.Length - 1), out idPlanet);
+
+                        var getPlanetExternalApiByIdQuery = new GetPlanetExternalApiByIdQuery(idPlanet);
+                        var planet = await _mediator.Send(getPlanetExternalApiByIdQuery);
+
+                        personagesDTO.Add(new PersonageDTO
+                        {
+                            Name = p.Name,
+                            Height = p.Height,
+                            Mass = p.Mass,
+                            HairColor = p.Hair_Color,
+                            SkinColor = p.Skin_Color,
+                            EyeColor = p.Eye_Color,
+                            BirthYear = p.Birth_Year,
+                            Gender = p.Gender,
+                            Homeworld = planet.Name,
+                            Created = p.Created,
+                            Edited = p.Edited
+                        });
+                    }
+
+                    numberPage++;
+
+                    var nextPage = new GetPersonagesExternalApiByPageQuery(numberPage);
+
+                    if (nextPage == null)
+                        throw new Exception($"API could not be loaded.");
+
+                    if (personagesAPi.Next is null)
+                        nextElement = false;
+
+                    else
+                        personagesAPi = await _mediator.Send(nextPage);
+                }
+
+
+                return personagesDTO as IEnumerable<PersonageDTO>;
             }
-
-
-            return personagesDTO as IEnumerable<PersonageDTO>;
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public async Task InsertPersonagesExternalApiIntoDataBase()
         {
-            var personagesDTO = await GetAllPersonagesInExternalApiAsync();
-
-
-            foreach (var personage in personagesDTO)
+            try
             {
-                GenericResponse response = _personageService.GetByNameAsync(personage.Name).Result;
+                var personagesDTO = await GetAllPersonagesInExternalApiAsync();
 
-                if (!response.IsSuccessful)
-                    await _personageService.CreateAsync(personage);
+
+                foreach (var personage in personagesDTO)
+                {
+                    GenericResponse response = _personageService.GetByNameAsync(personage.Name).Result;
+
+                    if (!response.IsSuccessful)
+                        await _personageService.CreateAsync(personage);
+                }
             }
+            catch (Exception e) { throw new Exception(e.Message); }
         }
 
         public async Task<IEnumerable<MovieDTO>> GetAllFilmsInExternalApiAsync()
         {
-            var numberPage = 1;
-            var filmsDTO = new List<MovieDTO>();
-            RootFilms filmsApi;
-            var nextMovie = true;
-
-            do
+            try
             {
-                var getFilms = new GetMoviesExternalApiByPageQuery(numberPage);
+                var numberPage = 1;
+                var filmsDTO = new List<MovieDTO>();
+                RootFilms filmsApi;
+                var nextMovie = true;
 
-                if (getFilms == null)
-                    throw new Exception($"API could not be loaded.");
-
-                filmsApi = await _mediator.Send(getFilms);
-
-                foreach (var film in filmsApi.Results)
+                do
                 {
-                    var personagesDTO = new List<PersonageDTO>();
+                    var getFilms = new GetMoviesExternalApiByPageQuery(numberPage);
 
-                    foreach (var personage in film.Characters)
+                    if (getFilms == null)
+                        throw new Exception($"API could not be loaded.");
+
+                    filmsApi = await _mediator.Send(getFilms);
+
+                    foreach (var film in filmsApi.Results)
                     {
-                        int idPersonage = 0;
-                        var lastSegment = new Uri(personage).Segments.Last();
+                        var personagesDTO = new List<PersonageDTO>();
 
-                        int.TryParse(lastSegment.Remove(lastSegment.Length - 1), out idPersonage);
-                        var getPersonageApi = await _externalApiService.GetPersonageByIdAsync(idPersonage);
-                        GenericResponse personageResponse = await _personageService.GetByNameAsync(getPersonageApi.Name);
+                        foreach (var personage in film.Characters)
+                        {
+                            int idPersonage = 0;
+                            var lastSegment = new Uri(personage).Segments.Last();
 
-                        personagesDTO.Add(personageResponse.Object as PersonageDTO);
+                            int.TryParse(lastSegment.Remove(lastSegment.Length - 1), out idPersonage);
+                            var getPersonageApi = await _externalApiService.GetPersonageByIdAsync(idPersonage);
+                            GenericResponse personageResponse = await _personageService.GetByNameAsync(getPersonageApi.Name);
+
+                            personagesDTO.Add(personageResponse.Object as PersonageDTO);
+                        }
+
+                        var personagesId = new List<int>();
+                        foreach (var personageDTO in personagesDTO)
+                        {
+                            var idPersonage = personageDTO.Id;
+                            personagesId.Add(idPersonage);
+                        }
+
+                        filmsDTO.Add(new MovieDTO
+                        {
+                            Title = film.Title,
+                            EpisodeId = film.Episode_Id,
+                            OpeningCrawl = film.Opening_Crawl,
+                            Director = film.Director,
+                            Producer = film.Producer,
+                            ReleaseDate = film.Release_Date,
+                            PersonagesId = personagesId,
+                            PersonagesDTO = personagesDTO
+                        });
+
                     }
 
-                    var personagesId = new List<int>();
-                    foreach (var personageDTO in personagesDTO)
-                    {
-                        var idPersonage = personageDTO.Id;
-                        personagesId.Add(idPersonage);
-                    }
+                    numberPage++;
 
-                    filmsDTO.Add(new MovieDTO
-                    {
-                        Title = film.Title,
-                        EpisodeId = film.Episode_Id,
-                        OpeningCrawl = film.Opening_Crawl,
-                        Director = film.Director,
-                        Producer = film.Producer,
-                        ReleaseDate = film.Release_Date,
-                        PersonagesId = personagesId,
-                        PersonagesDTO = personagesDTO
-                    });
+                    if (filmsApi.Next is null)
+                        nextMovie = false;
 
-                }
+                } while (nextMovie);
 
-                numberPage++;
-
-                if (filmsApi.Next is null)
-                    nextMovie = false;
-
-            } while (nextMovie);
-
-            return filmsDTO;
+                return filmsDTO;
+            }
+            catch (Exception e) { throw new Exception(e.Message); }
         }
 
         public async Task InsertFilmsExternalApiIntoDataBase()
         {
-            var movieDTO = await GetAllFilmsInExternalApiAsync();
-
-            foreach (var movie in movieDTO)
+            try
             {
-                GenericResponse response = _movieService.GetByNameAsync(movie.Title).Result;
+                var movieDTO = await GetAllFilmsInExternalApiAsync();
 
-                if (!response.IsSuccessful)
-                    await _movieService.CreateAsync(movie);
+                foreach (var movie in movieDTO)
+                {
+                    GenericResponse response = _movieService.GetByNameAsync(movie.Title).Result;
+
+                    if (!response.IsSuccessful)
+                        await _movieService.CreateAsync(movie);
+                }
             }
+            catch (Exception e) { throw new Exception(e.Message); }
         }
     }
 }

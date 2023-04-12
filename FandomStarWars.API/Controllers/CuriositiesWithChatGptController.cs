@@ -19,8 +19,15 @@ namespace FandomStarWars.API.Controllers
             _httpClient = httpClient;
         }
 
+        /// <summary>
+        /// Utilize o Chat GPT para obter Curiosidades, Notícias e Informações sobre o Universo de Star Wars
+        /// </summary>
+        /// <param name="text">Texto de Busca</param>
+        /// <returns>Informações de acordo com o texto informado</returns>
+        /// <response code="200">Sucesso</response>
         [HttpGet]
         [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(string text, [FromServices] IConfiguration configuration)
         {
             var token = configuration.GetValue<string>("ChatGptSecretKey");

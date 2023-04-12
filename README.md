@@ -31,6 +31,7 @@
 - MediatR
 - Token JWT
 - Serilog
+- Envio de Email com Servidor SMTP SendGrid
 
 
 ## Conhecendo a estrutura da Aplicação

@@ -9,7 +9,23 @@ namespace CleanArchMvc.Infra.IoC
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CleanArchMvc.API", Version = "v1" });
+                c.SwaggerDoc(
+                    "v1", 
+                    new OpenApiInfo 
+                    { 
+                        Title = "FandomStarWars.API", 
+                        Version = "v1",
+                        Contact = new OpenApiContact
+                        {
+                            Name = "Isaque Diniz da Silva",
+                            Email = "isaquediniz14@gmail.com",
+                            Url = new Uri("https://www.linkedin.com/in/isaque-diniz-da-silva-a0773459/")
+                        }
+                    });
+
+                var xmlFile = "FandomStarWars.API.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {

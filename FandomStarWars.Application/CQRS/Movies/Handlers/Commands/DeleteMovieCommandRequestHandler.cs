@@ -23,7 +23,14 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Commands
 			try
 			{
                 var movieEntity = await _repository.GetByIdAsync(request.Id);
-                if (movieEntity is null) throw new Exception("Movie Not found by id");
+                if (movieEntity is null)
+                {
+                    return new GenericResponse
+                    {
+                        IsSuccessful = true,
+                        Message = "Movie Not found by id"
+                    };
+                }
 
                 await _repository.DeleteAsync(movieEntity);
 

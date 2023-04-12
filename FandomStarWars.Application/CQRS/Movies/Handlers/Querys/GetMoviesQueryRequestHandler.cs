@@ -1,21 +1,16 @@
-﻿using AutoMapper;
-using FandomStarWars.Application.CQRS.BaseResponses;
+﻿using FandomStarWars.Application.CQRS.BaseResponses;
 using FandomStarWars.Application.CQRS.Movies.Requests.Querys;
-using FandomStarWars.Application.DTO_s;
 using FandomStarWars.Domain.Interfaces;
 using MediatR;
-using System.Threading.Tasks.Dataflow;
 
 namespace FandomStarWars.Application.CQRS.Movies.Handlers.Querys
 {
     public class GetMoviesQueryRequestHandler : IRequestHandler<GetMoviesQueryRequest, GenericResponse>
     {
-        private readonly IMapper _mapper;
         private readonly IMovieRepository _repository;
 
-        public GetMoviesQueryRequestHandler(IMapper mapper, IMovieRepository repository)
+        public GetMoviesQueryRequestHandler(IMovieRepository repository)
         {
-            mapper = mapper;
             _repository = repository;
         }
 
@@ -27,7 +22,7 @@ namespace FandomStarWars.Application.CQRS.Movies.Handlers.Querys
                                 
                 return new GenericResponse
                 {
-                    IsSuccessful = true,
+                    IsSuccessful = moviesEntity is not null ? true : false,
                     Message = moviesEntity is not null ? "Successfully obtained Movies" : "Not found Movies",
                     Object = moviesEntity
                 };

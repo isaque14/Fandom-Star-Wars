@@ -49,11 +49,7 @@ namespace FandomStarWars.API.Controllers
         public async Task<ActionResult<PersonageDTO>> GetPersonageByName(string name)
         {
             var response = await _personageService.GetByNameAsync(name);
-
-            if (!response.IsSuccessful)
-                return NotFound(response);
-
-            return Ok(response);
+            return response.IsSuccessful ? Ok(response) : NotFound(response);
         }
 
         /// <summary>
@@ -71,11 +67,7 @@ namespace FandomStarWars.API.Controllers
         public async Task<ActionResult<PersonageDTO>> GetPersonageById(int id)
         {
             var response = await _personageService.GetByIdAsync(id);
-
-            if (!response.IsSuccessful)
-                return NotFound(response);
-
-            return Ok(response);
+            return response.IsSuccessful ? Ok(response) : NotFound(response);
         }
 
         /// <summary>
@@ -92,9 +84,7 @@ namespace FandomStarWars.API.Controllers
         public async Task<ActionResult<PersonageDTO>> CreatePersonage(PersonageDTO personageDTO)
         {
             var response = await _personageService.CreateAsync(personageDTO);
-            if (!response.IsSuccessful) return BadRequest(response);
-
-            return StatusCode(201, response);
+            return response.IsSuccessful ? StatusCode(201, response) : BadRequest(response);
         }
 
         /// <summary>
@@ -167,9 +157,7 @@ namespace FandomStarWars.API.Controllers
 
             var response =  await _personageService.DeleteAsync(id);
 
-            if (!response.IsSuccessful) return NotFound(response);
-
-            return Ok(response);
+            return response.IsSuccessful ? Ok(response) : NotFound(response);
         }
     }
 }

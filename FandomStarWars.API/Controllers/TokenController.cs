@@ -34,7 +34,15 @@ namespace FandomStarWars.API.Controllers
             _userManager = userManager;
         }
 
+        /// <summary>
+        /// Login
+        /// </summary>
+        /// <returns>Token</returns>
+        /// <response code="200">Sucesso</response>
+        /// <response code="404">Não Encontrado</response>
         [HttpPost("LoginUser")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<UserToken>> Login([FromBody] LoginUserModel userInfo)
         {
             var result = await _authentication.Authenticate(userInfo.Email, userInfo.Password);
@@ -49,7 +57,15 @@ namespace FandomStarWars.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Criar Conta
+        /// </summary>
+        /// <returns>onfirmação da conta criada</returns>
+        /// <response code="201">Sucesso</response>
+        /// <response code="400">Falha</response>
         [HttpPost("CreateUser")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> CreateUser([FromBody] LoginUserModel userInfo)
         {
             try
@@ -63,7 +79,7 @@ namespace FandomStarWars.API.Controllers
 
                     await _sendEmailService.SendEmail(userInfo.Email, subject, content);
 
-                    return Ok(new GenericResponse
+                    return StatusCode(201, new GenericResponse
                     {
                         IsSuccessful = true,
                         Message = $"Usuário {userInfo.Email} criado com Sucesso, verifique sua conta de E-mail"
@@ -87,9 +103,7 @@ namespace FandomStarWars.API.Controllers
                     Message = "Ops, Erro ao criar conta",
                     Object = e.Message
                 });
-            }
-
-            
+            }   
         }
 
         private async Task<UserToken> GenerateToken(LoginUserModel userInfo)

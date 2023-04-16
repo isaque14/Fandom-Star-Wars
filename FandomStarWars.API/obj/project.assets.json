@@ -1994,6 +1994,7 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.OpenApi": "1.4.3",
           "SendGrid.Extensions.DependencyInjection": "1.0.1",
+          "Swashbuckle.AspNetCore": "6.2.3",
           "Swashbuckle.AspNetCore.Swagger": "6.5.0",
           "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0",
           "Swashbuckle.AspNetCore.SwaggerUI": "6.5.0"

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ty8ZTuhSJhqAY9IT8XUW4btuo6Eh6+pINjmIwy9GX4+bvgMfrFv73/5SPvZS8PF+nEtAfi9WVMjbjE//11oHAw==",
+  "dgSpecHash": "adgOpxbxtQJqdHE2zpLOqEr6lhYWhtYISc9c24KsYR0Q1yiEhn2bqLUJsvERPso36YJjylL+ozhHTqbYnerTrw==",
   "success": true,
   "projectFilePath": "C:\\ws-vs22\\Fandom-Star-Wars\\FandomStarWars.Infra.IoC\\FandomStarWars.Infra.IoC.csproj",
   "expectedPackageFiles": [
@@ -37,6 +37,7 @@
     "C:\\Users\\Samsung\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.9\\microsoft.entityframeworkcore.analyzers.6.0.9.nupkg.sha512",
     "C:\\Users\\Samsung\\.nuget\\packages\\microsoft.entityframeworkcore.design\\6.0.9\\microsoft.entityframeworkcore.design.6.0.9.nupkg.sha512",
     "C:\\Users\\Samsung\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.9\\microsoft.entityframeworkcore.relational.6.0.9.nupkg.sha512",
+    "C:\\Users\\Samsung\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Samsung\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Samsung\\.nuget\\packages\\microsoft.extensions.caching.memory\\6.0.1\\microsoft.extensions.caching.memory.6.0.1.nupkg.sha512",
     "C:\\Users\\Samsung\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
@@ -70,6 +71,7 @@
     "C:\\Users\\Samsung\\.nuget\\packages\\sendgrid\\9.28.1\\sendgrid.9.28.1.nupkg.sha512",
     "C:\\Users\\Samsung\\.nuget\\packages\\sendgrid.extensions.dependencyinjection\\1.0.1\\sendgrid.extensions.dependencyinjection.1.0.1.nupkg.sha512",
     "C:\\Users\\Samsung\\.nuget\\packages\\starkbank-ecdsa\\1.3.3\\starkbank-ecdsa.1.3.3.nupkg.sha512",
+    "C:\\Users\\Samsung\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\Samsung\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\Samsung\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\Samsung\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",

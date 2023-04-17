@@ -60,7 +60,8 @@ namespace FandomStarWars.API.Controllers
         /// <summary>
         /// Criar Conta
         /// </summary>
-        /// <returns>onfirmação da conta criada</returns>
+        /// <remarks>A senha precisa de 8 caracteres sendo, que precisam conter Letras Maiúsculas e minúsculas, números e caracteres especiais</remarks>
+        /// <returns>Confirmação da conta criada</returns>
         /// <response code="201">Sucesso</response>
         /// <response code="400">Falha</response>
         [HttpPost("CreateUser")]

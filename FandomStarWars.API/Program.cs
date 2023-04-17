@@ -5,7 +5,6 @@ using FandomStarWars.Infra.IoC;
 using Serilog;
 using System.Text.Json.Serialization;
 using SendGrid.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
 using FandomStarWars.Application.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,11 +41,6 @@ builder.Services.AddSendGrid(opt =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsProduction())
-//{
-
-//}
-
 app.UseSwagger();
 
 app.UseSwaggerUI(c =>

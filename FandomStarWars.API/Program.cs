@@ -42,15 +42,17 @@ builder.Services.AddSendGrid(opt =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI()//c =>
-    //{
-    //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Famdom Star Wars API V1");
-    //    c.RoutePrefix = "/swagger";
-    //});
-}
+//if (app.Environment.IsProduction())
+//{
+
+//}
+
+app.UseSwagger();
+app.UseSwaggerUI();//c =>
+//{
+//    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Famdom Star Wars API V1");
+//    c.RoutePrefix = "/swagger";
+//});
 
 app.UseHttpsRedirection();
 

@@ -53,6 +53,14 @@ namespace CleanArchMvc.Infra.IoC
                             new string[] {}
                     }
                 });
+
+                // Reduz o número de arquivos temporários gerados pelo Swagger
+                c.UseOneOfForPolymorphism();
+                c.UseAllOfForInheritance();
+                c.UseInlineDefinitionsForEnums();
+                c.IgnoreObsoleteProperties();
+                c.GeneratePolymorphicSchemas();
+
             });
             return services;
         }

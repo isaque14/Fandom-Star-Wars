@@ -8,26 +8,14 @@ using SendGrid.Extensions.DependencyInjection;
 using FandomStarWars.Application.Interfaces;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
-using HealthChecks.NpgSql;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructureExternalApiClients(builder.Configuration);
 builder.Services.AddInfrastructureAPI(builder.Configuration);
 builder.Services.AddInfrastructureJWT(builder.Configuration);
+builder.Services.AddInfrastructureHealthChecks(builder.Configuration);
 builder.Services.AddInfrastructureSwagger();
-builder.Services.AddHealthChecks()
-    .AddNpgSql(builder.Configuration.GetConnectionString("Default"), tags: new[] { "database" }, name: "PostgreSQL")
-    .AddSendGrid(builder.Configuration.GetSection("SendGridEmailSettings").GetValue<string>("APIKey"), name: "SendGrid", tags: new[] {"Server-SMTP"});
-
-
-builder.Services.AddHealthChecksUI(options =>
-{
-    options.SetEvaluationTimeInSeconds(5);
-    options.MaximumHistoryEntriesPerEndpoint(10);
-    options.AddHealthCheckEndpoint("API com Health Checks", "/health");
-})
-    .AddInMemoryStorage();
 
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
@@ -86,12 +74,6 @@ app.UseHealthChecks("/health", new HealthCheckOptions
 });
 
 app.UseHealthChecksUI(options => { options.UIPath = "/dashbord"; });
-
-
-//app.MapHealthChecks("/health", new HealthCheckOptions
-//{
-//    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-//});
 
 app.MapHealthChecksUI();
 

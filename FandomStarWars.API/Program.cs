@@ -6,20 +6,25 @@ using Serilog;
 using System.Text.Json.Serialization;
 using SendGrid.Extensions.DependencyInjection;
 using FandomStarWars.Application.Interfaces;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using HealthChecks.UI.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructureExternalApiClients(builder.Configuration);
 builder.Services.AddInfrastructureAPI(builder.Configuration);
 builder.Services.AddInfrastructureJWT(builder.Configuration);
+builder.Services.AddInfrastructureHealthChecks(builder.Configuration);
 builder.Services.AddInfrastructureSwagger();
+builder.Services.AddHttpClient<CuriositiesWithChatGptController>();
 
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddHttpClient<CuriositiesWithChatGptController>();
+
+
 IConfiguration config = builder.Configuration;
 var keySecret = config["ConnectionStrings:Default"];
 
@@ -63,6 +68,16 @@ using (var serviceScope = app.Services.CreateScope())
     seedUserRoleInitial.SeedUsers();
     await seedbankInitial.InsertData();
 }
+
+app.UseHealthChecks("/health", new HealthCheckOptions
+{
+    Predicate = p => true,
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
+
+app.UseHealthChecksUI(options => { options.UIPath = "/dashbord"; });
+
+app.MapHealthChecksUI();
 
 app.UseStatusCodePages();
 

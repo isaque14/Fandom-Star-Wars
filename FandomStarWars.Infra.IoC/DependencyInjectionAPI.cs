@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace FandomStarWars.Infra.IoC
 {
@@ -46,6 +47,7 @@ namespace FandomStarWars.Infra.IoC
             services.AddScoped<ISendEmailService, SendEmailService>();
             services.AddScoped<ISeedDataBankService, SeedDataBankService>();
             services.AddScoped<IApiClientService, ApiClientService>();
+            services.AddScoped<IHealthCheck, OpenAIHealthCheckService>();
 
             services.AddScoped<IAuthenticate, AuthenticateService>();
             services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();

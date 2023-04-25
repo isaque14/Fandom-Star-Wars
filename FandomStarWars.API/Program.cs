@@ -23,19 +23,8 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-
-
-IConfiguration config = builder.Configuration;
-var keySecret = config["ConnectionStrings:Default"];
-
-var logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
-    .Enrich.FromLogContext()
-    .WriteTo.PostgreSQL(keySecret, "Logs", needAutoCreateTable: true)
-    .CreateLogger();
-
 builder.Logging.ClearProviders();
-builder.Logging.AddSerilog(logger);
+builder.Logging.AddSerilog(DependencyInjectionSerilog.AddInfrastructureSerilog(builder.Configuration));
 
 var app = builder.Build();
 

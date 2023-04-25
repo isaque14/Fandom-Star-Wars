@@ -1,7 +1,7 @@
 # REST API Fandom-Star-Wars
 
 ## Sobre o Projeto 
-- Esta Aplicação consiste de 6 projetos (Domain, Application, Infra.Data, Infra.Data.IoC, API, Tests) que compõem uma API REST Sobre o Universo de Star Wars, onde temos um CRUD onde pode-se criar e editar personages e filmes da franquia. Essa aplicação utiliza Autenticação via Token JWT Bearer. Para realizar o cadastro, atualização ou exclusão de Personagens ou Filmes será necessário estar autenticado na aplicação, para isso vc pode criar uma nova conta informando email e senha, além disso, este projeto está integrado com o ChatGPT onde podemos utiliza-lo para obter informações, curiosidades, notícias e o que mais precisarmos sobre o Universo de Star Wars. Para popular inicialmente o banco de dados, foi consumida a API https://swapi.dev que contém diversas informações sobre a franquia. Esta é uma aplicação onde foi possível realizar uma ampla cobertura de testes, onde temos tanto o domínio quanto a camada de aplicação coberto por testes unitários, além disso, é feito o tratamento dos Logs utilizando o Serilog e feita a persistência desses logs no banco de dados.
+- Esta Aplicação consiste de 6 projetos (Domain, Application, Infra.Data, Infra.Data.IoC, API, Tests) que compõem uma API REST Sobre o Universo de Star Wars, onde temos um CRUD onde pode-se criar e editar personages e filmes da franquia. Essa aplicação utiliza Autenticação via Token JWT Bearer. Para realizar o cadastro, atualização ou exclusão de Personagens ou Filmes será necessário estar autenticado na aplicação, para isso vc pode criar uma nova conta informando email e senha, além disso, este projeto está integrado com o ChatGPT onde podemos utiliza-lo para obter informações, curiosidades, notícias e o que mais precisarmos sobre o Universo de Star Wars. Para popular inicialmente o banco de dados, foi consumida a API https://swapi.dev que contém diversas informações sobre a franquia. Esta é uma aplicação onde foi possível realizar uma ampla cobertura de testes, onde temos tanto o domínio quanto a camada de aplicação coberto por testes unitários, além disso, é feito o tratamento dos Logs utilizando o Serilog e feita a persistência desses logs no banco de dados, também são Utilizados Health Checks para verificar a saúde da aplicação e dos serviços utilizados, e também foi feita a documentação da API utilizando o Swagger.
 
 ## Como Utilizar esta API
 - Esta API está hospedada em nuvem, para utilizá-la basta acessar a página (https://fandom-star-wars-api.up.railway.app/swagger/index.html), esta página contem a documentação da API com o Swagger. Para realizar o cadastro, atualização ou exclusão de Personagens ou Filmes será necessário estar autenticado na aplicação, para isso vc pode criar uma nova conta informando email e senha.
@@ -34,6 +34,7 @@
 - MediatR
 - Token JWT
 - Serilog
+- Health Checks 
 - Envio de Email com Servidor SMTP SendGrid
 - Deploy do Banco de Dados e da API em Nuvem com o Railway
 

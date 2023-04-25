@@ -691,17 +691,19 @@ FodyWeavers.xsd
 
 node_modules
 
-.vscode
+.vscode/
 
-.vs
+.vs/
 
 .gitignore
 
 ### DotnetCore ###
 # .NET Core build folders
-bin/
-obj/
+**/bin/
+**/obj/
 
 # Common node modules locations
 /node_modules
 /wwwroot/node_modules
+
+

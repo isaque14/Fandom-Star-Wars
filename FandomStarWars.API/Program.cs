@@ -4,7 +4,6 @@ using FandomStarWars.Domain.Account;
 using FandomStarWars.Infra.IoC;
 using Serilog;
 using System.Text.Json.Serialization;
-using SendGrid.Extensions.DependencyInjection;
 using FandomStarWars.Application.Interfaces;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
@@ -15,6 +14,7 @@ builder.Services.AddInfrastructureExternalApiClients(builder.Configuration);
 builder.Services.AddInfrastructureAPI(builder.Configuration);
 builder.Services.AddInfrastructureJWT(builder.Configuration);
 builder.Services.AddInfrastructureHealthChecks(builder.Configuration);
+builder.Services.AddInfrastructureSendGrid(builder.Configuration);
 builder.Services.AddInfrastructureSwagger();
 builder.Services.AddHttpClient<CuriositiesWithChatGptController>();
 
@@ -36,12 +36,6 @@ var logger = new LoggerConfiguration()
 
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
-
-builder.Services.AddSendGrid(opt =>
-{
-    opt.ApiKey = builder
-    .Configuration.GetSection("SendGridEmailSettings").GetValue<string>("APIKey");
-});
 
 var app = builder.Build();
 

@@ -9,7 +9,8 @@ namespace FandomStarWars.Infra.IoC
         {
             services.AddHealthChecks()
                 .AddNpgSql(configuration.GetConnectionString("Default"), tags: new[] { "database" }, name: "PostgreSQL")
-                .AddSendGrid(configuration.GetSection("SendGridEmailSettings").GetValue<string>("APIKey"), name: "SendGrid", tags: new[] { "Server-SMTP" });
+                .AddSendGrid(configuration.GetSection("SendGridEmailSettings").GetValue<string>("APIKey"), name: "SendGrid", tags: new[] { "Server-SMTP" })
+                .AddCheck<OpenAIHealthCheckService>(name: "OpenAI Chat-GPT", tags: new[] { "AI" });
 
             services.AddHealthChecksUI(options =>
             {
@@ -18,7 +19,6 @@ namespace FandomStarWars.Infra.IoC
                 options.AddHealthCheckEndpoint("Fandom Star Wars API - Health Checks", "/health");
             })
                 .AddInMemoryStorage();
-
 
             return services;
         }

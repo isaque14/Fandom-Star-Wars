@@ -196,3 +196,4 @@ C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\runtimes\win-x64
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\runtimes\win-x86\native\e_sqlite3.dll
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\HealthChecks.UI.PostgreSQL.Storage.dll
 C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\HealthChecks.SendGrid.dll
+C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.API\bin\Debug\net6.0\HealthChecks.Uris.dll

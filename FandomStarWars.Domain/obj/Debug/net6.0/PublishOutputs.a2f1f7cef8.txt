@@ -1,3 +1,0 @@
-C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Domain\bin\Debug\net6.0\publish\FandomStarWars.Domain.dll
-C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Domain\bin\Debug\net6.0\publish\FandomStarWars.Domain.deps.json
-C:\ws-vs22\Fandom-Star-Wars\FandomStarWars.Domain\bin\Debug\net6.0\publish\FandomStarWars.Domain.pdb
